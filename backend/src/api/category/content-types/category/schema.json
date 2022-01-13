@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "cameras": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::camera.camera",
+      "mappedBy": "category"
+    },
+    "lenses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lens.lens",
+      "mappedBy": "categories"
+    }
+  }
+}

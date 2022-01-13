@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sensors",
+  "info": {
+    "singularName": "sensor",
+    "pluralName": "sensors",
+    "displayName": "Sensor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "cameras": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::camera.camera",
+      "mappedBy": "sensor"
+    }
+  }
+}

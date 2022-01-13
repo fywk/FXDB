@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "features",
+  "info": {
+    "singularName": "feature",
+    "pluralName": "features",
+    "displayName": "Feature",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "lenses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lens.lens",
+      "mappedBy": "features"
+    }
+  }
+}

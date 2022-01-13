@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mounts",
+  "info": {
+    "singularName": "mount",
+    "pluralName": "mounts",
+    "displayName": "Mount",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "cameras": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::camera.camera",
+      "mappedBy": "mount"
+    },
+    "lenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lens.lens",
+      "mappedBy": "mount"
+    }
+  }
+}

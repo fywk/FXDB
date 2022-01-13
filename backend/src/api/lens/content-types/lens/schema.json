@@ -1,0 +1,95 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lenses",
+  "info": {
+    "singularName": "lens",
+    "pluralName": "lenses",
+    "displayName": "Lens",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "lenses"
+    },
+    "features": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::feature.feature",
+      "inversedBy": "lenses"
+    },
+    "opticalConstruction": {
+      "type": "string"
+    },
+    "focalLength": {
+      "type": "json"
+    },
+    "angleOfView": {
+      "type": "json"
+    },
+    "maxAperture": {
+      "type": "json"
+    },
+    "minAperture": {
+      "type": "integer"
+    },
+    "apertureBlades": {
+      "type": "integer"
+    },
+    "minFocusDistance": {
+      "type": "json"
+    },
+    "maxMagnificationRatio": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "filterSize": {
+      "type": "decimal"
+    },
+    "dataSource": {
+      "type": "string"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "launchDate": {
+      "type": "date",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "lenses"
+    },
+    "mount": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::mount.mount",
+      "inversedBy": "lenses"
+    }
+  }
+}
