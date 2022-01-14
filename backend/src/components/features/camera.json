@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_features_cameras",
+  "info": {
+    "displayName": "camera",
+    "icon": "camera"
+  },
+  "options": {},
+  "attributes": {
+    "IBIS": {
+      "type": "boolean"
+    },
+    "BSI": {
+      "type": "boolean"
+    },
+    "weatherResistant": {
+      "type": "boolean"
+    },
+    "GPS": {
+      "type": "boolean"
+    },
+    "hybridViewfinder": {
+      "type": "boolean"
+    },
+    "electronicViewfinder": {
+      "type": "boolean"
+    },
+    "stackedSensor": {
+      "type": "boolean"
+    }
+  }
+}

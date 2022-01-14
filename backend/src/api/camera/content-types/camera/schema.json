@@ -29,10 +29,6 @@
       "type": "integer",
       "required": true
     },
-    "imageStabilised": {
-      "type": "boolean",
-      "required": true
-    },
     "focalLength": {
       "type": "string"
     },
@@ -58,6 +54,24 @@
       "relation": "manyToOne",
       "target": "api::mount.mount",
       "inversedBy": "cameras"
+    },
+    "sensorSize": {
+      "type": "enumeration",
+      "enum": [
+        "APSC",
+        "mediumFormat"
+      ],
+      "required": true
+    },
+    "weight": {
+      "type": "decimal",
+      "required": true
+    },
+    "features": {
+      "displayName": "camera",
+      "type": "component",
+      "repeatable": false,
+      "component": "features.camera"
     }
   }
 }
