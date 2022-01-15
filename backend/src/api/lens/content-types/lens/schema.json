@@ -42,7 +42,7 @@
       "type": "json"
     },
     "minAperture": {
-      "type": "integer"
+      "type": "json"
     },
     "apertureBlades": {
       "type": "integer"
@@ -66,9 +66,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "launchDate": {
       "type": "date",

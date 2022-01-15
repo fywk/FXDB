@@ -72,6 +72,10 @@
       "type": "component",
       "repeatable": false,
       "component": "features.camera"
+    },
+    "dataSource": {
+      "type": "string",
+      "required": true
     }
   }
 }
