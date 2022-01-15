@@ -41,9 +41,6 @@
     "maxAperture": {
       "type": "json"
     },
-    "minAperture": {
-      "type": "json"
-    },
     "apertureBlades": {
       "type": "integer"
     },
@@ -88,6 +85,9 @@
       "relation": "manyToOne",
       "target": "api::mount.mount",
       "inversedBy": "lenses"
+    },
+    "minAperture": {
+      "type": "json"
     }
   }
 }
