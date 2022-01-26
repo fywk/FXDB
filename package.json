@@ -2,6 +2,12 @@
   "name": "fxdb",
   "private": true,
   "scripts": {
+    "backend": "cd backend && yarn develop",
+    "frontend": "cd frontend && yarn dev",
+    "dev": "concurrently \"yarn backend \" \"yarn frontend \"",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   }
 }
