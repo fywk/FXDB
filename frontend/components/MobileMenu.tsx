@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
-import { useState } from "react";
 
 export default function MobileMenu({ display = "md:hidden" }) {
   let [isOpen, setIsOpen] = useState(false);
@@ -56,11 +56,11 @@ export default function MobileMenu({ display = "md:hidden" }) {
   );
 }
 
-function MenuItem({ href, children, ...rest }) {
+function MenuItem({ href, children, ...attr }) {
   return (
     <li>
       <Link href={href}>
-        <a {...rest}>{children}</a>
+        <a {...attr}>{children}</a>
       </Link>
     </li>
   );

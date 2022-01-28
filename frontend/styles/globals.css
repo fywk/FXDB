@@ -18,4 +18,8 @@
   .text-highlight {
     @apply text-gray-900 dark:text-gray-50;
   }
+
+  .text-fxdb {
+    @apply text-purple-600 dark:text-yellow-400;
+  }
 }

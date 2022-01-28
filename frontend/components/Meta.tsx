@@ -4,9 +4,7 @@ export default function Meta({ title, keywords, description }) {
   return (
     <Head>
       <meta charSet="utf-8" />
-      <title>
-        {title}: {description}
-      </title>
+      <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
@@ -16,7 +14,7 @@ export default function Meta({ title, keywords, description }) {
 }
 
 Meta.defaultProps = {
-  title: "FXDB",
+  title: "FXDB: Fujifilm X and GFX Database",
   description: "Fujifilm X and GFX Database",
   keywords: "fujifilm, x-mount, database",
 };
