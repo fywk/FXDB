@@ -5,11 +5,11 @@ import MobileMenu from "./MobileMenu";
 
 export default function Nav() {
   return (
-    <section className="py-3">
+    <header className="py-3">
       <div className="container max-w-5xl flex items-center justify-between gap-x-4 mx-auto px-4 sm:px-8">
         <div className="text-2xl font-black select-none">
           <Link href="/">
-            <a className="text-link" title="FXDB">
+            <a className="text-link" title="FXDB Home">
               FXDB
             </a>
           </Link>
@@ -44,7 +44,7 @@ export default function Nav() {
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 

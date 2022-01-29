@@ -6,12 +6,12 @@ export default function Layout({ children }) {
   return (
     <>
       <Meta />
-      <div className="antialiased">
+      <div className="flex flex-col min-h-screen antialiased">
         <Nav />
-        <div className="container max-w-5xl mx-auto px-4 sm:px-8">
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <main className="grow flex flex-col w-full max-w-5xl mx-auto px-4 sm:px-8">
+          {children}
+        </main>
+        <Footer />
       </div>
     </>
   );

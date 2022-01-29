@@ -1,64 +1,61 @@
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { ChevronRightIcon, SearchIcon } from "@heroicons/react/outline";
-import Layout from "../components/Layout";
 import ProductCard from "../components/ProductCard";
 import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
 
 export default function Home({ cameras, lenses }) {
   return (
-    <Layout>
-      <div className="grid grid-cols-1">
-        <section className="grid grid-cols-1 justify-items-center pt-16 pb-12">
-          <div className="grid grid-cols-1 gap-y-6 mb-8 text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Fujifilm X and GFX Database
-            </h1>
-            <p className="max-w-3xl mx-auto text-lg">
-              <strong className="text-highlight">FXDB</strong> is a database of
-              cameras and lenses made for Fujifilm X and GFX systems. You can
-              find relevant specifications for each product including products
-              from third-party manufacturers.
-            </p>
+    <div className="grid grid-cols-1">
+      <section className="grid grid-cols-1 justify-items-center pt-16 pb-12">
+        <div className="grid grid-cols-1 gap-y-6 mb-8 text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+            Fujifilm X and GFX Database
+          </h1>
+          <p className="max-w-3xl mx-auto text-lg">
+            <strong className="text-highlight">FXDB</strong> is a database of
+            cameras and lenses made for Fujifilm X and GFX systems. You can find
+            relevant specifications for each product including products from
+            third-party manufacturers.
+          </p>
+        </div>
+        <SearchBar />
+      </section>
+      <section className="grid grid-cols-1 gap-y-12">
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-bold">Latest Cameras</h1>
+            <ViewMoreLink href="/cameras" title="View all cameras" />
           </div>
-          <SearchBar />
-        </section>
-        <section className="grid grid-cols-1 gap-y-12">
-          <div className="flex flex-col space-y-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl font-bold">Latest Cameras</h1>
-              <ViewMoreLink href="/cameras" title="View all cameras" />
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
-              {cameras.map((camera, i) => (
-                <ProductCard
-                  product={camera.attributes}
-                  path="cameras"
-                  imageStyle="scale-75 hover:scale-[.8]"
-                  key={i}
-                />
-              ))}
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
+            {cameras.map((camera, i) => (
+              <ProductCard
+                product={camera.attributes}
+                path="cameras"
+                imageStyle="scale-75 hover:scale-[.8]"
+                key={i}
+              />
+            ))}
           </div>
-          <div className="flex flex-col space-y-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl font-bold">Latest Lenses</h1>
-              <ViewMoreLink href="/lenses" title="View all lenses" />
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
-              {lenses.map((lens, i) => (
-                <ProductCard
-                  product={lens.attributes}
-                  path="lenses"
-                  imageStyle="-rotate-90 scale-90 hover:scale-95 "
-                  key={i}
-                />
-              ))}
-            </div>
+        </div>
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-bold">Latest Lenses</h1>
+            <ViewMoreLink href="/lenses" title="View all lenses" />
           </div>
-        </section>
-      </div>
-    </Layout>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
+            {lenses.map((lens, i) => (
+              <ProductCard
+                product={lens.attributes}
+                path="lenses"
+                imageStyle="-rotate-90 scale-90 hover:scale-95 "
+                key={i}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 
