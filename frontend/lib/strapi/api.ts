@@ -21,15 +21,45 @@ export async function fetchAPI(query) {
   return json.data;
 }
 
+export async function getLatestCameras() {
+  const data = await fetchAPI(
+    `query LatestCameras {
+      cameras(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 4}) {
+        data {
+          attributes {
+            slug
+            name
+            launchDate
+            resolutionX
+            resolutionY
+            sensorSize
+            images {
+              data {
+                attributes {
+                  url
+                  width
+                  height
+                  alternativeText
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  );
+  return data.cameras;
+}
+
 export async function getLatestLenses() {
   const data = await fetchAPI(
     `query LatestLenses {
-      lenses(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 6}) {
+      lenses(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 4}) {
       data {
         attributes {
+          slug
           name
           launchDate
-          slug
           brand {
             data {
               attributes {
