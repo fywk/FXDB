@@ -76,6 +76,13 @@
     "dataSource": {
       "type": "string",
       "required": true
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
