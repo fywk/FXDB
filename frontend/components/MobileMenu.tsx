@@ -31,11 +31,11 @@ export default function MobileMenu({ display = "md:hidden" }) {
         className={`fixed z-50 inset-0 ${display}`}
       >
         <Dialog.Overlay className="fixed inset-0 bg-black/20 dark:bg-gray-900/80 backdrop-blur-sm" />
-        <div className="fixed top-4 right-4 w-full max-w-xs p-6 bg-white dark:bg-gray-800 font-semibold shadow-lg rounded-xl">
+        <div className="fixed top-4 right-4 w-64 max-w-full p-6 bg-white dark:bg-gray-800 font-semibold shadow-lg rounded-xl">
           <button
             type="button"
             onClick={closeMenu}
-            className="absolute top-5 right-5 flex items-center justify-center w-8 h-8 active:text-link"
+            className="absolute top-5 right-5 flex items-center justify-center w-8 h-8 active:text-link focus:outline-none"
           >
             <span className="sr-only">Close menu</span>
             <XIcon className="h-5.5 w-5.5" />

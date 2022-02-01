@@ -62,8 +62,13 @@ export default function Home({ cameras, lenses }) {
 export const getStaticProps: GetStaticProps = async () => {
   const latestCameras = await getLatestCameras();
   const latestLenses = await getLatestLenses();
+
   return {
-    props: { cameras: latestCameras.data, lenses: latestLenses.data },
+    props: {
+      cameras: latestCameras.data,
+      lenses: latestLenses.data,
+    },
+    revalidate: 10,
   };
 };
 

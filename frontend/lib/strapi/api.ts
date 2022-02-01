@@ -55,39 +55,39 @@ export async function getLatestLenses() {
   const data = await fetchAPI(
     `query LatestLenses {
       lenses(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 4}) {
-      data {
-        attributes {
-          slug
-          name
-          launchDate
-          brand {
-            data {
-              attributes {
-                name
+        data {
+          attributes {
+            slug
+            name
+            launchDate
+            brand {
+              data {
+                attributes {
+                  name
+                }
               }
             }
-          }
-          mount {
-            data {
-              attributes {
-                name
+            mount {
+              data {
+                attributes {
+                  name
+                }
               }
             }
-          }
-          images {
-            data {
-              attributes {
-                url
-                width
-                height
-                alternativeText
+            images {
+              data {
+                attributes {
+                  url
+                  width
+                  height
+                  alternativeText
+                }
               }
             }
           }
         }
       }
-    }
-  }`
+    }`
   );
   return data.lenses;
 }

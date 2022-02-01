@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="flex flex-col space-y-3">
       <Link href={productUrl}>
         <a
-          className="relative w-full aspect-square bg-gray-200 dark:bg-gray-300 rounded-md"
+          className="relative w-full aspect-square bg-gray-200 dark:bg-gray-300 rounded-lg"
           title={product.name}
         >
           {image && (
@@ -45,13 +45,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
               alt={image.alternativeText}
               layout="fill"
               objectFit="scale-down"
-              sizes="(min-width: 768px) 33vw, 50vw"
+              sizes="(min-width: 768px) 25vw, 50vw"
+              placeholder="blur"
+              blurDataURL={`/_next/image?url=${image.url}&w=16&q=1`}
               className={clsx("duration-300", imageStyle)}
             />
           )}
         </a>
       </Link>
-      <div className="flex flex-col space-y-0.5 w-[99%] mx-auto">
+      <div className="flex flex-col space-y-px w-[99%] mx-auto">
         <h2 className="text-[15px] text-fxdb font-medium leading-tight hover:underline">
           <Link href={productUrl}>
             <a title={product.name}>{product.name}</a>
