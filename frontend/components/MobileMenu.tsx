@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import clsx from "clsx";
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
 
@@ -28,7 +29,7 @@ export default function MobileMenu({ display = "md:hidden" }) {
         as="div"
         open={isOpen}
         onClose={closeMenu}
-        className={`fixed z-50 inset-0 ${display}`}
+        className={clsx("fixed z-50 inset-0", display)}
       >
         <Dialog.Overlay className="fixed inset-0 bg-black/20 dark:bg-gray-900/80 backdrop-blur-sm" />
         <div className="fixed top-4 right-4 w-64 max-w-full p-6 bg-white dark:bg-gray-800 font-semibold shadow-lg rounded-xl">
@@ -40,7 +41,7 @@ export default function MobileMenu({ display = "md:hidden" }) {
             <span className="sr-only">Close menu</span>
             <XIcon className="h-5.5 w-5.5" />
           </button>
-          <ul className="space-y-6">
+          <ul className="space-y-5">
             <MenuItem href="/cameras">Cameras</MenuItem>
             <MenuItem href="/lenses">Lenses</MenuItem>
             <MenuItem href="/brands">Brands</MenuItem>

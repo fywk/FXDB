@@ -25,6 +25,6 @@
   }
 
   .text-fxdb {
-    @apply text-red-700 dark:text-yellow-300;
+    @apply text-[#f20505] dark:text-[#f9d70b];
   }
 }

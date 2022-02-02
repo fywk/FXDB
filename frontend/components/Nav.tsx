@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import clsx from "clsx";
 import { SearchIcon } from "@heroicons/react/outline";
 import MobileMenu from "./MobileMenu";
 
 export default function Nav() {
   return (
-    <header className="py-3">
+    <header className="sticky top-0 z-10 py-3 backdrop-blur bg-gray-50/90 dark:bg-gray-900/95 border-b border-gray-200/50 dark:border-gray-50/[.05]">
       <div className="container max-w-5xl flex items-center justify-between gap-x-4 mx-auto px-4 sm:px-8">
         <div className="text-2xl font-black select-none">
           <Link href="/">
@@ -22,14 +23,14 @@ export default function Nav() {
               <NavItem href="/brands" text="Brands" />
             </ul>
           </nav>
-          <div className="flex items-center space-x-1.5 md:space-x-3 lg:space-x-4 pl-6">
+          <div className="flex items-center space-x-2 md:space-x-4 pl-6 text-gray-500 dark:text-current">
             <button
               type="button"
               className="flex items-center justify-center w-8 h-8 md:w-fit md:h-fit hover:text-link"
               title="Search"
             >
               <span className="sr-only">Search</span>
-              <SearchIcon className="h-5.5 w-5.5" />
+              <SearchIcon className="h-5 w-5" />
             </button>
             <a
               href="https://github.com/fywk/FXDB"
@@ -38,7 +39,7 @@ export default function Nav() {
               rel="noopener noreferrer"
             >
               <span className="sr-only">View Source on GitHub</span>
-              <GithubIcon className="h-5.5 w-5.5" />
+              <GithubIcon className="h-5 w-5" />
             </a>
             <MobileMenu />
           </div>
@@ -56,9 +57,10 @@ function NavItem({ href, text }) {
     <li>
       <Link href={href}>
         <a
-          className={`hidden md:inline ${
-            isActive ? "text-link font-semibold" : "hover:text-link"
-          }`}
+          className={clsx(
+            "hidden md:inline text-sm text-link font-semibold",
+            `${isActive ? "text-fxdb" : "hover:text-fxdb"}`
+          )}
           title={text}
         >
           <span>{text}</span>

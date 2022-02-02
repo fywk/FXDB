@@ -32,7 +32,7 @@ export default function Home({ cameras, lenses }) {
               <ProductCard
                 product={camera.attributes}
                 path="cameras"
-                imageStyle="scale-75 hover:scale-[.8]"
+                imageStyle="scale-[.7] hover:scale-75"
                 key={i}
               />
             ))}
@@ -48,7 +48,7 @@ export default function Home({ cameras, lenses }) {
               <ProductCard
                 product={lens.attributes}
                 path="lenses"
-                imageStyle="-rotate-90 scale-90 hover:scale-95 "
+                imageStyle="scale-[.85] hover:scale-90"
                 key={i}
               />
             ))}

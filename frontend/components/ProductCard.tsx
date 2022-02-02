@@ -17,11 +17,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const productUrl = `/${path}/${product.slug}`;
   const image =
     product.images.data.length !== 0 ? product.images.data[0].attributes : null;
+  const imageBaseUrl = "https://res.cloudinary.com/dbh4eupxn/image/upload";
+  const imageUrl =
+    path === "lenses"
+      ? `${imageBaseUrl}/t_rotate_lens_270deg/FXDB/${image.hash}`
+      : `${imageBaseUrl}/FXDB/${image.hash}`;
   const megapixels =
     path === "cameras"
-      ? Math.round((product.resolutionX * product.resolutionY) / 1000000)
+      ? Math.round((product.resolutionX * product.resolutionY) / 1_000_000)
       : null;
-  let sensorSize = path === "cameras" ? product.sensorSize : null;
+  let sensorSize: string = path === "cameras" ? product.sensorSize : null;
   if (sensorSize !== null) {
     if (sensorSize === "APSC") {
       sensorSize = "APS-C";
@@ -41,14 +46,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         >
           {image && (
             <Image
-              src={image.url}
+              src={imageUrl}
               alt={image.alternativeText}
               layout="fill"
               objectFit="scale-down"
               sizes="(min-width: 768px) 25vw, 50vw"
-              placeholder="blur"
-              blurDataURL={`/_next/image?url=${image.url}&w=16&q=1`}
-              className={clsx("duration-300", imageStyle)}
+              className={clsx("origin-center duration-300", imageStyle)}
             />
           )}
         </a>

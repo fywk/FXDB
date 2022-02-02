@@ -36,7 +36,7 @@ export async function getLatestCameras() {
             images {
               data {
                 attributes {
-                  url
+                  hash
                   width
                   height
                   alternativeText
@@ -77,7 +77,7 @@ export async function getLatestLenses() {
             images {
               data {
                 attributes {
-                  url
+                  hash
                   width
                   height
                   alternativeText

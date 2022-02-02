@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row md:items-center space-y-1 md:space-y-0 md:justify-between">
         <div className="flex items-center space-x-4 divide-x divide-gray-300 dark:divide-gray-700">
           <div>
-            Made with <span className="text-red-600">♥</span> by{" "}
+            Made with <span className="text-[red]">♥</span> by{" "}
             <a
               href="https://fywk.xyz"
               className="hover:text-link"
