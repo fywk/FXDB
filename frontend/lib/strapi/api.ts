@@ -37,6 +37,7 @@ export async function getLatestCameras() {
               data {
                 attributes {
                   hash
+                  ext
                   width
                   height
                   alternativeText
@@ -78,6 +79,7 @@ export async function getLatestLenses() {
               data {
                 attributes {
                   hash
+                  ext
                   width
                   height
                   alternativeText

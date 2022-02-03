@@ -6,7 +6,7 @@ import MobileMenu from "./MobileMenu";
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-10 py-3 backdrop-blur bg-gray-50/90 dark:bg-gray-900/95 border-b border-gray-200/50 dark:border-gray-50/[.05]">
+    <header className="sticky top-0 z-10 py-3 backdrop-blur bg-gray-50/[.85] dark:bg-gray-900/90 border-b border-gray-200 dark:border-gray-800">
       <div className="container max-w-5xl flex items-center justify-between gap-x-4 mx-auto px-4 sm:px-8">
         <div className="text-2xl font-black select-none">
           <Link href="/">
@@ -23,7 +23,7 @@ export default function Nav() {
               <NavItem href="/brands" text="Brands" />
             </ul>
           </nav>
-          <div className="flex items-center space-x-2 md:space-x-4 pl-6 text-gray-500 dark:text-current">
+          <div className="flex items-center space-x-2 md:space-x-4 pl-6">
             <button
               type="button"
               className="flex items-center justify-center w-8 h-8 md:w-fit md:h-fit hover:text-link"
@@ -58,8 +58,8 @@ function NavItem({ href, text }) {
       <Link href={href}>
         <a
           className={clsx(
-            "hidden md:inline text-sm text-link font-semibold",
-            `${isActive ? "text-fxdb" : "hover:text-fxdb"}`
+            "hidden md:inline text-sm font-semibold",
+            isActive ? "text-fxdb" : "hover:text-link"
           )}
           title={text}
         >

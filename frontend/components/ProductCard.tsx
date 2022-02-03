@@ -6,22 +6,20 @@ import { dateFormatter } from "../lib/util";
 interface ProductCardProps {
   product: any;
   path: string;
+  imageBaseUrl: string;
   imageStyle?: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   path,
+  imageBaseUrl,
   imageStyle,
 }) => {
   const productUrl = `/${path}/${product.slug}`;
   const image =
     product.images.data.length !== 0 ? product.images.data[0].attributes : null;
-  const imageBaseUrl = "https://res.cloudinary.com/dbh4eupxn/image/upload";
-  const imageUrl =
-    path === "lenses"
-      ? `${imageBaseUrl}/t_rotate_lens_270deg/FXDB/${image.hash}`
-      : `${imageBaseUrl}/FXDB/${image.hash}`;
+  const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
   const megapixels =
     path === "cameras"
       ? Math.round((product.resolutionX * product.resolutionY) / 1_000_000)
@@ -46,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         >
           {image && (
             <Image
-              src={imageUrl}
+              src={imageSrc}
               alt={image.alternativeText}
               layout="fill"
               objectFit="scale-down"

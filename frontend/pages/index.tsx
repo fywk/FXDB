@@ -4,10 +4,10 @@ import { ChevronRightIcon, SearchIcon } from "@heroicons/react/outline";
 import ProductCard from "../components/ProductCard";
 import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
 
-export default function Home({ cameras, lenses }) {
+export default function Home({ cameras, lenses, imageUrl }) {
   return (
-    <div className="grid grid-cols-1">
-      <section className="grid grid-cols-1 justify-items-center pt-16 pb-12">
+    <div className="grid grid-cols-1 py-16">
+      <section className="grid grid-cols-1 justify-items-center mb-12">
         <div className="grid grid-cols-1 gap-y-6 mb-8 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
             Fujifilm X and GFX Database
@@ -24,7 +24,7 @@ export default function Home({ cameras, lenses }) {
       <section className="grid grid-cols-1 gap-y-12">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold">Latest Cameras</h1>
+            <h1 className="text-lg md:text-xl font-bold">Latest Cameras</h1>
             <ViewMoreLink href="/cameras" title="View all cameras" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
@@ -32,6 +32,7 @@ export default function Home({ cameras, lenses }) {
               <ProductCard
                 product={camera.attributes}
                 path="cameras"
+                imageBaseUrl={`${imageUrl}/FXDB`}
                 imageStyle="scale-[.7] hover:scale-75"
                 key={i}
               />
@@ -40,7 +41,7 @@ export default function Home({ cameras, lenses }) {
         </div>
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold">Latest Lenses</h1>
+            <h1 className="text-lg md:text-xl font-bold">Latest Lenses</h1>
             <ViewMoreLink href="/lenses" title="View all lenses" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
@@ -48,6 +49,7 @@ export default function Home({ cameras, lenses }) {
               <ProductCard
                 product={lens.attributes}
                 path="lenses"
+                imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
                 imageStyle="scale-[.85] hover:scale-90"
                 key={i}
               />
@@ -62,11 +64,13 @@ export default function Home({ cameras, lenses }) {
 export const getStaticProps: GetStaticProps = async () => {
   const latestCameras = await getLatestCameras();
   const latestLenses = await getLatestLenses();
+  const imageUrl = process.env.CLOUDINARY_BASE_URL;
 
   return {
     props: {
       cameras: latestCameras.data,
       lenses: latestLenses.data,
+      imageUrl,
     },
     revalidate: 10,
   };

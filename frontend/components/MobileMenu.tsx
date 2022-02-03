@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
+import { Router } from "next/router";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
@@ -14,6 +15,14 @@ export default function MobileMenu({ display = "md:hidden" }) {
   function closeMenu() {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    if (!isOpen) return;
+    Router.events.on("routeChangeComplete", closeMenu);
+    return () => {
+      Router.events.off("routeChangeComplete", closeMenu);
+    };
+  }, [isOpen]);
 
   return (
     <nav className={display}>

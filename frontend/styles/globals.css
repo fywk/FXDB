@@ -19,6 +19,10 @@
 }
 
 @layer utilities {
+  .full-width {
+    @apply relative w-screen left-2/4 right-2/4 -mx-[50vw];
+  }
+
   .text-link,
   .text-highlight {
     @apply text-gray-900 dark:text-gray-50;
