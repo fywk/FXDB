@@ -78,11 +78,16 @@
       "required": true
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "maxShutterSpeed": {
+      "type": "string",
+      "required": true
     }
   }
 }
