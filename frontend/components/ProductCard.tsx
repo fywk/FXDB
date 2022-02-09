@@ -39,7 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="flex flex-col space-y-3">
       <Link href={productUrl}>
         <a
-          className="relative w-full aspect-square bg-gray-200 dark:bg-gray-300 rounded-lg"
+          className="relative aspect-square w-full rounded-lg bg-gray-200 dark:bg-gray-300"
           title={product.name}
         >
           {image && (
@@ -54,13 +54,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </a>
       </Link>
-      <div className="flex flex-col space-y-px w-[99%] mx-auto">
-        <h2 className="text-[15px] text-fxdb font-medium leading-tight hover:underline">
+      <div className="mx-auto flex w-[99%] flex-col space-y-px">
+        <h2 className="text-fxdb text-[15px] font-medium leading-tight hover:underline">
           <Link href={productUrl}>
             <a title={product.name}>{product.name}</a>
           </Link>
         </h2>
-        <p className="text-sm text-highlight">
+        <p className="text-highlight text-sm">
           {megapixels && sensorSize && (
             <>{`${megapixels} MP / ${sensorSize}`}</>
           )}

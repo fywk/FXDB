@@ -6,6 +6,7 @@
   body {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1,
@@ -20,15 +21,26 @@
 
 @layer utilities {
   .full-width {
-    @apply relative w-screen left-2/4 right-2/4 -mx-[50vw];
+    @apply relative left-2/4 right-2/4 -mx-[50vw] w-screen;
+  }
+
+  .full-width-reset {
+    @apply left-0 right-0 mx-0 w-full;
   }
 
   .text-link,
   .text-highlight {
     @apply text-gray-900 dark:text-gray-50;
   }
+  .text-dimmed {
+    @apply text-gray-500;
+  }
+
+  .bg-fxdb {
+    @apply bg-primary dark:bg-secondary;
+  }
 
   .text-fxdb {
-    @apply text-[#f20505] dark:text-[#f9d70b];
+    @apply text-primary dark:text-secondary;
   }
 }

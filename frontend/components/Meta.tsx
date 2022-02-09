@@ -1,6 +1,10 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function Meta({ title, keywords, description }) {
+  const router = useRouter();
+  if (router.pathname !== "/") title = `${title} | FXDB`;
+
   return (
     <Head>
       <meta charSet="utf-8" />

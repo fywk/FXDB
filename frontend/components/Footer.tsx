@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="container max-w-5xl mx-auto px-4 sm:px-8 pb-12 text-sm">
-      <div className="h-px bg-gray-200 dark:bg-gray-800 mb-8"></div>
-      <div className="flex flex-col md:flex-row md:items-center space-y-1 md:space-y-0 md:justify-between">
-        <div className="flex items-center space-x-4 divide-x divide-gray-300 dark:divide-gray-700">
+    <footer className="container mx-auto max-w-5xl px-4 pb-10 text-sm sm:px-8">
+      <div className="mb-8 h-px bg-gray-200 dark:bg-gray-800"></div>
+      <div className="flex flex-col space-y-1 md:flex-row md:items-center md:justify-between md:space-y-0">
+        <div className="flex items-center space-x-3 divide-x divide-gray-300 dark:divide-gray-700 md:space-x-4">
           <div>
             Made with <span className="text-[red]">♥</span> by{" "}
             <a
@@ -16,7 +16,7 @@ export default function Footer() {
               @fywk
             </a>
           </div>
-          <div className="pl-4">
+          <div className="pl-3 md:pl-4">
             <Link href="/disclaimer">
               <a className="hover:text-link" title="Disclaimer">
                 Disclaimer
