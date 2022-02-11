@@ -6,16 +6,16 @@ import MobileMenu from "./MobileMenu";
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-10 py-3 backdrop-blur bg-gray-50/[.85] dark:bg-gray-900/90 border-b border-gray-200 dark:border-gray-800">
-      <div className="container max-w-5xl flex items-center justify-between gap-x-4 mx-auto px-4 sm:px-8">
-        <div className="text-2xl font-black select-none">
+    <header className="sticky top-0 z-10 border-b border-gray-200 bg-gray-50/[.85] py-3 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90">
+      <div className="container mx-auto flex max-w-5xl items-center justify-between gap-x-4 px-4 sm:px-8">
+        <div className="select-none text-2xl font-black">
           <Link href="/">
             <a className="text-link" title="FXDB Home">
               FXDB
             </a>
           </Link>
         </div>
-        <div className="flex items-center md:divide-x divide-gray-300 dark:divide-gray-700 space-x-6">
+        <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 md:divide-x">
           <nav>
             <ul className="flex space-x-8">
               <NavItem href="/cameras" text="Cameras" />
@@ -23,10 +23,10 @@ export default function Nav() {
               <NavItem href="/brands" text="Brands" />
             </ul>
           </nav>
-          <div className="flex items-center space-x-2 md:space-x-4 pl-6">
+          <div className="flex items-center space-x-2 pl-6 md:space-x-4">
             <button
               type="button"
-              className="flex items-center justify-center w-8 h-8 md:w-fit md:h-fit hover:text-link"
+              className="hover:text-link flex h-8 w-8 items-center justify-center md:h-fit md:w-fit"
               title="Search"
             >
               <span className="sr-only">Search</span>
@@ -34,7 +34,7 @@ export default function Nav() {
             </button>
             <a
               href="https://github.com/fywk/FXDB"
-              className="hidden md:flex items-center justify-center w-8 h-8 md:w-fit md:h-fit hover:text-link"
+              className="hover:text-link hidden h-8 w-8 items-center justify-center md:flex md:h-fit md:w-fit"
               title="View Source on GitHub"
               rel="noopener noreferrer"
             >
@@ -58,7 +58,7 @@ function NavItem({ href, text }) {
       <Link href={href}>
         <a
           className={clsx(
-            "hidden md:inline text-sm font-semibold",
+            "hidden text-sm font-semibold md:inline",
             isActive ? "text-fxdb" : "hover:text-link"
           )}
           title={text}

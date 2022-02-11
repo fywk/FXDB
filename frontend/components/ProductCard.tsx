@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </a>
       </Link>
       <div className="mx-auto flex w-[99%] flex-col space-y-px">
-        <h2 className="text-fxdb text-[15px] font-medium leading-tight hover:underline">
+        <h2 className="text-fxdb font-semibold leading-tight underline-offset-2 hover:underline">
           <Link href={productUrl}>
             <a title={product.name}>{product.name}</a>
           </Link>

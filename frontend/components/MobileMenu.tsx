@@ -29,7 +29,7 @@ export default function MobileMenu({ display = "md:hidden" }) {
       <button
         type="button"
         onClick={openMenu}
-        className="flex items-center justify-center w-8 h-8 hover:text-link"
+        className="hover:text-link flex h-8 w-8 items-center justify-center"
       >
         <span className="sr-only">Menu</span>
         <DotsVerticalIcon className="h-6 w-6" />
@@ -38,24 +38,28 @@ export default function MobileMenu({ display = "md:hidden" }) {
         as="div"
         open={isOpen}
         onClose={closeMenu}
-        className={clsx("fixed z-50 inset-0", display)}
+        className={clsx("fixed inset-0 z-50", display)}
       >
-        <Dialog.Overlay className="fixed inset-0 bg-black/20 dark:bg-gray-900/80 backdrop-blur-sm" />
-        <div className="fixed top-4 right-4 w-64 max-w-full p-6 bg-white dark:bg-gray-800 font-semibold shadow-lg rounded-xl">
+        <Dialog.Overlay className="fixed inset-0 bg-black/20 backdrop-blur dark:bg-gray-900/50" />
+        <div className="fixed top-4 right-4 w-64 max-w-full rounded-xl bg-white p-6 font-medium shadow-lg dark:bg-gray-800">
           <button
             type="button"
             onClick={closeMenu}
-            className="absolute top-5 right-5 flex items-center justify-center w-8 h-8 active:text-link focus:outline-none"
+            className="active:text-link hover:text-link absolute top-5 right-5 flex h-8 w-8 items-center justify-center focus:outline-none"
           >
             <span className="sr-only">Close menu</span>
             <XIcon className="h-5.5 w-5.5" />
           </button>
-          <ul className="space-y-5">
+          <ul className="text-link space-y-5">
             <MenuItem href="/cameras">Cameras</MenuItem>
             <MenuItem href="/lenses">Lenses</MenuItem>
             <MenuItem href="/brands">Brands</MenuItem>
             <li>
-              <a href="https://github.com/fywk/FXDB" rel="noopener noreferrer">
+              <a
+                href="https://github.com/fywk/FXDB"
+                className="hover:text-fxdb"
+                rel="noopener noreferrer"
+              >
                 View Source on GitHub
               </a>
             </li>
@@ -66,11 +70,11 @@ export default function MobileMenu({ display = "md:hidden" }) {
   );
 }
 
-function MenuItem({ href, children, ...attr }) {
+function MenuItem({ href, children }) {
   return (
     <li>
       <Link href={href}>
-        <a {...attr}>{children}</a>
+        <a className="hover:text-fxdb">{children}</a>
       </Link>
     </li>
   );

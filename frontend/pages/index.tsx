@@ -7,12 +7,12 @@ import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
 export default function Home({ cameras, lenses, imageUrl }) {
   return (
     <div className="grid grid-cols-1 py-16">
-      <section className="grid grid-cols-1 justify-items-center mb-12">
-        <div className="grid grid-cols-1 gap-y-6 mb-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+      <section className="mb-12 grid grid-cols-1 justify-items-center">
+        <div className="mb-8 grid grid-cols-1 gap-y-6 text-center">
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
             Fujifilm X and GFX Database
           </h1>
-          <p className="max-w-3xl mx-auto text-lg">
+          <p className="mx-auto max-w-3xl text-lg font-medium leading-relaxed">
             <strong className="text-highlight">FXDB</strong> is a database of
             cameras and lenses made for Fujifilm X and GFX systems. You can find
             relevant specifications for each product including products from
@@ -24,10 +24,10 @@ export default function Home({ cameras, lenses, imageUrl }) {
       <section className="grid grid-cols-1 gap-y-12">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-lg md:text-xl font-bold">Latest Cameras</h1>
+            <h1 className="text-lg font-bold md:text-xl">Latest Cameras</h1>
             <ViewMoreLink href="/cameras" title="View all cameras" />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4 lg:gap-x-5">
             {cameras.map((camera, i) => (
               <ProductCard
                 product={camera.attributes}
@@ -41,10 +41,10 @@ export default function Home({ cameras, lenses, imageUrl }) {
         </div>
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-lg md:text-xl font-bold">Latest Lenses</h1>
+            <h1 className="text-lg font-bold md:text-xl">Latest Lenses</h1>
             <ViewMoreLink href="/lenses" title="View all lenses" />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 lg:gap-x-5">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4 lg:gap-x-5">
             {lenses.map((lens, i) => (
               <ProductCard
                 product={lens.attributes}
@@ -80,7 +80,7 @@ function SearchBar() {
   return (
     <button
       type="button"
-      className="group flex items-center justify-between w-full max-w-4xl bg-white dark:bg-gray-700/75 dark:hover:bg-gray-700 mx-auto px-5 py-3 ring-1 dark:ring-0 hover:ring-2 dark:hover:ring-0 ring-gray-300 active:ring-gray-400 rounded-full"
+      className="group mx-auto flex w-full max-w-4xl items-center justify-between rounded-full bg-white px-5 py-3 ring-1 ring-gray-300 hover:ring-2 active:ring-gray-400 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
     >
       <div className="text-sm group-hover:text-gray-700 dark:group-hover:text-gray-300">
         Search for a camera, lens, brand...
@@ -94,7 +94,7 @@ function SearchBar() {
 
 function ViewMoreLink({ href, ...attr }) {
   return (
-    <div className="flex items-center space-x-0.5 hover:text-link">
+    <div className="hover:text-link flex items-center space-x-0.5">
       <Link href={href}>
         <a className="text-xs font-medium uppercase" {...attr}>
           View all
