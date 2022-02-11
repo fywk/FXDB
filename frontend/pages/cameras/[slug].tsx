@@ -10,6 +10,7 @@ export default function CameraPage({ camera }) {
       <Meta title={camera.name} />
       <ProductDetails
         type="cameras"
+        slug={camera.slug}
         name={camera.name}
         launchDate={camera.launchDate}
         cameraType={camera.category.data.attributes.name}

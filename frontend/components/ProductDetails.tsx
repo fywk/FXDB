@@ -1,10 +1,12 @@
+import { useRouter } from "next/router";
 import {
   ArrowLeftIcon,
   ChevronLeftIcon,
   ExternalLinkIcon,
 } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
 import { dateFormatter } from "../lib/util";
+import ViewCounter from "./ViewCounter";
+import type { ReactElement } from "react";
 
 interface Camera {
   cameraType?: string;
@@ -24,6 +26,7 @@ interface Lens {
 
 interface ProductDetailProps extends Camera, Lens {
   type: "cameras" | "lenses";
+  slug: string;
   name: string;
   launchDate: string;
   weatherResistance: boolean;
@@ -85,7 +88,16 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
                       title="Launched"
                       data={dateFormatter.format(new Date(props.launchDate))}
                     />
-                    <StatItem title="Views" data="----" />
+                    <StatItem
+                      title="Views"
+                      data={
+                        <ViewCounter
+                          path={props.type}
+                          slug={props.slug}
+                          recordView={true}
+                        />
+                      }
+                    />
                   </div>
                 </div>
               </li>
@@ -171,7 +183,13 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
   );
 };
 
-function StatItem({ title, data }: { title: string; data: string }) {
+function StatItem({
+  title,
+  data,
+}: {
+  title: string;
+  data: string | ReactElement;
+}) {
   return (
     <div className="space-y-1">
       <p className="text-xs leading-snug">{title}</p>
