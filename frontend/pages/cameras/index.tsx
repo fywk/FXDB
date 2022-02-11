@@ -12,7 +12,7 @@ export default function CamerasPage({ cameras, imageUrl }) {
 
   return (
     <>
-      <Meta title="All Cameras" />
+      <Meta title="Cameras" />
       <div className="py-8">
         <div className="flex flex-col space-y-8">
           <section className="mx-auto mb-4 flex max-w-lg flex-col items-center space-y-4 text-center">

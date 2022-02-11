@@ -86,7 +86,7 @@ function SearchBar() {
         Search for a camera, lens, brand...
       </div>
       <div className="group-hover:text-gray-700 dark:group-hover:text-gray-300">
-        <SearchIcon className="h-5.5 w-5.5" />
+        <SearchIcon className="stroke-2.25 h-5.5 w-5.5" />
       </div>
     </button>
   );
@@ -100,7 +100,7 @@ function ViewMoreLink({ href, ...attr }) {
           View all
         </a>
       </Link>
-      <ChevronRightIcon className="h-4 w-4" />
+      <ChevronRightIcon className="stroke-2.75 h-4 w-4" />
     </div>
   );
 }

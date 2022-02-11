@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
 
-export default function MobileMenu({ display = "md:hidden" }) {
+export default function MobileMenu({ links, display = "md:hidden" }) {
   let [isOpen, setIsOpen] = useState(false);
 
   function openMenu() {
@@ -51,9 +51,11 @@ export default function MobileMenu({ display = "md:hidden" }) {
             <XIcon className="h-5.5 w-5.5" />
           </button>
           <ul className="text-link space-y-5">
-            <MenuItem href="/cameras">Cameras</MenuItem>
-            <MenuItem href="/lenses">Lenses</MenuItem>
-            <MenuItem href="/brands">Brands</MenuItem>
+            {links.map((link, i) => (
+              <MenuItem href={link.href} key={i}>
+                {link.title}
+              </MenuItem>
+            ))}
             <li>
               <a
                 href="https://github.com/fywk/FXDB"

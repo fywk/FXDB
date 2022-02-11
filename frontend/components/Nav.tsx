@@ -5,6 +5,12 @@ import { SearchIcon } from "@heroicons/react/outline";
 import MobileMenu from "./MobileMenu";
 
 export default function Nav() {
+  const navLinks = [
+    { title: "Cameras", href: "/cameras" },
+    { title: "Lenses", href: "/lenses" },
+    { title: "Brands", href: "/brands" },
+  ];
+
   return (
     <header className="sticky top-0 z-10 border-b border-gray-200 bg-gray-50/[.85] py-3 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90">
       <div className="container mx-auto flex max-w-5xl items-center justify-between gap-x-4 px-4 sm:px-8">
@@ -18,9 +24,9 @@ export default function Nav() {
         <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 md:divide-x">
           <nav>
             <ul className="flex space-x-8">
-              <NavItem href="/cameras" text="Cameras" />
-              <NavItem href="/lenses" text="Lenses" />
-              <NavItem href="/brands" text="Brands" />
+              {navLinks.map((navLink, i) => (
+                <NavItem href={navLink.href} title={navLink.title} key={i} />
+              ))}
             </ul>
           </nav>
           <div className="flex items-center space-x-2 pl-6 md:space-x-4">
@@ -30,7 +36,7 @@ export default function Nav() {
               title="Search"
             >
               <span className="sr-only">Search</span>
-              <SearchIcon className="h-5 w-5" />
+              <SearchIcon className="stroke-2.25 h-5 w-5" />
             </button>
             <a
               href="https://github.com/fywk/FXDB"
@@ -39,9 +45,9 @@ export default function Nav() {
               rel="noopener noreferrer"
             >
               <span className="sr-only">View Source on GitHub</span>
-              <GithubIcon className="h-5 w-5" />
+              <GithubIcon className="stroke-2.25 h-5 w-5" />
             </a>
-            <MobileMenu />
+            <MobileMenu links={navLinks} />
           </div>
         </div>
       </div>
@@ -49,7 +55,7 @@ export default function Nav() {
   );
 }
 
-function NavItem({ href, text }) {
+function NavItem({ href, title }) {
   const router = useRouter();
   const isActive = router.asPath === href;
 
@@ -61,9 +67,8 @@ function NavItem({ href, text }) {
             "hidden text-sm font-semibold md:inline",
             isActive ? "text-fxdb" : "hover:text-link"
           )}
-          title={text}
         >
-          <span>{text}</span>
+          <span>{title}</span>
         </a>
       </Link>
     </li>

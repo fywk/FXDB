@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 export default function Meta({ baseUrl, title, description, keywords }) {
   const router = useRouter();
-  if (router.pathname !== "/") title = `${title} | FXDB`;
+  if (router.pathname !== "/") title = `${title} - FXDB`;
 
   return (
     <Head>
@@ -23,7 +23,7 @@ export default function Meta({ baseUrl, title, description, keywords }) {
 
 Meta.defaultProps = {
   baseUrl: "https://fxdb.vercel.app",
-  title: "FXDB: Fujifilm X and GFX Database",
+  title: "FXDB - Fujifilm X and GFX Database",
   description: "Fujifilm X and GFX Database",
   keywords: "fujifilm, x-mount, database",
 };

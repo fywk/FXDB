@@ -38,10 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className="flex flex-col space-y-3">
       <Link href={productUrl}>
-        <a
-          className="relative aspect-square w-full rounded-lg bg-gray-200 dark:bg-gray-300"
-          title={product.name}
-        >
+        <a className="relative aspect-square w-full rounded-lg bg-gray-200 dark:bg-gray-300">
           {image && (
             <Image
               src={imageSrc}
@@ -49,15 +46,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
               layout="fill"
               objectFit="scale-down"
               sizes="(min-width: 768px) 25vw, 50vw"
-              className={clsx("origin-center duration-300", imageStyle)}
+              className={clsx("origin-center duration-[350ms]", imageStyle)}
             />
           )}
         </a>
       </Link>
       <div className="mx-auto flex w-[99%] flex-col space-y-px">
-        <h2 className="text-fxdb font-semibold leading-tight underline-offset-2 hover:underline">
+        <h2 className="text-fxdb font-semibold leading-tight underline-offset-2 hover:underline md:underline-offset-1">
           <Link href={productUrl}>
-            <a title={product.name}>{product.name}</a>
+            <a>{product.name}</a>
           </Link>
         </h2>
         <p className="text-highlight text-sm">

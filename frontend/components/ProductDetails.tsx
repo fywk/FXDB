@@ -1,4 +1,8 @@
-import { ArrowLeftIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  ExternalLinkIcon,
+} from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import { dateFormatter } from "../lib/util";
 
@@ -29,6 +33,8 @@ interface ProductDetailProps extends Camera, Lens {
 
 const ProductDetails: React.FC<ProductDetailProps> = (props) => {
   const router = useRouter();
+  const goBack = () => router.back();
+
   // Convert weight from grams to ounces
   const weightOz = Math.round(props.weight * 0.03527396194958 * 100) / 100;
 
@@ -37,23 +43,24 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
       <div className="hidden md:block md:pt-6 md:pb-4">
         <button
           type="button"
-          onClick={() => router.back()}
-          className="text-fxdb group items-center space-x-2 rounded-lg md:flex"
+          onClick={goBack}
+          className="text-fxdb group items-center space-x-1.5 rounded-lg md:flex"
         >
-          <ArrowLeftIcon className="h-4.5 w-4.5 duration-300 group-hover:-translate-x-1" />
-          <h1 className="font-medium text-inherit">Back</h1>
+          <ChevronLeftIcon className="stroke-2.75 h-5 w-5 duration-300 group-hover:-translate-x-1" />
+          <span className="font-medium text-inherit">Back</span>
         </button>
       </div>
       <div className="flex flex-col space-y-10">
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-8">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-7 lg:gap-8">
           <div className="full-width md:full-width-reset">
             <div className="static">
               <button
                 type="button"
-                onClick={() => router.back()}
-                className="absolute top-4 left-3 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-gray-900/70 text-gray-50 shadow-md md:hidden"
+                onClick={goBack}
+                className="stroke-2.5 absolute top-3.5 left-3.5 flex h-8 w-8 items-center justify-center rounded-full bg-gray-900/70 text-gray-50 shadow-md md:hidden"
               >
-                <ArrowLeftIcon className="h-4.5 w-4.5" />
+                <span className="sr-only">Back</span>
+                <ArrowLeftIcon className="h-5 w-5" />
               </button>
             </div>
             <div className="aspect-square w-full bg-gray-200 dark:bg-gray-300 md:rounded-lg"></div>
@@ -133,7 +140,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
         <section>
           <a
             href={props.dataSource}
-            className="bg-primary/5 dark:bg-secondary/5 text-fxdb hover:bg-primary/10 dark:hover:bg-secondary/10 flex w-full items-center justify-between rounded-lg px-5 py-2.5 text-center md:max-w-xs"
+            className="bg-primary/10 dark:bg-secondary/10 text-fxdb hover:bg-primary/[0.15] dark:hover:bg-secondary/[0.15] flex w-full items-center justify-between rounded-lg px-5 py-2.5 text-center md:max-w-xs"
             title={new URL(props.dataSource).hostname}
             rel="noopener noreferrer"
           >

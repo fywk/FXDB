@@ -8,13 +8,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: colors.stone,
+        gray: colors.zinc,
         primary: "#f20505",
         secondary: "#f9d70b",
       },
       spacing: {
         4.5: "1.125rem",
         5.5: "1.375rem",
+      },
+      strokeWidth: {
+        2.25: 2.25,
+        2.5: 2.5,
+        2.75: 2.75,
+        3: 3,
       },
     },
   },
