@@ -6,7 +6,7 @@ import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
 
 export default function MobileMenu({ links, display = "md:hidden" }) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function openMenu() {
     setIsOpen(true);
@@ -41,7 +41,7 @@ export default function MobileMenu({ links, display = "md:hidden" }) {
         className={clsx("fixed inset-0 z-50", display)}
       >
         <Dialog.Overlay className="fixed inset-0 bg-black/20 backdrop-blur dark:bg-gray-900/50" />
-        <div className="fixed top-4 right-4 w-64 max-w-full rounded-xl bg-white p-6 font-medium shadow-lg dark:bg-gray-800">
+        <div className="fixed top-4 right-4 w-64 max-w-full rounded-xl bg-white px-6 py-7 font-medium shadow-lg dark:bg-gray-800">
           <button
             type="button"
             onClick={closeMenu}

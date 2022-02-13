@@ -8,9 +8,8 @@ import { dateFormatter } from "../lib/util";
 import ViewCounter from "./ViewCounter";
 import type { ReactElement } from "react";
 
-interface Camera {
+interface CameraProps {
   cameraType?: string;
-  cameraMount?: { attributes: { name: string } };
   cameraFocalLength?: string;
   resolutionX?: number;
   resolutionY?: number;
@@ -20,16 +19,17 @@ interface Camera {
   IBIS?: boolean;
 }
 
-interface Lens {
+interface LensProps {
   brand?: string;
 }
 
-interface ProductDetailProps extends Camera, Lens {
-  type: "cameras" | "lenses";
+interface ProductDetailProps extends CameraProps, LensProps {
+  type: "camera" | "lens";
   slug: string;
   name: string;
   launchDate: string;
-  weatherResistance: boolean;
+  lensMount: string;
+  weatherResistant: boolean;
   weight: number;
   dataSource: string;
 }
@@ -38,49 +38,48 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
   const router = useRouter();
   const goBack = () => router.back();
 
+  const megapixels = `${Math.round(
+    (props.resolutionX * props.resolutionY) / 1_000_000
+  )} MP`;
+
   // Convert weight from grams to ounces
   const weightOz = Math.round(props.weight * 0.03527396194958 * 100) / 100;
 
   return (
     <>
-      <div className="hidden md:block md:pt-6 md:pb-4">
+      <div className="hidden md:block md:py-6">
         <button
           type="button"
           onClick={goBack}
-          className="text-fxdb group items-center space-x-1.5 rounded-lg md:flex"
+          className="text-fxdb group items-center space-x-1.5 md:flex md:print:hidden"
         >
-          <ChevronLeftIcon className="stroke-2.75 h-5 w-5 duration-300 group-hover:-translate-x-1" />
+          <ChevronLeftIcon className="stroke-2.5 h-4.5 w-4.5 duration-300 group-hover:-translate-x-1" />
           <span className="font-medium text-inherit">Back</span>
         </button>
       </div>
       <div className="flex flex-col space-y-10">
-        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-7 lg:gap-8">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8 lg:gap-10">
           <div className="full-width md:full-width-reset">
             <div className="static">
               <button
                 type="button"
                 onClick={goBack}
-                className="stroke-2.5 absolute top-3.5 left-3.5 flex h-8 w-8 items-center justify-center rounded-full bg-gray-900/70 text-gray-50 shadow-md md:hidden"
+                className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
               >
                 <span className="sr-only">Back</span>
-                <ArrowLeftIcon className="h-5 w-5" />
+                <ArrowLeftIcon className="stroke-2.25 h-4.5 w-4.5" />
               </button>
             </div>
             <div className="aspect-square w-full bg-gray-200 dark:bg-gray-300 md:rounded-lg"></div>
           </div>
           <div>
-            <ul className="flex flex-col divide-y divide-dotted divide-gray-300 font-mono tracking-tight dark:divide-gray-700">
-              <li className="flex flex-col space-y-3 font-sans">
+            <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
+              <li className="flex flex-col space-y-4 font-sans">
                 <h1 className="text-fxdb text-2xl font-bold">{props.name}</h1>
                 <div className="overflow-x-auto">
-                  <div className="mb-3 grid w-[21rem] min-w-full grid-cols-3 items-center justify-items-center gap-x-1.5 text-center">
+                  <div className="mb-3 grid w-[21rem] min-w-full grid-cols-3 items-center justify-items-center gap-x-1.5 text-center md:mb-4 md:gap-x-2">
                     {props.resolutionX && props.resolutionY ? (
-                      <StatItem
-                        title="Effective Pixels"
-                        data={`${Math.round(
-                          (props.resolutionX * props.resolutionY) / 1_000_000
-                        )} MP`}
-                      />
+                      <StatItem title="Effective Pixels" data={megapixels} />
                     ) : (
                       <StatItem title="Brand" data={props.brand} />
                     )}
@@ -94,21 +93,18 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
                         <ViewCounter
                           path={props.type}
                           slug={props.slug}
-                          recordView={true}
+                          recordView
                         />
                       }
                     />
                   </div>
                 </div>
               </li>
-              {props.type === "cameras" && (
+              {props.type === "camera" && (
                 <ListItem title="Camera type" data={props.cameraType} />
               )}
-              {props.cameraMount && (
-                <ListItem
-                  title="Lens mount"
-                  data={props.cameraMount.attributes.name}
-                />
+              {props.lensMount && (
+                <ListItem title="Lens mount" data={props.lensMount} />
               )}
               {props.cameraFocalLength && (
                 <ListItem title="Focal length" data={props.cameraFocalLength} />
@@ -135,11 +131,18 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
                 />
               )}
               <ListItem
-                title="Weather resistance"
-                data={props.weatherResistance ? "Yes" : "No"}
+                title="Weather resistant"
+                data={props.weatherResistant ? "Yes" : "No"}
               />
               {props.cameraType && (
-                <ListItem title="IBIS" data={props.IBIS ? "Yes" : "No"} />
+                <ListItem
+                  title={
+                    <span className="relative cursor-help hover:after:ml-1 hover:after:content-['(In-Body_Image_Stabilisation)']">
+                      IBIS
+                    </span>
+                  }
+                  data={props.IBIS ? "Yes" : "No"}
+                />
               )}
               <ListItem
                 title="Weight"
@@ -149,10 +152,10 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
             </ul>
           </div>
         </section>
-        <section>
+        <section className="print:hidden">
           <a
             href={props.dataSource}
-            className="bg-primary/10 dark:bg-secondary/10 text-fxdb hover:bg-primary/[0.15] dark:hover:bg-secondary/[0.15] flex w-full items-center justify-between rounded-lg px-5 py-2.5 text-center md:max-w-xs"
+            className="bg-primary/5 dark:bg-secondary/5 text-fxdb hover:bg-primary/10 dark:hover:bg-secondary/10 px-4.5 flex w-full items-center justify-between rounded-lg py-3 text-center md:max-w-xs md:py-2.5"
             title={new URL(props.dataSource).hostname}
             rel="noopener noreferrer"
           >
@@ -162,7 +165,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
         </section>
         <section className="space-y-5 pb-5">
           <div className="h-px bg-gray-200 dark:bg-gray-800" />
-          {props.type === "cameras" && (
+          {props.type === "camera" && (
             <Footnotes
               references={[
                 {
@@ -193,7 +196,7 @@ function StatItem({
   return (
     <div className="space-y-1">
       <p className="text-xs leading-snug">{title}</p>
-      <p className="text-highlight text-lg font-semibold leading-snug md:text-xl">
+      <p className="text-highlight text-lg font-semibold leading-snug lg:text-xl">
         {data}
       </p>
     </div>
@@ -205,18 +208,20 @@ function ListItem({
   data,
   footnoteId,
 }: {
-  title: string;
+  title: string | ReactElement;
   data: string;
   footnoteId?: number;
 }) {
   return (
     <li>
       <div className="mx-auto flex w-[99%] flex-wrap items-center justify-between leading-[3rem]">
-        <div className="text-sm uppercase">
+        <div className="leading-inherit text-sm uppercase lg:text-[15px]">
           {title}
           {footnoteId && <sup>{footnoteId}</sup>}
         </div>
-        <div className="text-highlight text-[15px] font-medium">{data}</div>
+        <div className="text-highlight lg:leading-inherit text-[15px] font-medium lg:text-base">
+          {data}
+        </div>
       </div>
     </li>
   );
@@ -224,7 +229,7 @@ function ListItem({
 
 function Footnotes({ references }) {
   return (
-    <ol className="ml-5 list-decimal text-xs font-light leading-normal">
+    <ol className="ml-5 list-decimal space-y-0.5 text-xs leading-normal">
       {references.map((reference) => (
         <li className="pl-0.5" key={reference.id}>{`${reference.content}`}</li>
       ))}

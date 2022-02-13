@@ -46,13 +46,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
               layout="fill"
               objectFit="scale-down"
               sizes="(min-width: 768px) 25vw, 50vw"
-              className={clsx("origin-center duration-[350ms]", imageStyle)}
+              className={clsx("origin-center duration-300", imageStyle)}
             />
           )}
         </a>
       </Link>
       <div className="mx-auto flex w-[99%] flex-col space-y-px">
-        <h2 className="text-fxdb font-semibold leading-tight underline-offset-2 hover:underline md:underline-offset-1">
+        <h2 className="text-fxdb font-semibold leading-tight hover:underline md:underline-offset-1">
           <Link href={productUrl}>
             <a>{product.name}</a>
           </Link>

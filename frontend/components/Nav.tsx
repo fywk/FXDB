@@ -13,7 +13,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-gray-200 bg-gray-50/[.85] py-3 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90">
-      <div className="container mx-auto flex max-w-5xl items-center justify-between gap-x-4 px-4 sm:px-8">
+      <div className="container mx-auto flex max-w-6xl items-center justify-between gap-x-4 px-4 sm:px-8">
         <div className="select-none text-2xl font-black">
           <Link href="/">
             <a className="text-link" title="FXDB Home">
@@ -21,7 +21,7 @@ export default function Nav() {
             </a>
           </Link>
         </div>
-        <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 md:divide-x">
+        <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 print:hidden md:divide-x">
           <nav>
             <ul className="flex space-x-8">
               {navLinks.map((navLink, i) => (

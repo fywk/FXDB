@@ -1,30 +1,36 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Meta from "../../components/Meta";
 import ProductDetails from "../../components/ProductDetails";
 
-export default function CameraPage({ camera }) {
+export default function CameraPage({
+  camera,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const lensMount =
+    camera.mount.data.attributes.name === "X-mount"
+      ? "Fujifilm X"
+      : "Fujifilm G";
   const sensorSize = camera.sensorSize === "APSC" ? "APS-C" : "Medium Format";
 
   return (
     <>
       <Meta title={camera.name} />
       <ProductDetails
-        type="cameras"
+        type="camera"
         slug={camera.slug}
         name={camera.name}
         launchDate={camera.launchDate}
+        lensMount={lensMount}
+        weatherResistant={camera.features.weatherResistant}
+        weight={camera.weight}
+        dataSource={camera.dataSource}
         cameraType={camera.category.data.attributes.name}
-        cameraMount={camera.mount.data}
         cameraFocalLength={camera.focalLength}
         resolutionX={camera.resolutionX}
         resolutionY={camera.resolutionY}
         sensorSize={sensorSize}
         sensorType={camera.sensor.data.attributes.name}
         maxShutterSpeed={camera.maxShutterSpeed}
-        weatherResistance={camera.features.weatherResistant}
         IBIS={camera.features.IBIS}
-        weight={camera.weight}
-        dataSource={camera.dataSource}
       />
     </>
   );

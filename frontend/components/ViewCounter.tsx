@@ -18,5 +18,5 @@ export default function ViewCounter({ path, slug, recordView = false }) {
     }
   }, [slug]);
 
-  return <>{`${views > 0 ? views.toLocaleString() : "----"}`}</>;
+  return <>{`${views > 0 ? views.toLocaleString() : "---"}`}</>;
 }

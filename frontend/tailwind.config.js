@@ -12,9 +12,13 @@ module.exports = {
         primary: "#f20505",
         secondary: "#f9d70b",
       },
+      lineHeight: {
+        inherit: "inherit",
+      },
       spacing: {
         4.5: "1.125rem",
         5.5: "1.375rem",
+        7.5: "1.825rem",
       },
       strokeWidth: {
         2.25: 2.25,

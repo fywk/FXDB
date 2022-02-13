@@ -6,9 +6,9 @@ export default function Layout({ children }) {
   return (
     <>
       <Meta />
-      <div className="flex flex-col min-h-screen antialiased">
+      <div className="flex min-h-screen flex-col antialiased">
         <Nav />
-        <main className="grow flex flex-col w-full max-w-5xl mx-auto px-4 sm:px-8">
+        <main className="mx-auto flex w-full max-w-6xl grow flex-col px-4 sm:px-8">
           {children}
         </main>
         <Footer />
