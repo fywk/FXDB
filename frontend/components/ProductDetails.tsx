@@ -38,6 +38,13 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
   const router = useRouter();
   const goBack = () => router.back();
 
+  const path =
+    props.type === "camera"
+      ? "cameras"
+      : props.type === "lens"
+      ? "lenses"
+      : null;
+
   const megapixels = `${Math.round(
     (props.resolutionX * props.resolutionY) / 1_000_000
   )} MP`;
@@ -90,11 +97,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
                     <StatItem
                       title="Views"
                       data={
-                        <ViewCounter
-                          path={props.type}
-                          slug={props.slug}
-                          recordView
-                        />
+                        <ViewCounter path={path} slug={props.slug} recordView />
                       }
                     />
                   </div>
