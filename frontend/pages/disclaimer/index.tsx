@@ -1,6 +1,6 @@
 import Meta from "../../components/Meta";
 
-export default function DisclaimerPage() {
+export default function Disclaimer() {
   return (
     <>
       <Meta title="Disclaimer" />

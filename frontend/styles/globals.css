@@ -47,6 +47,12 @@
   .text-highlight {
     @apply text-gray-900 dark:text-gray-50;
   }
+
+  .text-link-invert,
+  .text-highlight-invert {
+    @apply text-gray-50 dark:text-gray-900;
+  }
+
   .text-dimmed {
     @apply text-gray-500;
   }

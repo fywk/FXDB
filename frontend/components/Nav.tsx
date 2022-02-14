@@ -13,7 +13,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-gray-200 bg-gray-50/[.85] py-3 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90">
-      <div className="container mx-auto flex max-w-6xl items-center justify-between gap-x-4 px-4 sm:px-8">
+      <div className="container relative mx-auto flex max-w-6xl items-center justify-between gap-x-4 px-4 sm:px-8">
         <div className="select-none text-2xl font-black">
           <Link href="/">
             <a className="text-link" title="FXDB Home">
@@ -21,6 +21,13 @@ export default function Nav() {
             </a>
           </Link>
         </div>
+        <a
+          href="#content"
+          className="focus:text-fxdb absolute left-[7.5rem] -translate-y-[200%] rounded bg-gray-50 px-4 py-1 font-medium duration-100 ease-in focus:translate-y-0 dark:bg-gray-900"
+          tabIndex={0}
+        >
+          Skip navigation
+        </a>
         <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 print:hidden md:divide-x">
           <nav>
             <ul className="flex space-x-8">

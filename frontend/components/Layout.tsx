@@ -8,7 +8,10 @@ export default function Layout({ children }) {
       <Meta />
       <div className="flex min-h-screen flex-col antialiased">
         <Nav />
-        <main className="mx-auto flex w-full max-w-6xl grow flex-col px-4 sm:px-8">
+        <main
+          className="mx-auto flex w-full max-w-6xl grow flex-col px-4 sm:px-8"
+          id="content"
+        >
           {children}
         </main>
         <Footer />

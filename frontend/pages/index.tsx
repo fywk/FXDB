@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import { ChevronRightIcon, SearchIcon } from "@heroicons/react/outline";
 import ProductCard from "../components/ProductCard";
 import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
@@ -12,11 +12,11 @@ export default function Home({ cameras, lenses, imageUrl }) {
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
             Fujifilm X and GFX Database
           </h1>
-          <p className="mx-auto max-w-3xl text-lg font-medium leading-relaxed">
-            <strong className="text-highlight">FXDB</strong> is a database of
-            cameras and lenses made for Fujifilm X and GFX systems. You can find
-            relevant specifications for each product including products from
-            third-party manufacturers.
+          <p className="mx-auto max-w-4xl text-lg font-medium leading-relaxed">
+            <strong>FXDB</strong> features a vast collection of relevant
+            information of cameras and lenses of the Fujifilm X and GFX systems.
+            For lenses specifically, products from third-party manufacturers are
+            also included.
           </p>
         </div>
         <SearchBar />
@@ -80,7 +80,7 @@ function SearchBar() {
   return (
     <button
       type="button"
-      className="group mx-auto flex w-full max-w-4xl items-center justify-between rounded-full bg-white px-5 py-3 ring-1 ring-gray-300 hover:ring-2 active:ring-gray-400 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
+      className="group mx-auto flex w-full max-w-5xl items-center justify-between rounded-full bg-white px-5 py-3 ring-1 ring-gray-300 hover:ring-2 active:ring-gray-400 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
     >
       <div className="text-sm group-hover:text-gray-700 dark:group-hover:text-gray-300">
         Search for a camera, lens, brand...

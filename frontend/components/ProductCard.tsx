@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import { dateFormatter } from "../lib/util";
+import { dateFormatter, convertToMP } from "../lib/util";
 
 interface ProductCardProps {
   product: any;
@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
   const megapixels =
     path === "cameras"
-      ? Math.round((product.resolutionX * product.resolutionY) / 1_000_000)
+      ? convertToMP(product.resolutionX, product.resolutionY)
       : null;
   let sensorSize: string = path === "cameras" ? product.sensorSize : null;
   if (sensorSize !== null) {
@@ -58,9 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </Link>
         </h2>
         <p className="text-highlight text-sm">
-          {megapixels && sensorSize && (
-            <>{`${megapixels} MP / ${sensorSize}`}</>
-          )}
+          {megapixels && sensorSize && <>{`${megapixels} / ${sensorSize}`}</>}
           {brand && <>{`${brand} / ${product.mount.data.attributes.name}`}</>}
         </p>
         <p className="text-xs tracking-tight">

@@ -2,13 +2,15 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Meta from "../../components/Meta";
 import ProductDetails from "../../components/ProductDetails";
 
-export default function CameraPage({
+export default function Camera({
   camera,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const lensMount =
-    camera.mount.data.attributes.name === "X-mount"
+    camera.mount.data?.attributes.name === "X-mount"
       ? "Fujifilm X"
-      : "Fujifilm G";
+      : camera.mount.data?.attributes.name === "G-mount"
+      ? "Fujifilm G"
+      : null;
   const sensorSize = camera.sensorSize === "APSC" ? "APS-C" : "Medium Format";
 
   return (

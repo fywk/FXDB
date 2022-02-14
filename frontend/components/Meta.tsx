@@ -24,6 +24,7 @@ export default function Meta({ baseUrl, title, description, keywords }) {
 Meta.defaultProps = {
   baseUrl: "https://fxdb.vercel.app",
   title: "FXDB - Fujifilm X and GFX Database",
-  description: "Fujifilm X and GFX Database",
+  description:
+    "FXDB features a vast collection of relevant information of cameras and lenses of the Fujifilm X and GFX systems. For lenses specifically, products from third-party manufacturers are also included.",
   keywords: "fujifilm, x-mount, database",
 };
