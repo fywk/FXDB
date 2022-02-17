@@ -23,7 +23,7 @@ export default function Nav() {
         </div>
         <a
           href="#content"
-          className="focus:text-fxdb absolute left-[7.5rem] -translate-y-[200%] rounded bg-gray-50 px-4 py-1 font-medium duration-100 ease-in focus:translate-y-0 dark:bg-gray-900"
+          className="text-fxdb absolute left-[7.5rem] origin-left scale-x-0 rounded bg-gray-50 px-4 py-1 font-medium transition-transform duration-100 ease-in focus:scale-x-100 dark:bg-gray-900"
           tabIndex={0}
         >
           Skip navigation

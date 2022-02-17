@@ -46,6 +46,11 @@ export async function getLatestCameras() {
             }
           }
         }
+        meta {
+          pagination {
+            total
+          }
+        }
       }
     }`
   );
@@ -88,8 +93,28 @@ export async function getLatestLenses() {
             }
           }
         }
+        meta {
+          pagination {
+            total
+          }
+        }
       }
     }`
   );
   return data.lenses;
+}
+
+export async function getAllBrands() {
+  const data = await fetchAPI(
+    `query AllBrands {
+      brands {
+        meta {
+          pagination {
+            total
+          }
+        }
+      }
+    }`
+  );
+  return data.brands;
 }

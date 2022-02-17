@@ -4,6 +4,7 @@ import ProductDetails from "../../components/ProductDetails";
 
 export default function Camera({
   camera,
+  imageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const lensMount =
     camera.mount.data?.attributes.name === "X-mount"
@@ -18,9 +19,11 @@ export default function Camera({
       <Meta title={camera.name} />
       <ProductDetails
         type="camera"
-        slug={camera.slug}
         name={camera.name}
+        slug={camera.slug}
         launchDate={camera.launchDate}
+        imageBaseUrl={`${imageUrl}/FXDB`}
+        images={camera.images.data}
         lensMount={lensMount}
         weatherResistant={camera.features.weatherResistant}
         weight={camera.weight}
@@ -54,10 +57,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     `https://fxdb-backend.herokuapp.com/api/cameras?filters[slug][$eq]=${params.slug}&populate=*`
   );
   const camera = await res.json();
+  const imageUrl = process.env.CLOUDINARY_BASE_URL;
 
   return {
     props: {
       camera: camera.data[0].attributes,
+      imageUrl,
       revalidate: 10,
     },
   };

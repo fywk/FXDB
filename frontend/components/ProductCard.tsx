@@ -18,8 +18,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const productUrl = `/${path}/${product.slug}`;
   const image =
-    product.images.data.length !== 0 ? product.images.data[0].attributes : null;
-  const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
+    product.images.data?.length > 0 ? product.images.data[0].attributes : null;
+  const imageSrc = `${imageBaseUrl}/${image?.hash}${image?.ext}`;
   const megapixels =
     path === "cameras"
       ? convertToMP(product.resolutionX, product.resolutionY)
@@ -59,7 +59,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </h2>
         <p className="text-highlight text-sm">
           {megapixels && sensorSize && <>{`${megapixels} / ${sensorSize}`}</>}
-          {brand && <>{`${brand} / ${product.mount.data.attributes.name}`}</>}
+          {brand && product.mount.data && (
+            <>{`${brand} / ${product.mount.data.attributes.name}`}</>
+          )}
         </p>
         <p className="text-xs tracking-tight">
           {`Launched ${dateFormatter.format(launchDate)}`}

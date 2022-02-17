@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/outline";
 import CameraSpecs from "./CameraSpecs";
 import ProductStats from "./ProductStats";
+import ProductImages from "./ProductImages";
 
 interface CameraProps {
   cameraType?: string;
@@ -24,9 +25,11 @@ interface LensProps {
 
 interface ProductDetailProps extends CameraProps, LensProps {
   type: "camera" | "lens";
-  slug: string;
   name: string;
+  slug: string;
   launchDate: string;
+  imageBaseUrl: string;
+  images: string;
   lensMount: string;
   weatherResistant: boolean;
   weight: number;
@@ -51,7 +54,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
 
   return (
     <>
-      <div className="hidden md:block md:py-5">
+      <div className="hidden md:block md:py-5 lg:py-6">
         <button
           type="button"
           onClick={goBack}
@@ -61,20 +64,22 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
           <span className="text-inherit">Back</span>
         </button>
       </div>
-      <div className="flex flex-col space-y-10">
+      <div className="flex flex-col space-y-10 lg:space-y-12">
         <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8 lg:gap-9">
           <div className="full-width md:full-width-reset">
             <div className="static">
               <button
                 type="button"
                 onClick={goBack}
-                className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
+                className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
               >
                 <span className="sr-only">Back</span>
                 <ArrowLeftIcon className="stroke-2.5 h-4.5 w-4.5" />
               </button>
             </div>
-            <div className="aspect-square w-full bg-gray-200 dark:bg-gray-300 md:rounded-lg"></div>
+            <div className="relative aspect-square w-full bg-gray-200 dark:bg-gray-300 md:rounded-lg">
+              <ProductImages {...props} />
+            </div>
           </div>
           <div>
             <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
@@ -83,17 +88,19 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
             </ul>
           </div>
         </section>
-        <section className="print:hidden">
-          <a
-            href={props.dataSource}
-            className="bg-primary/5 dark:bg-secondary/5 text-fxdb hover:bg-primary/10 dark:hover:bg-secondary/10 px-4.5 flex w-full items-center justify-between rounded-lg py-3 text-center md:max-w-xs md:py-2.5"
-            title={new URL(props.dataSource).hostname}
-            rel="noopener noreferrer"
-          >
-            <span>Data Source</span>
-            <ExternalLinkIcon className="h-5 w-5" />
-          </a>
-        </section>
+        {props.dataSource && (
+          <section className="print:hidden">
+            <a
+              href={props.dataSource}
+              className="bg-primary/5 dark:bg-secondary/5 text-fxdb hover:bg-primary/10 dark:hover:bg-secondary/10 px-4.5 flex w-full items-center justify-between rounded-lg py-3 text-center md:max-w-xs md:py-2.5"
+              title={new URL(props.dataSource).hostname}
+              rel="noopener noreferrer"
+            >
+              <span>Data Source</span>
+              <ExternalLinkIcon className="h-5 w-5" />
+            </a>
+          </section>
+        )}
         <section className="space-y-5 pb-5">
           <div className="h-px bg-gray-200 dark:bg-gray-800" />
           {props.type === "camera" && <Footnotes notes={cameraFootnotes} />}

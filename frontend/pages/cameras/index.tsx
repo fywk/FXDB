@@ -1,9 +1,8 @@
 import { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
 import Meta from "../../components/Meta";
 import ProductCard from "../../components/ProductCard";
 
-export default function CamerasPage({ cameras, imageUrl }) {
+export default function Cameras({ cameras, imageUrl }) {
   /*
     Sort by:
       Release date (desc)
@@ -22,7 +21,7 @@ export default function CamerasPage({ cameras, imageUrl }) {
             <p className="">{`Total of ${cameras.length} cameras found.`}</p>
           </section>
           <section>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4 lg:gap-x-5">
+            <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:gap-x-5">
               {cameras.map((camera, i) => (
                 <ProductCard
                   product={camera.attributes}
