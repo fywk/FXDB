@@ -1,16 +1,15 @@
-import { convertToOunces } from "../lib/util";
+import { convertToOunces, humanizeLensMount } from "../lib/util";
 import ListItem from "./ListItem";
 
 export default function CameraSpecs(props) {
-  // Convert weight from grams to ounces
+  const lensMount = humanizeLensMount(props.lensMount);
+  const sensorSize = props.sensorSize === "APSC" ? "APS-C" : "Medium Format";
   const weightOz = convertToOunces(props.weight);
 
   return (
     <>
       <ListItem title="Camera type" data={props.cameraType} />
-      {props.lensMount && (
-        <ListItem title="Lens mount" data={props.lensMount} />
-      )}
+      {lensMount && <ListItem title="Lens mount" data={lensMount} />}
       {props.cameraFocalLength && (
         <ListItem title="Focal length" data={props.cameraFocalLength} />
       )}
@@ -18,7 +17,7 @@ export default function CameraSpecs(props) {
         title="Maximum resolution"
         data={`${String(props.resolutionX)} × ${String(props.resolutionY)}`}
       />
-      <ListItem title="Sensor size" data={props.sensorSize} />
+      <ListItem title="Sensor size" data={sensorSize} />
       <ListItem title="Sensor type" data={props.sensorType} />
       <ListItem
         title="Max shutter speed"
@@ -42,7 +41,7 @@ export default function CameraSpecs(props) {
       />
       <ListItem
         title="Body weight"
-        data={`${props.weight} grams (${weightOz} ounces)`}
+        data={`${props.weight.toLocaleString()} grams (${weightOz.toLocaleString()} ounces)`}
         footnoteId={2}
       />
     </>

@@ -7,10 +7,12 @@ import {
 import CameraSpecs from "./CameraSpecs";
 import ProductStats from "./ProductStats";
 import ProductImages from "./ProductImages";
+import LensSpecs from "./LensSpecs";
 
 interface CameraProps {
   cameraType?: string;
   cameraFocalLength?: string;
+  cameraMaxAperture?: number;
   resolutionX?: number;
   resolutionY?: number;
   sensorSize?: string;
@@ -21,6 +23,15 @@ interface CameraProps {
 
 interface LensProps {
   brand?: string;
+  opticalConstruction?: string;
+  focalLength?: number;
+  angleOfView?: number;
+  maxAperture?: number;
+  minAperture?: number;
+  apertureBlades?: number;
+  minFocusDistance?: number;
+  maxMagnificationRatio?: string;
+  filterSize?: number;
 }
 
 interface ProductDetailProps extends CameraProps, LensProps {
@@ -51,6 +62,13 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
       content: "Including the weight of battery and memory card.",
     },
   ];
+  const lensFootnotes = [
+    {
+      id: 1,
+      content:
+        "Excluding the weight of lens cap, lens hood, or any other accessories.",
+    },
+  ];
 
   return (
     <>
@@ -65,13 +83,13 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
         </button>
       </div>
       <div className="flex flex-col space-y-10 lg:space-y-12">
-        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8 lg:gap-9">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-7 lg:gap-9">
           <div className="full-width md:full-width-reset">
             <div className="static">
               <button
                 type="button"
                 onClick={goBack}
-                className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
+                className="stroke-2.5 h-7.5 w-7.5 absolute top-3 left-3 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
               >
                 <span className="sr-only">Back</span>
                 <ArrowLeftIcon className="stroke-2.5 h-4.5 w-4.5" />
@@ -85,6 +103,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
             <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
               <ProductStats {...props} />
               {props.type === "camera" && <CameraSpecs {...props} />}
+              {props.type === "lens" && <LensSpecs {...props} />}
             </ul>
           </div>
         </section>
@@ -104,6 +123,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
         <section className="space-y-5 pb-5">
           <div className="h-px bg-gray-200 dark:bg-gray-800" />
           {props.type === "camera" && <Footnotes notes={cameraFootnotes} />}
+          {props.type === "lens" && <Footnotes notes={lensFootnotes} />}
         </section>
       </div>
     </>

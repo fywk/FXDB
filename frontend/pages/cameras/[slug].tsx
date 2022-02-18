@@ -6,17 +6,9 @@ export default function Camera({
   camera,
   imageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const lensMount =
-    camera.mount.data?.attributes.name === "X-mount"
-      ? "Fujifilm X"
-      : camera.mount.data?.attributes.name === "G-mount"
-      ? "Fujifilm G"
-      : null;
-  const sensorSize = camera.sensorSize === "APSC" ? "APS-C" : "Medium Format";
-
   return (
     <>
-      <Meta title={camera.name} />
+      <Meta title={`Fujifilm ${camera.name}`} />
       <ProductDetails
         type="camera"
         name={camera.name}
@@ -24,7 +16,7 @@ export default function Camera({
         launchDate={camera.launchDate}
         imageBaseUrl={`${imageUrl}/FXDB`}
         images={camera.images.data}
-        lensMount={lensMount}
+        lensMount={camera.mount.data?.attributes.name}
         weatherResistant={camera.features.weatherResistant}
         weight={camera.weight}
         dataSource={camera.dataSource}
@@ -32,7 +24,7 @@ export default function Camera({
         cameraFocalLength={camera.focalLength}
         resolutionX={camera.resolutionX}
         resolutionY={camera.resolutionY}
-        sensorSize={sensorSize}
+        sensorSize={camera.sensorSize}
         sensorType={camera.sensor.data.attributes.name}
         maxShutterSpeed={camera.maxShutterSpeed}
         IBIS={camera.features.IBIS}
