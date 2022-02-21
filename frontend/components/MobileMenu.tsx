@@ -50,7 +50,7 @@ export default function MobileMenu({ links, display = "md:hidden" }) {
             <span className="sr-only">Close menu</span>
             <XIcon className="h-5.5 w-5.5" />
           </button>
-          <ul className="text-link space-y-5">
+          <ul className="text-link space-y-6">
             {links.map((link, i) => (
               <MenuItem href={link.href} key={i}>
                 {link.title}

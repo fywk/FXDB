@@ -1,6 +1,8 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
+import { ReactElement } from "react";
 import { ChevronRightIcon, SearchIcon } from "@heroicons/react/outline";
+import SiteTotalViews from "../components/SiteTotalViews";
 import ProductCard from "../components/ProductCard";
 import {
   getAllBrands,
@@ -10,7 +12,7 @@ import {
 
 export default function Home({ cameras, lenses, brands, imageUrl }) {
   return (
-    <div className="grid grid-cols-1 gap-y-14 py-14">
+    <div className="grid grid-cols-1 gap-y-14 pt-14">
       <section className="grid grid-cols-1 justify-items-center gap-y-8">
         <div className="grid grid-cols-1 gap-y-6 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
@@ -26,9 +28,11 @@ export default function Home({ cameras, lenses, brands, imageUrl }) {
         <SearchBar />
       </section>
       <section className="grid grid-cols-1 gap-y-12">
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-3">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold md:text-[22px]">Latest Cameras</h1>
+            <h1 className="text-xl font-semibold md:text-[22px]">
+              Latest Cameras
+            </h1>
             <ViewMoreLink href="/cameras" title="View all cameras" />
           </div>
           <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:gap-x-5">
@@ -43,9 +47,11 @@ export default function Home({ cameras, lenses, brands, imageUrl }) {
             ))}
           </div>
         </div>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-3">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold md:text-[22px]">Latest Lenses</h1>
+            <h1 className="text-xl font-semibold md:text-[22px]">
+              Latest Lenses
+            </h1>
             <ViewMoreLink href="/lenses" title="View all lenses" />
           </div>
           <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:gap-x-5">
@@ -61,21 +67,26 @@ export default function Home({ cameras, lenses, brands, imageUrl }) {
           </div>
         </div>
       </section>
-      <section className="space-y-4">
-        <h1 className="text-xl font-bold md:text-[22px]">Statistics</h1>
-        <div className="mx-auto grid w-[99%] grid-cols-1 gap-3 divide-y dark:divide-gray-800 md:auto-cols-fr md:grid-flow-col md:flex-row md:gap-5 md:divide-x md:divide-y-0">
-          <SiteStats
-            category="Total Lenses"
-            data={lenses.meta.pagination.total}
-          />
-          <SiteStats
-            category="Total Cameras"
-            data={cameras.meta.pagination.total}
-          />
-          <SiteStats
-            category="Total Brands"
-            data={brands.meta.pagination.total}
-          />
+      <section className="flex flex-col space-y-3">
+        <h1 className="text-xl font-semibold md:text-[22px]">
+          Site Statistics
+        </h1>
+        <div className="base-width lg:full-width dark:bg-secondary/5 bg-primary/5 -mx-4 py-8 sm:-mx-8 md:py-10 lg:py-12">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-y-6 gap-x-3 px-4 sm:px-8 md:grid-cols-4">
+            <SiteStats category="All-Time Views" data={<SiteTotalViews />} />
+            <SiteStats
+              category="Total Lenses"
+              data={lenses.meta.pagination.total.toLocaleString()}
+            />
+            <SiteStats
+              category="Total Cameras"
+              data={cameras.meta.pagination.total.toLocaleString()}
+            />
+            <SiteStats
+              category="Total Brands"
+              data={brands.meta.pagination.total.toLocaleString()}
+            />
+          </div>
         </div>
       </section>
     </div>
@@ -128,11 +139,17 @@ function ViewMoreLink({ href, ...attr }) {
   );
 }
 
-function SiteStats({ category, data }: { category: string; data: number }) {
+function SiteStats({
+  category,
+  data,
+}: {
+  category: string;
+  data: number | ReactElement;
+}) {
   return (
-    <div className="w-full py-2 text-center md:py-3 lg:py-4">
-      <p className="text-fxdb text-3xl font-bold">{data.toLocaleString()}</p>
-      <p className="text-highlight text-sm lg:text-[15px]">{category}</p>
+    <div className="w-full text-center md:space-y-0.5">
+      <p className="text-fxdb text-4xl font-bold">{data}</p>
+      <p className="text-sm">{category}</p>
     </div>
   );
 }

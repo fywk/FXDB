@@ -21,7 +21,7 @@ export default async function handler(
       });
 
       return res.status(200).json({
-        total: snapshot.val(),
+        views: snapshot.val(),
       });
     }
 
@@ -34,7 +34,7 @@ export default async function handler(
         .once("value");
       const views = snapshot.val();
 
-      return res.status(200).json({ total: views });
+      return res.status(200).json({ views });
     }
   } catch (e) {
     return res.status(500).json({ message: e.message });

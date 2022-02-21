@@ -13,7 +13,7 @@ export default function ViewCounter({
   recordView: boolean;
 }) {
   const { data } = useSWR<Views>(`/api/views/${path}/${slug}`, fetcher);
-  const views = new Number(data?.total);
+  const views = new Number(data?.views);
 
   useEffect(() => {
     const recordView = () =>
@@ -25,5 +25,5 @@ export default function ViewCounter({
     }
   }, [path, slug]);
 
-  return <>{`${views > 0 ? views.toLocaleString() : "---"}`}</>;
+  return <>{views > 0 ? views.toLocaleString() : "---"}</>;
 }

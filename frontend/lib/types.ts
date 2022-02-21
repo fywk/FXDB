@@ -1,5 +1,9 @@
 export type Views = {
-  total: number;
+  views: number;
+};
+
+export type AllTimeViews = {
+  views: { cameras: number; lenses: number; total: number };
 };
 
 export type Error = {

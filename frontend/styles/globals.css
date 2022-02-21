@@ -35,6 +35,10 @@
 }
 
 @layer utilities {
+  .base-width {
+    width: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-left));
+  }
+
   .full-width {
     @apply relative left-2/4 right-2/4 -mx-[50vw] w-screen;
   }
