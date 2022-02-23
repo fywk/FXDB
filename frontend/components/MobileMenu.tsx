@@ -1,7 +1,8 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { Router } from "next/router";
 import { useEffect, useState } from "react";
-import clsx from "clsx";
+
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
 

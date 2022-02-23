@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <div className="flex min-h-screen flex-col antialiased">
         <Nav />
         <main
-          className="mx-auto flex w-full max-w-6xl grow flex-col px-4 sm:px-8"
+          className="mx-auto flex w-full max-w-6xl grow flex-col px-5 sm:px-8"
           id="content"
         >
           {children}
