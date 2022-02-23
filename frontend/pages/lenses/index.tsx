@@ -36,7 +36,7 @@ export default function Lenses({ lenses, imageUrl }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    "https://fxdb-backend.herokuapp.com/api/lenses?populate=*&sort=launchDate:desc"
+    "https://fxdb-backend.herokuapp.com/api/lenses?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc"
   );
   const lenses = await res.json();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;

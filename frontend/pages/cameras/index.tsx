@@ -41,7 +41,7 @@ export default function Cameras({ cameras, imageUrl }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    "https://fxdb-backend.herokuapp.com/api/cameras?populate=*&sort=launchDate:desc"
+    "https://fxdb-backend.herokuapp.com/api/cameras?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc"
   );
   const cameras = await res.json();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;

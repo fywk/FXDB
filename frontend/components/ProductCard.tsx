@@ -1,7 +1,8 @@
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
-import { dateFormatter, convertToMP } from "../lib/util";
+
+import { convertToMP, dateFormatter, humanizeLensMount } from "../lib/util";
 
 interface ProductCardProps {
   product: any;
@@ -33,6 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
   }
   const brand = path === "lenses" ? product.brand.data.attributes.name : null;
+  const lensMount = humanizeLensMount(product.mount?.data?.attributes.name);
   const launchDate = new Date(product.launchDate);
 
   return (
@@ -51,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </a>
       </Link>
-      <div className="mx-auto flex w-[99%] flex-col space-y-px">
+      <div className="mx-auto flex w-[99%] flex-col space-y-0.5">
         <h2 className="text-fxdb font-semibold leading-tight hover:underline md:underline-offset-1">
           <Link href={productUrl}>
             <a>{product.name}</a>
@@ -59,9 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </h2>
         <p className="text-highlight text-sm">
           {megapixels && sensorSize && <>{`${megapixels} / ${sensorSize}`}</>}
-          {brand && product.mount.data && (
-            <>{`${brand} / ${product.mount.data.attributes.name}`}</>
-          )}
+          {brand && product.mount.data && <>{`${brand} / ${lensMount}`}</>}
         </p>
         <p className="text-xs tracking-tight">
           {`Launched ${dateFormatter.format(launchDate)}`}

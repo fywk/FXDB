@@ -104,9 +104,39 @@ export async function getLatestLenses() {
   return data.lenses;
 }
 
-export async function getAllBrands() {
+export async function getNumOfCameras() {
   const data = await fetchAPI(
-    `query AllBrands {
+    `query NumOfCameras {
+      cameras {
+        meta {
+          pagination {
+            total
+          }
+        }
+      }
+    }`
+  );
+  return data.cameras;
+}
+
+export async function getNumOfLenses() {
+  const data = await fetchAPI(
+    `query NumOfLenses {
+      lenses {
+        meta {
+          pagination {
+            total
+          }
+        }
+      }
+    }`
+  );
+  return data.lenses;
+}
+
+export async function getNumOfBrands() {
+  const data = await fetchAPI(
+    `query NumOfBrands {
       brands {
         meta {
           pagination {

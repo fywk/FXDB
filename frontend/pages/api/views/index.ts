@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import db from "../../../lib/firebase";
-import { Error, AllTimeViews } from "../../../lib/types";
+import { AllTimeViews, Error } from "../../../lib/types";
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,6 +16,12 @@ export default async function handler(
     const cameraViews = sumViews(views.cameras);
     const lensViews = sumViews(views.lenses);
     const totalViews = cameraViews + lensViews;
+
+    // Cache is fresh for 900 seconds (15 minutes), but still can be used for 300 seconds (5 minutes) more
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=900, stale-while-revalidate=300"
+    );
 
     return res.status(200).json({
       views: {
