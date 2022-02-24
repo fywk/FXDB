@@ -11,11 +11,11 @@ export default function ListItem({
 }) {
   return (
     <li className="mx-auto flex w-[99%] items-center justify-between py-3.5">
-      <div className="w-[45%] text-sm uppercase">
+      <div className="w-[47.5%] text-sm uppercase">
         {title}
         {footnoteId && <sup>{footnoteId}</sup>}
       </div>
-      <div className="text-highlight w-[55%] text-right text-[15px] font-medium">
+      <div className="text-highlight w-[52.5%] text-right text-[15px] font-medium">
         {data}
       </div>
     </li>

@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+
 import Meta from "../../components/Meta";
 import ProductCard from "../../components/ProductCard";
 

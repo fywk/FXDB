@@ -1,13 +1,15 @@
 import { useRouter } from "next/router";
+
 import {
   ArrowLeftIcon,
   ChevronLeftIcon,
-  ExternalLinkIcon,
+  ExternalLinkIcon
 } from "@heroicons/react/outline";
+
 import CameraSpecs from "./CameraSpecs";
-import ProductStats from "./ProductStats";
-import ProductImages from "./ProductImages";
 import LensSpecs from "./LensSpecs";
+import ProductImages from "./ProductImages";
+import ProductStats from "./ProductStats";
 
 interface CameraProps {
   cameraType?: string;
@@ -83,8 +85,8 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
         </button>
       </div>
       <div className="flex flex-col space-y-10 lg:space-y-12">
-        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-7 lg:gap-9">
-          <div className="full-width md:full-width-reset">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-11 md:gap-7 lg:gap-9">
+          <div className="full-width md:full-width-reset md:col-span-5">
             <div className="static">
               <button
                 type="button"
@@ -99,7 +101,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
               <ProductImages {...props} />
             </div>
           </div>
-          <div>
+          <div className="md:col-span-6">
             <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
               <ProductStats {...props} />
               {props.type === "camera" && <CameraSpecs {...props} />}

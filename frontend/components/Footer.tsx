@@ -21,7 +21,7 @@ export default function Footer() {
               <a className="hover:text-link">Disclaimer</a>
             </Link>
           </p>
-          <p className="before:mr-2 before:content-['•'] md:before:mr-3">
+          <p className="before:text-dimmed before:mr-2 before:content-['•'] md:before:mr-3">
             <Link href="/statistics">
               <a className="hover:text-link">Statistics</a>
             </Link>

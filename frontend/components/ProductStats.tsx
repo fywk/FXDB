@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+
 import { convertToMP, dateFormatter } from "../lib/util";
 import ViewCounter from "./ViewCounter";
 
@@ -15,7 +16,7 @@ export default function ProductStats(props) {
     <li className="flex flex-col space-y-4 font-sans">
       <h1 className="text-fxdb text-2xl font-bold">{props.name}</h1>
       <div className="overflow-x-auto">
-        <div className="mb-4 grid w-[21rem] min-w-full grid-cols-3 items-center justify-items-center gap-x-1.5 text-center md:gap-x-2">
+        <div className="mb-4 grid w-80 min-w-full grid-cols-3 items-center justify-items-center gap-x-1.5 text-center md:gap-x-2">
           {props.type === "camera" && (
             <StatItem title="Effective Pixels" data={megapixels} />
           )}

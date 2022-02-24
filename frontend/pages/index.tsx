@@ -86,7 +86,7 @@ function SearchBar() {
   return (
     <button
       type="button"
-      className="group mx-auto flex w-full max-w-5xl items-center justify-between rounded-full bg-white px-5 py-3 ring-1 ring-gray-300 hover:ring-2 active:ring-gray-400 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
+      className="group mx-auto flex w-full max-w-5xl items-center justify-between rounded-full bg-white px-5 py-3.5 ring-1 ring-gray-300 hover:ring-2 active:ring-gray-400 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
     >
       <div className="text-sm group-hover:text-gray-700 dark:group-hover:text-gray-300">
         Search for a camera, lens, brand...

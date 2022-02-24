@@ -1,10 +1,9 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { ReactElement } from "react";
-import { Url } from "url";
 
+import Analytics from "../../components/Analytics";
 import Meta from "../../components/Meta";
-import SiteTotalViews from "../../components/SiteTotalViews";
 import {
   getNumOfBrands,
   getNumOfCameras,
@@ -25,19 +24,19 @@ export default function Statistics({
           <div className="md:col-span-6">
             <StatsCard
               title="All-Time Views"
-              data={<SiteTotalViews category="all-time" />}
+              data={<Analytics category="site-wide" />}
             />
           </div>
           <div className="md:col-span-3">
             <StatsCard
-              title="All-Time Views (Cameras)"
-              data={<SiteTotalViews category="cameras" />}
+              title="All-Time Views: Cameras"
+              data={<Analytics category="cameras" />}
             />
           </div>
           <div className="md:col-span-3">
             <StatsCard
-              title="All-Time Views (Lenses)"
-              data={<SiteTotalViews category="lenses" />}
+              title="All-Time Views: Lenses"
+              data={<Analytics category="lenses" />}
             />
           </div>
           <div className="md:col-span-2">
@@ -92,9 +91,9 @@ export function StatsCard({
   link?: string;
 }) {
   return (
-    <div className="space-y-1 rounded-lg border border-gray-200 bg-white px-5 py-6 dark:border-gray-800 dark:bg-inherit md:space-y-1.5">
+    <div className="aspect-[3.5] space-y-1 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-inherit md:space-y-1.5 lg:p-6">
       <h2>{title}</h2>
-      <p className="text-fxdb text-4xl font-bold lg:text-5xl">
+      <p className="text-fxdb text-[2.5rem] font-extrabold leading-none">
         {link ? (
           <Link href={link}>
             <a>{data}</a>

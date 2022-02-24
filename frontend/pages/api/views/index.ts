@@ -13,9 +13,9 @@ export default async function handler(
     const sumViews = (obj): number =>
       Number(Object.values(obj).reduce((a: number, b: number) => a + b));
 
-    const cameraViews = sumViews(views.cameras);
-    const lensViews = sumViews(views.lenses);
-    const totalViews = cameraViews + lensViews;
+    const camerasViews = sumViews(views.cameras);
+    const lensesViews = sumViews(views.lenses);
+    const allTimeViews = camerasViews + lensesViews;
 
     // Cache is fresh for 900 seconds (15 minutes), but still can be used for 300 seconds (5 minutes) more
     res.setHeader(
@@ -25,9 +25,9 @@ export default async function handler(
 
     return res.status(200).json({
       views: {
-        cameras: cameraViews,
-        lenses: lensViews,
-        total: totalViews,
+        allTime: allTimeViews,
+        cameras: camerasViews,
+        lenses: lensesViews,
       },
     });
   } catch (e) {
