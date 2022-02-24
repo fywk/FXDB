@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -7,10 +8,11 @@ import { SearchIcon } from "@heroicons/react/outline";
 import MobileMenu from "./MobileMenu";
 
 export default function Nav() {
+  const { t, lang } = useTranslation("common");
   const navLinks = [
-    { title: "Cameras", href: "/cameras" },
-    { title: "Lenses", href: "/lenses" },
-    { title: "Brands", href: "/brands" },
+    { title: "cameras", href: "/cameras" },
+    { title: "lenses", href: "/lenses" },
+    { title: "brands", href: "/brands" },
   ];
 
   return (
@@ -34,7 +36,7 @@ export default function Nav() {
           <nav>
             <ul className="flex space-x-8">
               {navLinks.map((navLink, i) => (
-                <NavItem href={navLink.href} title={navLink.title} key={i} />
+                <NavItem href={navLink.href} title={t(navLink.title)} key={i} />
               ))}
             </ul>
           </nav>
@@ -42,18 +44,18 @@ export default function Nav() {
             <button
               type="button"
               className="hover:text-link flex h-8 w-8 items-center justify-center md:h-fit md:w-fit"
-              title="Search"
+              title={t("search")}
             >
-              <span className="sr-only">Search</span>
+              <span className="sr-only">{t("search")}</span>
               <SearchIcon className="stroke-2.25 h-5 w-5" />
             </button>
             <a
               href="https://github.com/fywk/FXDB"
               className="hover:text-link hidden h-8 w-8 items-center justify-center md:flex md:h-fit md:w-fit"
-              title="View Source on GitHub"
+              title={t("GitHub")}
               rel="noopener noreferrer"
             >
-              <span className="sr-only">View Source on GitHub</span>
+              <span className="sr-only">{t("GitHub")}</span>
               <GithubIcon className="stroke-2.25 h-5 w-5" />
             </a>
             <MobileMenu links={navLinks} />

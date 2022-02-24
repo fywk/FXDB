@@ -1,9 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextTranslate = require("next-translate");
+
+/**
+ * @type {import('next').NextConfig}
+ **/
+
+module.exports = nextTranslate({
   reactStrictMode: true,
   images: {
     domains: ["res.cloudinary.com"],
   },
-};
-
-module.exports = nextConfig;
+});
