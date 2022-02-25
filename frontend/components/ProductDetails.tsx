@@ -6,50 +6,13 @@ import {
   ExternalLinkIcon
 } from "@heroicons/react/outline";
 
+import { Product } from "../lib/types";
 import CameraSpecs from "./CameraSpecs";
 import LensSpecs from "./LensSpecs";
 import ProductImages from "./ProductImages";
 import ProductStats from "./ProductStats";
 
-interface CameraProps {
-  cameraType?: string;
-  cameraFocalLength?: string;
-  cameraMaxAperture?: number;
-  resolutionX?: number;
-  resolutionY?: number;
-  sensorSize?: string;
-  sensorType?: string;
-  maxShutterSpeed?: string;
-  IBIS?: boolean;
-}
-
-interface LensProps {
-  brand?: string;
-  opticalConstruction?: string;
-  focalLength?: number;
-  angleOfView?: number;
-  maxAperture?: number;
-  minAperture?: number;
-  apertureBlades?: number;
-  minFocusDistance?: number;
-  maxMagnificationRatio?: string;
-  filterSize?: number;
-}
-
-interface ProductDetailProps extends CameraProps, LensProps {
-  type: "camera" | "lens";
-  name: string;
-  slug: string;
-  launchDate: string;
-  imageBaseUrl: string;
-  images: string;
-  lensMount: string;
-  weatherResistant: boolean;
-  weight: number;
-  dataSource: string;
-}
-
-const ProductDetails: React.FC<ProductDetailProps> = (props) => {
+const ProductDetails = (props: Product) => {
   const router = useRouter();
   const goBack = () => router.back();
 
@@ -74,7 +37,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
 
   return (
     <>
-      <div className="hidden md:block md:py-5 lg:py-6">
+      <div className="hidden md:block md:py-5">
         <button
           type="button"
           onClick={goBack}
@@ -84,14 +47,14 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
           <span className="text-inherit">Back</span>
         </button>
       </div>
-      <div className="flex flex-col space-y-10 lg:space-y-12">
+      <div className="flex flex-col space-y-10">
         <section className="grid grid-cols-1 gap-5 md:grid-cols-11 md:gap-7 lg:gap-9">
           <div className="full-width md:full-width-reset md:col-span-5">
             <div className="static">
               <button
                 type="button"
                 onClick={goBack}
-                className="stroke-2.5 h-7.5 w-7.5 absolute top-3 left-3 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
+                className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
               >
                 <span className="sr-only">Back</span>
                 <ArrowLeftIcon className="stroke-2.5 h-4.5 w-4.5" />
@@ -101,7 +64,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
               <ProductImages {...props} />
             </div>
           </div>
-          <div className="md:col-span-6">
+          <div className="md:col-span-6 md:py-0.5">
             <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
               <ProductStats {...props} />
               {props.type === "camera" && <CameraSpecs {...props} />}
@@ -122,8 +85,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
             </a>
           </section>
         )}
-        <section className="space-y-5 pb-5">
-          <div className="h-px bg-gray-200 dark:bg-gray-800" />
+        <section className="pb-5">
           {props.type === "camera" && <Footnotes notes={cameraFootnotes} />}
           {props.type === "lens" && <Footnotes notes={lensFootnotes} />}
         </section>
@@ -134,7 +96,7 @@ const ProductDetails: React.FC<ProductDetailProps> = (props) => {
 
 function Footnotes({ notes }) {
   return (
-    <ol className="ml-5 list-decimal space-y-1 text-xs leading-normal">
+    <ol className="ml-5 list-decimal space-y-1 text-xs">
       {notes.map((note) => (
         <li className="pl-0.5" key={note.id}>{`${note.content}`}</li>
       ))}

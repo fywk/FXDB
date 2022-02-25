@@ -1,24 +1,21 @@
+import { Product } from "../lib/types";
 import { convertToOunces, humanizeLensMount } from "../lib/util";
 import ListItem from "./ListItem";
 
-export default function LensSpecs(props) {
+export default function LensSpecs(props: Product) {
   const lensMount = humanizeLensMount(props.lensMount);
-  const focalLength =
-    props.focalLength?.length > 1
-      ? `${props.focalLength.join("-")}mm`
-      : `${props.focalLength}mm`;
-  const angleOfView =
-    props.angleOfView?.length > 1
-      ? `${props.angleOfView.join("° - ")}°`
-      : `${props.angleOfView}°`;
-  const maxAperture =
-    props.maxAperture?.length > 1
-      ? `F${props.maxAperture.join("-")}`
-      : `F${props.maxAperture}`;
-  const minFocusDistance =
-    props.minFocusDistance?.length > 1
-      ? `${props.minFocusDistance.join("cm - ")}cm`
-      : `${props.minFocusDistance}cm`;
+  const focalLength = Array.isArray(props.focalLength)
+    ? `${props.focalLength.join("-")}mm`
+    : `${props.focalLength}mm`;
+  const angleOfView = Array.isArray(props.angleOfView)
+    ? `${props.angleOfView.join("° - ")}°`
+    : `${props.angleOfView}°`;
+  const maxAperture = Array.isArray(props.maxAperture)
+    ? `F${props.maxAperture.join("-")}`
+    : `F${props.maxAperture}`;
+  const minFocusDistance = Array.isArray(props.minFocusDistance)
+    ? `${props.minFocusDistance.join("cm - ")}cm`
+    : `${props.minFocusDistance}cm`;
   const weightOz = convertToOunces(props.weight);
 
   return (
@@ -41,7 +38,7 @@ export default function LensSpecs(props) {
       />
       <ListItem
         title="Weight"
-        data={`${props.weight.toLocaleString()} grams (${weightOz.toLocaleString()} ounces)`}
+        data={`${props.weight.toLocaleString()}g (${weightOz.toLocaleString()}oz)`}
         footnoteId={1}
       />
     </>

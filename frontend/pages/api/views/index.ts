@@ -15,7 +15,7 @@ export default async function handler(
 
     const camerasViews = sumViews(views.cameras);
     const lensesViews = sumViews(views.lenses);
-    const allTimeViews = camerasViews + lensesViews;
+    const siteWideViews = camerasViews + lensesViews;
 
     // Cache is fresh for 900 seconds (15 minutes), but still can be used for 300 seconds (5 minutes) more
     res.setHeader(
@@ -25,7 +25,7 @@ export default async function handler(
 
     return res.status(200).json({
       views: {
-        allTime: allTimeViews,
+        siteWide: siteWideViews,
         cameras: camerasViews,
         lenses: lensesViews,
       },

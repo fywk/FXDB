@@ -13,8 +13,10 @@ export default function ProductStats(props) {
   const megapixels = convertToMP(props.resolutionX, props.resolutionY);
 
   return (
-    <li className="flex flex-col space-y-4 font-sans">
-      <h1 className="text-fxdb text-2xl font-bold">{props.name}</h1>
+    <li className="md:space-y-4.5 flex flex-col space-y-4 font-sans lg:space-y-5">
+      <h1 className="text-fxdb text-2xl font-bold lg:text-[1.625rem]">
+        {props.name}
+      </h1>
       <div className="overflow-x-auto">
         <div className="mb-4 grid w-80 min-w-full grid-cols-3 items-center justify-items-center gap-x-1.5 text-center md:gap-x-2">
           {props.type === "camera" && (
@@ -47,9 +49,7 @@ function StatItem({
   return (
     <div className="space-y-1">
       <p className="text-xs leading-snug">{title}</p>
-      <p className="text-highlight text-lg font-semibold leading-snug lg:text-xl">
-        {data}
-      </p>
+      <p className="text-highlight text-lg font-semibold lg:text-xl">{data}</p>
     </div>
   );
 }

@@ -6,7 +6,7 @@ export default function ListItem({
   footnoteId,
 }: {
   title: string | ReactElement;
-  data: string;
+  data: string | number;
   footnoteId?: number;
 }) {
   return (

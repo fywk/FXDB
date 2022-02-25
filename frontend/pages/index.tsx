@@ -37,6 +37,7 @@ export default function Home({ cameras, lenses, imageUrl }) {
                 product={camera.attributes}
                 path="cameras"
                 imageBaseUrl={`${imageUrl}/FXDB`}
+                imageSizes="(min-width: 768px) 25vw, 50vw"
                 imageStyle="scale-[.7] hover:scale-75"
                 key={i}
               />
@@ -56,6 +57,7 @@ export default function Home({ cameras, lenses, imageUrl }) {
                 product={lens.attributes}
                 path="lenses"
                 imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
+                imageSizes="(min-width: 768px) 25vw, 50vw"
                 imageStyle="scale-[.85] hover:scale-90"
                 key={i}
               />
@@ -100,10 +102,10 @@ function SearchBar() {
 
 function ViewMoreLink({ href, ...attr }) {
   return (
-    <div className="hover:text-link flex items-center space-x-0.5">
+    <div className="hover:text-link flex items-center space-x-1">
       <Link href={href}>
         <a className="text-xs font-medium uppercase" {...attr}>
-          View all
+          View more
         </a>
       </Link>
       <ChevronRightIcon className="stroke-3 h-4 w-4" />

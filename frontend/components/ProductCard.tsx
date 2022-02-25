@@ -2,21 +2,16 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ProductCard } from "../lib/types";
 import { convertToMP, dateFormatter, humanizeLensMount } from "../lib/util";
 
-interface ProductCardProps {
-  product: any;
-  path: string;
-  imageBaseUrl: string;
-  imageStyle?: string;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({
+const ProductCard = ({
   product,
   path,
   imageBaseUrl,
+  imageSizes,
   imageStyle,
-}) => {
+}: ProductCard) => {
   const productUrl = `/${path}/${product.slug}`;
   const image =
     product.images.data?.length > 0 ? product.images.data[0].attributes : null;
@@ -47,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               alt={image.alternativeText}
               layout="fill"
               objectFit="scale-down"
-              sizes="(min-width: 768px) 25vw, 50vw"
+              sizes={imageSizes}
               className={clsx("origin-center duration-300", imageStyle)}
             />
           )}

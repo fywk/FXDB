@@ -9,15 +9,15 @@ export default function SiteAnalytics({
   category: "site-wide" | "cameras" | "lenses";
 }) {
   const { data } = useSWR<AllTimeViews>("/api/views", fetcher);
-  const [allTimeViews, camerasViews, lensesViews] = [
-    new Number(data?.views.allTime),
+  const [siteWideViews, camerasViews, lensesViews] = [
+    new Number(data?.views.siteWide),
     new Number(data?.views.cameras),
     new Number(data?.views.lenses),
   ];
 
   switch (category) {
     case "site-wide":
-      return <>{allTimeViews > 0 ? allTimeViews.toLocaleString() : "---"}</>;
+      return <>{siteWideViews > 0 ? siteWideViews.toLocaleString() : "---"}</>;
     case "cameras":
       return <>{camerasViews > 0 ? camerasViews.toLocaleString() : "---"}</>;
     case "lenses":

@@ -1,17 +1,21 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+
 import Meta from "../../components/Meta";
 import ProductDetails from "../../components/ProductDetails";
 
 export default function Camera({
+  brand = "Fujifilm",
   camera,
   imageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const name = `${brand} ${camera.name}`;
+
   return (
     <>
-      <Meta title={`Fujifilm ${camera.name}`} />
+      <Meta title={name} />
       <ProductDetails
         type="camera"
-        name={camera.name}
+        name={name}
         slug={camera.slug}
         launchDate={camera.launchDate}
         imageBaseUrl={`${imageUrl}/FXDB`}

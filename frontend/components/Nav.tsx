@@ -14,7 +14,7 @@ export default function Nav() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200 bg-gray-50/[.85] py-3.5 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90 lg:py-4">
+    <header className="sticky top-0 z-40 border-b border-gray-200 bg-gray-50/[.85] py-3.5 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90">
       <div className="container relative mx-auto flex max-w-6xl items-center justify-between gap-x-4 px-5 sm:px-8">
         <div className="select-none text-2xl font-black">
           <Link href="/">

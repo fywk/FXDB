@@ -1,7 +1,8 @@
+import { Product } from "../lib/types";
 import { convertToOunces, humanizeLensMount } from "../lib/util";
 import ListItem from "./ListItem";
 
-export default function CameraSpecs(props) {
+export default function CameraSpecs(props: Product) {
   const lensMount = humanizeLensMount(props.lensMount);
   const sensorSize = props.sensorSize === "APSC" ? "APS-C" : "Medium Format";
   const weightOz = convertToOunces(props.weight);
@@ -41,7 +42,7 @@ export default function CameraSpecs(props) {
       />
       <ListItem
         title="Body weight"
-        data={`${props.weight.toLocaleString()} grams (${weightOz.toLocaleString()} ounces)`}
+        data={`${props.weight.toLocaleString()}g (${weightOz.toLocaleString()}oz)`}
         footnoteId={2}
       />
     </>

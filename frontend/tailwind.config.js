@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.neutral,
-        primary: "#f20505",
-        secondary: "#f9d70b",
+        primary: "#780A82",
+        secondary: "#F9D70B",
       },
       lineHeight: {
         inherit: "inherit",
