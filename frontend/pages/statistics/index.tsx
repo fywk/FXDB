@@ -20,7 +20,7 @@ export default function Statistics({
       <Meta title="Statistics" />
       <div className="space-y-5 py-10">
         <h1 className="text-3xl font-bold md:text-4xl">Statistics</h1>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-6 lg:gap-4">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-6 md:gap-3.5 lg:gap-4">
           <div className="md:col-span-6">
             <StatsCard
               title="All-Time Views"

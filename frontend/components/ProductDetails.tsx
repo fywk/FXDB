@@ -1,10 +1,7 @@
 import { useRouter } from "next/router";
 
-import {
-  ArrowLeftIcon,
-  ChevronLeftIcon,
-  ExternalLinkIcon
-} from "@heroicons/react/outline";
+import { ChevronLeftIcon } from "@heroicons/react/outline";
+import { ArrowLeftIcon, ExternalLinkIcon } from "@heroicons/react/solid";
 
 import { Product } from "../lib/types";
 import CameraSpecs from "./CameraSpecs";
@@ -57,7 +54,7 @@ const ProductDetails = (props: Product) => {
                 className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
               >
                 <span className="sr-only">Back</span>
-                <ArrowLeftIcon className="stroke-2.5 h-4.5 w-4.5" />
+                <ArrowLeftIcon className="h-4.5 w-4.5" />
               </button>
             </div>
             <div className="relative aspect-square w-full bg-gray-200 dark:bg-gray-300 md:rounded-lg">
@@ -81,7 +78,7 @@ const ProductDetails = (props: Product) => {
               rel="noopener noreferrer"
             >
               <span>Data Source</span>
-              <ExternalLinkIcon className="h-5 w-5" />
+              <ExternalLinkIcon className="h-5.5 w-5.5" />
             </a>
           </section>
         )}

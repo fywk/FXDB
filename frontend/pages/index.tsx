@@ -1,7 +1,8 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 
-import { ChevronRightIcon, SearchIcon } from "@heroicons/react/outline";
+import { ChevronRightIcon } from "@heroicons/react/outline";
+import { SearchIcon } from "@heroicons/react/solid";
 
 import ProductCard from "../components/ProductCard";
 import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
@@ -94,7 +95,7 @@ function SearchBar() {
         Search for a camera, lens, brand...
       </div>
       <div className="group-hover:text-gray-700 dark:group-hover:text-gray-300">
-        <SearchIcon className="stroke-2.25 h-5.5 w-5.5" />
+        <SearchIcon className="h-5 w-5" />
       </div>
     </button>
   );
