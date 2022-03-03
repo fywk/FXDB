@@ -1,3 +1,11 @@
+export type AllTimeViews = {
+  views: {
+    siteWide: number;
+    cameras: number;
+    lenses: number;
+  };
+};
+
 type Camera = {
   cameraType?: string;
   cameraFocalLength?: string;
@@ -8,6 +16,10 @@ type Camera = {
   sensorType?: string;
   maxShutterSpeed?: string;
   IBIS?: boolean;
+};
+
+export type Error = {
+  message: string;
 };
 
 type Lens = {
@@ -21,6 +33,12 @@ type Lens = {
   minFocusDistance?: number | number[];
   maxMagnificationRatio?: string;
   filterSize?: number;
+};
+
+export type NavLink = {
+  id: number;
+  name: string;
+  link: string;
 };
 
 // prettier-ignore
@@ -47,16 +65,4 @@ export type ProductCard = {
 
 export type Views = {
   views: number;
-};
-
-export type AllTimeViews = {
-  views: {
-    siteWide: number;
-    cameras: number;
-    lenses: number;
-  };
-};
-
-export type Error = {
-  message: string;
 };

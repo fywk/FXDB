@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 
 import Meta from "../../components/Meta";
-import ProductDetails from "../../components/ProductDetails";
+import ProductDetails from "../../components/product/ProductDetails";
 
 export default function Camera({
   brand = "Fujifilm",
@@ -38,7 +38,7 @@ export default function Camera({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("https://fxdb-backend.herokuapp.com/api/cameras");
+  const res = await fetch(`${process.env.STRAPI_API_URL}/api/cameras`);
   const cameras = await res.json();
 
   const paths = cameras.data.map((camera) => ({
@@ -50,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(
-    `https://fxdb-backend.herokuapp.com/api/cameras?filters[slug][$eq]=${params.slug}&populate=*`
+    `${process.env.STRAPI_API_URL}/api/cameras?filters[slug][$eq]=${params.slug}&populate=*`
   );
   const camera = await res.json();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;

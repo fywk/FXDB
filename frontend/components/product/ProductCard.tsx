@@ -2,8 +2,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ProductCard } from "../lib/types";
-import { convertToMP, dateFormatter, humanizeLensMount } from "../lib/util";
+import { ProductCard } from "../../lib/types";
+import { convertToMP, dateFormatter, humanizeLensMount } from "../../lib/util";
 
 const ProductCard = ({
   product,
@@ -55,7 +55,9 @@ const ProductCard = ({
           </Link>
         </h2>
         <p className="text-highlight text-sm">
-          {megapixels && sensorSize && <>{`${megapixels} / ${sensorSize}`}</>}
+          {megapixels && sensorSize && (
+            <>{`${megapixels} MP / ${sensorSize}`}</>
+          )}
           {brand && product.mount.data && <>{`${brand} / ${lensMount}`}</>}
         </p>
         <p className="text-xs tracking-tight">

@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/product/ProductCard";
 
 export default function Cameras({ cameras, imageUrl }) {
   /*
@@ -23,14 +23,14 @@ export default function Cameras({ cameras, imageUrl }) {
           </section>
           <section>
             <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:grid-cols-5">
-              {cameras.map((camera, i) => (
+              {cameras.map((camera) => (
                 <ProductCard
                   product={camera.attributes}
                   path="cameras"
                   imageBaseUrl={`${imageUrl}/FXDB`}
                   imageSizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, 50vw"
                   imageStyle="scale-[.7] hover:scale-75"
-                  key={i}
+                  key={camera.attributes.slug}
                 />
               ))}
             </div>
@@ -43,7 +43,7 @@ export default function Cameras({ cameras, imageUrl }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    "https://fxdb-backend.herokuapp.com/api/cameras?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc"
+    `${process.env.STRAPI_API_URL}/api/cameras?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc`
   );
   const cameras = await res.json();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;

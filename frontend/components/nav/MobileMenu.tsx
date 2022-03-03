@@ -1,12 +1,20 @@
 import clsx from "clsx";
-import Link from "next/link";
 import { Router } from "next/router";
 import { useEffect, useState } from "react";
 
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
 
-export default function MobileMenu({ links, display = "md:hidden" }) {
+import { NavLink } from "../../lib/types";
+import NavItem from "./NavItem";
+
+export default function MobileMenu({
+  links,
+  display = "md:hidden",
+}: {
+  links: NavLink[];
+  display?: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   function openMenu() {
@@ -46,16 +54,19 @@ export default function MobileMenu({ links, display = "md:hidden" }) {
           <button
             type="button"
             onClick={closeMenu}
-            className="active:text-link hover:text-link absolute top-5 right-5 flex h-8 w-8 items-center justify-center focus:outline-none"
+            className="active:text-link hover:text-link top-5.5 right-4.5 absolute flex h-8 w-8 items-center justify-center focus:outline-none"
           >
             <span className="sr-only">Close menu</span>
             <XIcon className="h-5.5 w-5.5" />
           </button>
           <ul className="text-link space-y-6">
-            {links.map((link, i) => (
-              <MenuItem href={link.href} key={i}>
-                {link.title}
-              </MenuItem>
+            {links.map(({ link, name, id }) => (
+              <NavItem
+                link={link}
+                text={name}
+                itemStyle="hover:text-fxdb"
+                key={id}
+              />
             ))}
             <li>
               <a
@@ -70,15 +81,5 @@ export default function MobileMenu({ links, display = "md:hidden" }) {
         </div>
       </Dialog>
     </nav>
-  );
-}
-
-function MenuItem({ href, children }) {
-  return (
-    <li>
-      <Link href={href}>
-        <a className="hover:text-fxdb">{children}</a>
-      </Link>
-    </li>
   );
 }

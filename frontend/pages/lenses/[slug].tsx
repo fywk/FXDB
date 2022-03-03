@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+
 import Meta from "../../components/Meta";
-import ProductDetails from "../../components/ProductDetails";
+import ProductDetails from "../../components/product/ProductDetails";
 
 export default function Lens({
   lens,
@@ -36,7 +37,7 @@ export default function Lens({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("https://fxdb-backend.herokuapp.com/api/lenses");
+  const res = await fetch(`${process.env.STRAPI_API_URL}/api/lenses`);
   const lenses = await res.json();
 
   const paths = lenses.data.map((lens) => ({
@@ -48,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(
-    `https://fxdb-backend.herokuapp.com/api/lenses?filters[slug][$eq]=${params.slug}&populate=*`
+    `${process.env.STRAPI_API_URL}/api/lenses?filters[slug][$eq]=${params.slug}&populate=*`
   );
   const lens = await res.json();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;

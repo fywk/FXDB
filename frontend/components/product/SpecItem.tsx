@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-export default function ListItem({
+export default function SpecItem({
   title,
   data,
   footnoteId,

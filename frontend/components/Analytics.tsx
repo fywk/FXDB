@@ -3,7 +3,7 @@ import useSWR from "swr";
 import fetcher from "../lib/fetcher";
 import { AllTimeViews } from "../lib/types";
 
-export default function SiteAnalytics({
+export default function Analytics({
   category,
 }: {
   category: "site-wide" | "cameras" | "lenses";

@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/product/ProductCard";
 
 export default function Lenses({ lenses, imageUrl }) {
   return (
@@ -18,14 +18,14 @@ export default function Lenses({ lenses, imageUrl }) {
           <section>
             <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:grid-cols-5">
               {lenses &&
-                lenses.map((lens, i) => (
+                lenses.map((lens) => (
                   <ProductCard
                     product={lens.attributes}
                     path="lenses"
                     imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
                     imageSizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, 50vw"
                     imageStyle="scale-[.85] hover:scale-90"
-                    key={i}
+                    key={lens.attributes.slug}
                   />
                 ))}
             </div>
@@ -38,7 +38,7 @@ export default function Lenses({ lenses, imageUrl }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    "https://fxdb-backend.herokuapp.com/api/lenses?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc"
+    `${process.env.STRAPI_API_URL}/api/lenses?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc`
   );
   const lenses = await res.json();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;

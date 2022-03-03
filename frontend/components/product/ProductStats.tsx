@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
-import { convertToMP, dateFormatter } from "../lib/util";
-import ViewCounter from "./ViewCounter";
+import { convertToMP, dateFormatter } from "../../lib/util";
+import ViewCounter from "../ViewCounter";
 
 export default function ProductStats(props) {
   const path =
@@ -20,7 +20,7 @@ export default function ProductStats(props) {
       <div className="overflow-x-auto">
         <div className="mb-4 grid w-80 min-w-full grid-cols-3 items-center justify-items-center gap-x-1.5 text-center md:gap-x-2">
           {props.type === "camera" && (
-            <StatItem title="Effective Pixels" data={megapixels} />
+            <StatItem title="Effective Pixels" data={`${megapixels} MP`} />
           )}
           {props.type === "lens" && (
             <StatItem title="Brand" data={props.brand} />

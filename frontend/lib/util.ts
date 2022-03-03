@@ -2,9 +2,9 @@
 export const convertToOunces = (weightInGrams: number) =>
   Math.round(weightInGrams * 0.03527396194958 * 100) / 100;
 
-// Get megapixels count from X and Y resolution
+// Convert X and Y resolution into megapixels
 export const convertToMP = (resolutionX: number, resolutionY: number) =>
-  `${Math.round((resolutionX * resolutionY) / 1_000_000)} MP`;
+  Math.round((resolutionX * resolutionY) / 1_000_000);
 
 export const dateFormatter = new Intl.DateTimeFormat("en-MY", {
   year: "numeric",

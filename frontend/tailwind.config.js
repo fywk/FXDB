@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.neutral,
-        primary: "#780A82",
+        primary: "#970CA4",
         secondary: "#F9D70B",
       },
       lineHeight: {
@@ -25,6 +25,7 @@ module.exports = {
         2.5: 2.5,
         2.75: 2.75,
         3: 3,
+        3.25: 3.25,
       },
     },
   },

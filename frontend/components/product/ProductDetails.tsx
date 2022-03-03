@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
 
-import { ChevronLeftIcon } from "@heroicons/react/outline";
-import { ArrowLeftIcon, ExternalLinkIcon } from "@heroicons/react/solid";
+import { ChevronLeftIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import { ArrowLeftIcon } from "@heroicons/react/solid";
 
-import { Product } from "../lib/types";
+import { Product } from "../../lib/types";
 import CameraSpecs from "./CameraSpecs";
 import LensSpecs from "./LensSpecs";
 import ProductImages from "./ProductImages";
 import ProductStats from "./ProductStats";
 
-const ProductDetails = (props: Product) => {
+export default function ProductDetails(props: Product) {
   const router = useRouter();
   const goBack = () => router.back();
 
@@ -78,7 +78,7 @@ const ProductDetails = (props: Product) => {
               rel="noopener noreferrer"
             >
               <span>Data Source</span>
-              <ExternalLinkIcon className="h-5.5 w-5.5" />
+              <ExternalLinkIcon className="stroke-2.25 h-5 w-5" />
             </a>
           </section>
         )}
@@ -89,7 +89,7 @@ const ProductDetails = (props: Product) => {
       </div>
     </>
   );
-};
+}
 
 function Footnotes({ notes }) {
   return (
@@ -100,5 +100,3 @@ function Footnotes({ notes }) {
     </ol>
   );
 }
-
-export default ProductDetails;

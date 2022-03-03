@@ -4,13 +4,17 @@ import { useRouter } from "next/router";
 
 import { SearchIcon } from "@heroicons/react/outline";
 
+import { NavLink } from "../../lib/types";
 import MobileMenu from "./MobileMenu";
+import NavItem from "./NavItem";
 
-export default function Nav() {
-  const navLinks = [
-    { title: "Cameras", href: "/cameras" },
-    { title: "Lenses", href: "/lenses" },
-    { title: "Brands", href: "/brands" },
+export default function Navbar() {
+  const router = useRouter();
+
+  const navLinks: NavLink[] = [
+    { id: 1, name: "Cameras", link: "/cameras" },
+    { id: 2, name: "Lenses", link: "/lenses" },
+    { id: 3, name: "Brands", link: "/brands" },
   ];
 
   return (
@@ -33,8 +37,16 @@ export default function Nav() {
         <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 print:hidden md:divide-x">
           <nav>
             <ul className="flex space-x-8">
-              {navLinks.map((navLink, i) => (
-                <NavItem href={navLink.href} title={navLink.title} key={i} />
+              {navLinks.map(({ link, name, id }) => (
+                <NavItem
+                  link={link}
+                  text={name}
+                  itemStyle={clsx(
+                    "hidden text-sm font-semibold md:inline",
+                    router.asPath === link ? "text-fxdb" : "hover:text-link"
+                  )}
+                  key={id}
+                />
               ))}
             </ul>
           </nav>
@@ -64,27 +76,7 @@ export default function Nav() {
   );
 }
 
-function NavItem({ href, title }) {
-  const router = useRouter();
-  const isActive = router.asPath === href;
-
-  return (
-    <li>
-      <Link href={href}>
-        <a
-          className={clsx(
-            "hidden text-sm font-semibold md:inline",
-            isActive ? "text-fxdb" : "hover:text-link"
-          )}
-        >
-          <span>{title}</span>
-        </a>
-      </Link>
-    </li>
-  );
-}
-
-function GithubIcon({ ...attr }) {
+function GithubIcon(props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +86,7 @@ function GithubIcon({ ...attr }) {
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
-      {...attr}
+      {...props}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>

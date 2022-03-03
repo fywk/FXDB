@@ -1,6 +1,6 @@
-import { Product } from "../lib/types";
-import { convertToOunces, humanizeLensMount } from "../lib/util";
-import ListItem from "./ListItem";
+import { Product } from "../../lib/types";
+import { convertToOunces, humanizeLensMount } from "../../lib/util";
+import SpecItem from "./SpecItem";
 
 export default function LensSpecs(props: Product) {
   const lensMount = humanizeLensMount(props.lensMount);
@@ -20,23 +20,23 @@ export default function LensSpecs(props: Product) {
 
   return (
     <>
-      <ListItem title="Lens mount" data={lensMount} />
-      <ListItem title="Focal length" data={focalLength} />
-      <ListItem title="Angle of view" data={angleOfView} />
-      <ListItem title="Max aperture" data={maxAperture} />
-      <ListItem title="Min aperture" data={`F${props.minAperture}`} />
-      <ListItem title="Lens construction" data={props.opticalConstruction} />
-      <ListItem title="Aperture blades" data={props.apertureBlades} />
-      <ListItem title="Min focus distance" data={minFocusDistance} />
-      <ListItem
+      <SpecItem title="Lens mount" data={lensMount} />
+      <SpecItem title="Focal length" data={focalLength} />
+      <SpecItem title="Angle of view" data={angleOfView} />
+      <SpecItem title="Max aperture" data={maxAperture} />
+      <SpecItem title="Min aperture" data={`F${props.minAperture}`} />
+      <SpecItem title="Lens construction" data={props.opticalConstruction} />
+      <SpecItem title="Aperture blades" data={props.apertureBlades} />
+      <SpecItem title="Min focus distance" data={minFocusDistance} />
+      <SpecItem
         title="Max magnification ratio"
         data={props.maxMagnificationRatio}
       />
-      <ListItem
+      <SpecItem
         title="Filter size"
         data={props.filterSize ? `Ø${props.filterSize}cm` : `N/A`}
       />
-      <ListItem
+      <SpecItem
         title="Weight"
         data={`${props.weight.toLocaleString()}g (${weightOz.toLocaleString()}oz)`}
         footnoteId={1}
