@@ -1,5 +1,6 @@
 import { Product } from "../../lib/types";
-import { convertToOunces, humanizeLensMount } from "../../lib/util";
+import { convertToOunces } from "../../lib/utils/convertToOunces";
+import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
 import SpecItem from "./SpecItem";
 
 export default function CameraSpecs(props: Product) {

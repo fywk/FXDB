@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
-import fetcher from "../lib/fetcher";
 import { AllTimeViews } from "../lib/types";
+import fetcher from "../lib/utils/fetcher";
 
 export default function Analytics({
   category,

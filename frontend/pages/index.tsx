@@ -5,13 +5,12 @@ import { ChevronRightIcon } from "@heroicons/react/outline";
 import { SearchIcon } from "@heroicons/react/solid";
 
 import ProductCard from "../components/product/ProductCard";
+import { siteConfig } from "../lib/config/site";
 import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
 import { Product } from "../lib/types";
 
 export default function Home({ cameras, lenses, imageUrl }) {
-  const title = "Fujifilm X and GFX Database";
-  const description =
-    "FXDB features a vast collection of relevant information of cameras and lenses of the Fujifilm X and GFX systems. For lenses specifically, products from third-party manufacturers are also included.";
+  const { title, description } = siteConfig;
 
   return (
     <div className="grid grid-cols-1 gap-y-14 py-14">
@@ -86,7 +85,7 @@ function ProductSection({
         <h1 className="text-xl font-semibold md:text-[22px]">{heading}</h1>
         <div className="hover:text-link flex items-center space-x-1">
           <Link href={`/${section}`}>
-            <a className="text-sm">More {section}</a>
+            <a className="text-sm tracking-tight">More {section}</a>
           </Link>
           <ChevronRightIcon className="stroke-3.25 h-4 w-4" />
         </div>

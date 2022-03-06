@@ -4,26 +4,22 @@ import { useRouter } from "next/router";
 
 import { SearchIcon } from "@heroicons/react/outline";
 
-import { NavLink } from "../../lib/types";
+import { mainMenu } from "../../lib/config/menus";
+import { siteConfig as site } from "../../lib/config/site";
 import MobileMenu from "./MobileMenu";
 import NavItem from "./NavItem";
 
 export default function Navbar() {
+  const links = mainMenu;
   const router = useRouter();
-
-  const navLinks: NavLink[] = [
-    { id: 1, name: "Cameras", link: "/cameras" },
-    { id: 2, name: "Lenses", link: "/lenses" },
-    { id: 3, name: "Brands", link: "/brands" },
-  ];
 
   return (
     <header className="border-b border-gray-200 py-3.5 dark:border-gray-800">
       <div className="container relative mx-auto flex max-w-6xl items-center justify-between gap-x-4 px-5 sm:px-8">
         <div className="select-none text-2xl font-black">
           <Link href="/">
-            <a className="text-link" title="FXDB Home">
-              FXDB
+            <a className="text-link" title={`${site.name} Home`}>
+              {site.name}
             </a>
           </Link>
         </div>
@@ -37,13 +33,13 @@ export default function Navbar() {
         <div className="flex items-center space-x-6 divide-gray-300 dark:divide-gray-700 print:hidden md:divide-x">
           <nav>
             <ul className="flex space-x-8">
-              {navLinks.map(({ link, name, id }) => (
+              {links.map(({ url, name, id }) => (
                 <NavItem
-                  link={link}
+                  link={url}
                   text={name}
                   itemStyle={clsx(
                     "hidden text-sm font-semibold md:inline",
-                    router.asPath === link ? "text-fxdb" : "hover:text-link"
+                    router.asPath === url ? "text-fxdb" : "hover:text-link"
                   )}
                   key={id}
                 />
@@ -68,7 +64,7 @@ export default function Navbar() {
               <span className="sr-only">View Source on GitHub</span>
               <GithubIcon className="stroke-2.25 h-5 w-5" />
             </a>
-            <MobileMenu links={navLinks} />
+            <MobileMenu />
           </div>
         </div>
       </div>

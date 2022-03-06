@@ -38,7 +38,7 @@ type Lens = {
 export type NavLink = {
   id: number;
   name: string;
-  link: string;
+  url: string;
 };
 
 // prettier-ignore

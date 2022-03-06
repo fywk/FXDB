@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ProductCard } from "../../lib/types";
-import { convertToMP, dateFormatter, humanizeLensMount } from "../../lib/util";
+import { convertToMP } from "../../lib/utils/convertToMP";
+import { dateFormatter } from "../../lib/utils/dateFormatter";
+import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
 
 const ProductCard = ({
   product,
@@ -61,7 +63,7 @@ const ProductCard = ({
           {brand && product.mount.data && <>{`${brand} / ${lensMount}`}</>}
         </p>
         <p className="text-xs tracking-tight">
-          {`Launched ${dateFormatter.format(launchDate)}`}
+          {`Announced ${dateFormatter.format(launchDate)}`}
         </p>
       </div>
     </div>

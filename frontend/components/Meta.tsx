@@ -1,9 +1,12 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+import { siteConfig as site } from "../lib/config/site";
+
 export default function Meta({ baseUrl, title, description, keywords }) {
   const router = useRouter();
-  if (router.pathname !== "/") title = `${title} - FXDB`;
+  if (router.pathname !== "/")
+    title = `${title} ${site.titleSeparator} ${site.name}`;
 
   return (
     <Head>
@@ -22,9 +25,8 @@ export default function Meta({ baseUrl, title, description, keywords }) {
 }
 
 Meta.defaultProps = {
-  baseUrl: "https://fxdb.vercel.app",
-  title: "FXDB - Fujifilm X and GFX Database",
-  description:
-    "FXDB features a vast collection of relevant information of cameras and lenses of the Fujifilm X and GFX systems. For lenses specifically, products from third-party manufacturers are also included.",
+  baseUrl: site.baseURL,
+  title: `${site.name} ${site.titleSeparator} ${site.title}`,
+  description: site.description,
   keywords: "fujifilm, x-mount, database",
 };

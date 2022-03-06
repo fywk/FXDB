@@ -7,7 +7,7 @@ export default function NavItem({
   text,
   itemStyle,
 }: {
-  link: NavLink["link"];
+  link: NavLink["url"];
   text: NavLink["name"];
   itemStyle: string;
 }) {

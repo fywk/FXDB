@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 
-import { convertToMP, dateFormatter } from "../../lib/util";
+import { convertToMP } from "../../lib/utils/convertToMP";
+import { dateFormatter } from "../../lib/utils/dateFormatter";
 import ViewCounter from "../ViewCounter";
 
 export default function ProductStats(props) {
@@ -26,7 +27,7 @@ export default function ProductStats(props) {
             <StatItem title="Brand" data={props.brand} />
           )}
           <StatItem
-            title="Launched"
+            title="Announced"
             data={dateFormatter.format(new Date(props.launchDate))}
           />
           <StatItem

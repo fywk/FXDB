@@ -5,16 +5,15 @@ import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { DotsVerticalIcon, XIcon } from "@heroicons/react/outline";
 
-import { NavLink } from "../../lib/types";
+import { mainMenu } from "../../lib/config/menus";
 import NavItem from "./NavItem";
 
 export default function MobileMenu({
-  links,
   display = "md:hidden",
 }: {
-  links: NavLink[];
   display?: string;
 }) {
+  const links = mainMenu;
   const [isOpen, setIsOpen] = useState(false);
 
   function openMenu() {
@@ -60,9 +59,9 @@ export default function MobileMenu({
             <XIcon className="h-5.5 w-5.5" />
           </button>
           <ul className="text-link space-y-6">
-            {links.map(({ link, name, id }) => (
+            {links.map(({ url, name, id }) => (
               <NavItem
-                link={link}
+                link={url}
                 text={name}
                 itemStyle="hover:text-fxdb"
                 key={id}
