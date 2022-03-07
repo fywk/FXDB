@@ -1,21 +1,25 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
 import ProductDetails from "../../components/product/ProductDetails";
+import { getAllLensesPaths, getLensesDetails } from "../../lib/strapi/lenses";
 
-export default function Lens({
-  lens,
-  imageUrl,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Lens({ lens, imageUrl }) {
+  const title = `${lens.brand.data.attributes.name} ${lens.name}`;
+  const imageBaseUrl = `${imageUrl}/t_rotate_lens_270deg/FXDB`;
+  const image =
+    lens.images.data.length > 0 ? lens.images.data[0].attributes : null;
+  const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
+
   return (
     <>
-      <Meta title={`${lens.brand.data.attributes.name} ${lens.name}`} />
+      <Meta title={title} type="article" image={imageSrc} />
       <ProductDetails
         type="lens"
         name={lens.name}
         slug={lens.slug}
         launchDate={lens.launchDate}
-        imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
+        imageBaseUrl={imageBaseUrl}
         images={lens.images.data}
         lensMount={lens.mount.data?.attributes.name}
         weatherResistant={lens.features.weatherResistant}
@@ -37,9 +41,7 @@ export default function Lens({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.STRAPI_API_URL}/api/lenses`);
-  const lenses = await res.json();
-
+  const lenses = await getAllLensesPaths();
   const paths = lenses.data.map((lens) => ({
     params: { slug: String(lens.attributes.slug) },
   }));
@@ -48,10 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(
-    `${process.env.STRAPI_API_URL}/api/lenses?filters[slug][$eq]=${params.slug}&populate=*`
-  );
-  const lens = await res.json();
+  const lens = await getLensesDetails(params.slug);
   const imageUrl = process.env.CLOUDINARY_BASE_URL;
 
   return {

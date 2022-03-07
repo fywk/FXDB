@@ -1,24 +1,25 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
 import ProductDetails from "../../components/product/ProductDetails";
+import { getAllCamerasPaths, getCameraDetails } from "../../lib/strapi/cameras";
 
-export default function Camera({
-  brand = "Fujifilm",
-  camera,
-  imageUrl,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const name = `${brand} ${camera.name}`;
+export default function Camera({ camera, imageUrl }) {
+  const title = `Fujifilm ${camera.name}`;
+  const imageBaseUrl = `${imageUrl}/FXDB`;
+  const image =
+    camera.images.data.length > 0 ? camera.images.data[0].attributes : null;
+  const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
 
   return (
     <>
-      <Meta title={name} />
+      <Meta title={title} type="article" image={imageSrc} />
       <ProductDetails
         type="camera"
-        name={name}
+        name={title}
         slug={camera.slug}
         launchDate={camera.launchDate}
-        imageBaseUrl={`${imageUrl}/FXDB`}
+        imageBaseUrl={imageBaseUrl}
         images={camera.images.data}
         lensMount={camera.mount.data?.attributes.name}
         weatherResistant={camera.features.weatherResistant}
@@ -38,9 +39,7 @@ export default function Camera({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.STRAPI_API_URL}/api/cameras`);
-  const cameras = await res.json();
-
+  const cameras = await getAllCamerasPaths();
   const paths = cameras.data.map((camera) => ({
     params: { slug: String(camera.attributes.slug) },
   }));
@@ -49,10 +48,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(
-    `${process.env.STRAPI_API_URL}/api/cameras?filters[slug][$eq]=${params.slug}&populate=*`
-  );
-  const camera = await res.json();
+  const camera = await getCameraDetails(params.slug);
   const imageUrl = process.env.CLOUDINARY_BASE_URL;
 
   return {

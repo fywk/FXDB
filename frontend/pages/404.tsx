@@ -14,8 +14,7 @@ export default function Custom404() {
           Page Not Found
         </h2>
         <p className="mb-8 md:text-lg">
-          Oops! Looks like the page you're requesting doesn't exist or
-          unavailable for the time being.
+          {`Oops! Looks like the page you're requesting doesn't exist or unavailable for the time being.`}
         </p>
         <Link href="/">
           <a className="bg-primary/5 dark:bg-secondary/5 text-fxdb hover:bg-primary/10 dark:hover:bg-secondary/10 w-full rounded-lg py-2.5 text-center font-medium transition">

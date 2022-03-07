@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
 import ProductCard from "../../components/product/ProductCard";
+import { getAllCameras } from "../../lib/strapi/cameras";
 
 export default function Cameras({ cameras, imageUrl }) {
   /*
@@ -42,10 +43,7 @@ export default function Cameras({ cameras, imageUrl }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(
-    `${process.env.STRAPI_API_URL}/api/cameras?populate=*&sort[0]=launchDate:desc&sort[1]=name:asc`
-  );
-  const cameras = await res.json();
+  const cameras = await getAllCameras();
   const imageUrl = process.env.CLOUDINARY_BASE_URL;
 
   return {

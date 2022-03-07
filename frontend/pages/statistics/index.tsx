@@ -4,11 +4,9 @@ import { ReactElement } from "react";
 
 import Analytics from "../../components/Analytics";
 import Meta from "../../components/Meta";
-import {
-  getNumOfBrands,
-  getNumOfCameras,
-  getNumOfLenses
-} from "../../lib/strapi/api";
+import { getNumOfBrands } from "../../lib/strapi/brands";
+import { getNumOfCameras } from "../../lib/strapi/cameras";
+import { getNumOfLenses } from "../../lib/strapi/lenses";
 
 export default function Statistics({
   cameras,

@@ -6,7 +6,8 @@ import { SearchIcon } from "@heroicons/react/solid";
 
 import ProductCard from "../components/product/ProductCard";
 import { siteConfig } from "../lib/config/site";
-import { getLatestCameras, getLatestLenses } from "../lib/strapi/api";
+import { getLatestCameras } from "../lib/strapi/cameras";
+import { getLatestLenses } from "../lib/strapi/lenses";
 import { Product } from "../lib/types";
 
 export default function Home({ cameras, lenses, imageUrl }) {
