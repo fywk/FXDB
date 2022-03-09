@@ -38,23 +38,23 @@ export default function Cameras({ cameras, imageUrl }) {
           <section>
             <h1 className="mb-3 text-4xl font-bold">Cameras</h1>
             <p className="mb-4 leading-[1.7]">
-              {`Fujifilm has released a total of ${numOfCameras} cameras on both the X and GFX series since the introduction of the first X Series camera, the `}
+              Fujifilm has released a total of {numOfCameras} cameras on both
+              the X and GFX series since the introduction of the first X Series
+              camera, the{" "}
               <Link href={`/cameras/${firstCamera.slug}`}>
                 <a className="hover:underline">{firstCamera.name}</a>
               </Link>
-              {`, back in the year ${new Date(
-                firstCamera.launchDate
-              ).getFullYear()}. The `}
+              , back in {new Date(firstCamera.launchDate).getFullYear()}. The{" "}
               <Link href={`/cameras/${latestCamera.slug}`}>
                 <a className="hover:underline">{latestCamera.name}</a>
-              </Link>
-              {` is the newest camera to be released, on `}
+              </Link>{" "}
+              is the company&apos;s latest camera, released on{" "}
               <time dateTime={latestCamera.launchDate}>
                 {dateFormatter("long").format(
                   new Date(latestCamera.launchDate)
                 )}
               </time>
-              {`.`}
+              .
             </p>
             <form className="group relative">
               <label htmlFor="search">
@@ -94,7 +94,7 @@ export default function Cameras({ cameras, imageUrl }) {
             {!filteredResults.length && (
               <div className="text-dimmed text-center">
                 <p>
-                  No results for "<strong>{searchValue}</strong>".
+                  No results for &quot;<strong>{searchValue}</strong>&quot;.
                 </p>
                 <p>Try again with different keywords.</p>
               </div>
