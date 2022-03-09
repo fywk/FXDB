@@ -14,7 +14,7 @@ export default function ProductStats(props) {
   const megapixels = convertToMP(props.resolutionX, props.resolutionY);
 
   return (
-    <li className="md:space-y-4.5 flex flex-col space-y-4 font-sans lg:space-y-5">
+    <li className="flex flex-col space-y-4 font-sans md:space-y-4.5 lg:space-y-5">
       <h1 className="text-fxdb text-2xl font-bold lg:text-[1.625rem]">
         {props.name}
       </h1>
@@ -28,7 +28,11 @@ export default function ProductStats(props) {
           )}
           <StatItem
             title="Announced"
-            data={dateFormatter.format(new Date(props.launchDate))}
+            data={
+              <time dateTime={props.launchDate}>
+                {dateFormatter("short").format(new Date(props.launchDate))}
+              </time>
+            }
           />
           <StatItem
             title="Views"

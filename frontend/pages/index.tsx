@@ -91,7 +91,7 @@ function ProductSection({
           <ChevronRightIcon className="stroke-3.25 h-4 w-4" />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:gap-x-5">
+      <div className="md:gap-x-4.5 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4">
         {products.data.map((product) => (
           <ProductCard
             product={product.attributes}

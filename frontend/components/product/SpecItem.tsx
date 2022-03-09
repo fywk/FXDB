@@ -1,11 +1,9 @@
-import { ReactElement } from "react";
-
 export default function SpecItem({
   title,
   data,
   footnoteId,
 }: {
-  title: string | ReactElement;
+  title: string;
   data: string | number;
   footnoteId?: number;
 }) {

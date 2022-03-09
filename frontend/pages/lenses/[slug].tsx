@@ -11,6 +11,14 @@ export default function Lens({ lens, imageUrl }) {
     lens.images.data.length > 0 ? lens.images.data[0].attributes : null;
   const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
 
+  const footnotes = [
+    {
+      id: 1,
+      content:
+        "Excluding the weight of lens cap, lens hood, or any other accessories.",
+    },
+  ];
+
   return (
     <>
       <Meta title={title} type="article" image={imageSrc} />
@@ -35,6 +43,7 @@ export default function Lens({ lens, imageUrl }) {
         minFocusDistance={lens.minFocusDistance}
         maxMagnificationRatio={lens.maxMagnificationRatio}
         filterSize={lens.filterSize}
+        footnotes={footnotes}
       />
     </>
   );

@@ -51,9 +51,11 @@ const ProductCard = ({
         </a>
       </Link>
       <div className="mx-auto flex w-[99%] flex-col space-y-0.5">
-        <h2 className="text-fxdb font-semibold leading-tight hover:underline md:underline-offset-1">
+        <h2 className="text-fxdb font-semibold leading-tight">
           <Link href={productUrl}>
-            <a>{product.name}</a>
+            <a className="hover:underline md:underline-offset-1">
+              {product.name}
+            </a>
           </Link>
         </h2>
         <p className="text-highlight text-sm">
@@ -63,7 +65,10 @@ const ProductCard = ({
           {brand && product.mount.data && <>{`${brand} / ${lensMount}`}</>}
         </p>
         <p className="text-xs tracking-tight">
-          {`Announced ${dateFormatter.format(launchDate)}`}
+          {"Announced "}
+          <time dateTime={product.launchDate}>
+            {dateFormatter("short").format(launchDate)}
+          </time>
         </p>
       </div>
     </div>

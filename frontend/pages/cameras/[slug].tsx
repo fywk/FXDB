@@ -11,6 +11,18 @@ export default function Camera({ camera, imageUrl }) {
     camera.images.data.length > 0 ? camera.images.data[0].attributes : null;
   const imageSrc = `${imageBaseUrl}/${image.hash}${image.ext}`;
 
+  const footnotes = [
+    {
+      id: 1,
+      content:
+        "Maximum shutter speed of mechanical shutter. Faster shutter speeds could be achieved using electronic shutter.",
+    },
+    {
+      id: 2,
+      content: "Including the weight of battery and memory card.",
+    },
+  ];
+
   return (
     <>
       <Meta title={title} type="article" image={imageSrc} />
@@ -33,6 +45,7 @@ export default function Camera({ camera, imageUrl }) {
         sensorType={camera.sensor.data.attributes.name}
         maxShutterSpeed={camera.maxShutterSpeed}
         IBIS={camera.features.IBIS}
+        footnotes={footnotes}
       />
     </>
   );

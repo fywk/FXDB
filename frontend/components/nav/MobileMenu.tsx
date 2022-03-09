@@ -53,7 +53,7 @@ export default function MobileMenu({
           <button
             type="button"
             onClick={closeMenu}
-            className="active:text-link hover:text-link top-5.5 right-4.5 absolute flex h-8 w-8 items-center justify-center focus:outline-none"
+            className="active:text-link hover:text-link absolute top-5.5 right-4.5 flex h-8 w-8 items-center justify-center focus:outline-none"
           >
             <span className="sr-only">Close menu</span>
             <XIcon className="h-5.5 w-5.5" />

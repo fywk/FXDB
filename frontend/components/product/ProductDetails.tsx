@@ -9,28 +9,12 @@ import LensSpecs from "./LensSpecs";
 import ProductImages from "./ProductImages";
 import ProductStats from "./ProductStats";
 
-export default function ProductDetails(props: Product) {
+export default function ProductDetails({
+  footnotes,
+  ...props
+}: { footnotes: { id: number; content: string }[] } & Product) {
   const router = useRouter();
   const goBack = () => router.back();
-
-  const cameraFootnotes = [
-    {
-      id: 1,
-      content:
-        "Maximum shutter speed of mechanical shutter. Faster shutter speeds could be achieved using electronic shutter.",
-    },
-    {
-      id: 2,
-      content: "Including the weight of battery and memory card.",
-    },
-  ];
-  const lensFootnotes = [
-    {
-      id: 1,
-      content:
-        "Excluding the weight of lens cap, lens hood, or any other accessories.",
-    },
-  ];
 
   return (
     <>
@@ -40,7 +24,7 @@ export default function ProductDetails(props: Product) {
           onClick={goBack}
           className="text-fxdb group items-center space-x-1.5 md:flex md:print:hidden"
         >
-          <ChevronLeftIcon className="stroke-3 h-4.5 w-4.5 duration-300 group-hover:-translate-x-1" />
+          <ChevronLeftIcon className="h-4.5 w-4.5 stroke-3 duration-300 group-hover:-translate-x-1" />
           <span className="text-inherit">Back</span>
         </button>
       </div>
@@ -51,7 +35,7 @@ export default function ProductDetails(props: Product) {
               <button
                 type="button"
                 onClick={goBack}
-                className="stroke-2.5 h-7.5 w-7.5 absolute top-3.5 left-3.5 z-10 flex items-center justify-center rounded-full bg-gray-900/60 text-gray-50 shadow-md print:hidden md:hidden"
+                className="absolute top-3.5 left-3.5 z-10 flex h-7.5 w-7.5 items-center justify-center rounded-full bg-gray-900/60 stroke-2.5 text-gray-50 shadow-md print:hidden md:hidden"
               >
                 <span className="sr-only">Back</span>
                 <ArrowLeftIcon className="h-4.5 w-4.5" />
@@ -73,18 +57,17 @@ export default function ProductDetails(props: Product) {
           <section className="print:hidden">
             <a
               href={props.dataSource}
-              className="bg-primary/5 dark:bg-secondary/5 text-fxdb hover:bg-primary/10 dark:hover:bg-secondary/10 px-4.5 flex w-full items-center justify-between rounded-lg py-3 text-center md:max-w-xs md:py-2.5"
+              className="text-fxdb flex w-full items-center justify-between rounded-lg bg-primary/5 px-4.5 py-3 text-center hover:bg-primary/10 dark:bg-secondary/5 dark:hover:bg-secondary/10 md:max-w-xs md:py-2.5"
               title={new URL(props.dataSource).hostname}
               rel="noopener noreferrer"
             >
               <span>Data Source</span>
-              <ExternalLinkIcon className="stroke-2.25 h-5 w-5" />
+              <ExternalLinkIcon className="h-5 w-5 stroke-2.25" />
             </a>
           </section>
         )}
         <section className="pb-5">
-          {props.type === "camera" && <Footnotes notes={cameraFootnotes} />}
-          {props.type === "lens" && <Footnotes notes={lensFootnotes} />}
+          {footnotes && <Footnotes notes={footnotes} />}
         </section>
       </div>
     </>
@@ -93,7 +76,7 @@ export default function ProductDetails(props: Product) {
 
 function Footnotes({ notes }) {
   return (
-    <ol className="ml-5 list-decimal space-y-1 text-xs">
+    <ol className="ml-5 list-decimal space-y-1.5 text-xs">
       {notes.map((note) => (
         <li className="pl-0.5" key={note.id}>{`${note.content}`}</li>
       ))}

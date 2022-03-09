@@ -53,7 +53,7 @@ export default function Navbar() {
               title="Search"
             >
               <span className="sr-only">Search</span>
-              <SearchIcon className="stroke-2.25 h-5 w-5" />
+              <SearchIcon className="h-5 w-5 stroke-2.25" />
             </button>
             <a
               href="https://github.com/fywk/FXDB"
@@ -62,7 +62,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
             >
               <span className="sr-only">View Source on GitHub</span>
-              <GithubIcon className="stroke-2.25 h-5 w-5" />
+              <GithubIcon className="h-5 w-5 stroke-2.25" />
             </a>
             <MobileMenu />
           </div>

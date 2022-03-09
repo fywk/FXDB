@@ -1,5 +1,6 @@
-export const dateFormatter = new Intl.DateTimeFormat("en-MY", {
-  year: "numeric",
-  month: "short",
-  day: "2-digit",
-});
+export const dateFormatter = (month: "long" | "short") =>
+  new Intl.DateTimeFormat("en-MY", {
+    year: "numeric",
+    month: month,
+    day: "numeric",
+  });

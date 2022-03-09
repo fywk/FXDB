@@ -30,17 +30,7 @@ export default function CameraSpecs(props: Product) {
         title="Weather resistant"
         data={props.weatherResistant ? "Yes" : "No"}
       />
-      <SpecItem
-        title={
-          <span
-            className="relative cursor-help after:ml-1 hover:after:content-['(In-Body_Image_Stabilisation)'] focus:after:content-['(In-Body_Image_Stabilisation)']"
-            tabIndex={0}
-          >
-            IBIS
-          </span>
-        }
-        data={props.IBIS ? "Yes" : "No"}
-      />
+      <SpecItem title="IBIS" data={props.IBIS ? "Yes" : "No"} />
       <SpecItem
         title="Body weight"
         data={`${props.weight.toLocaleString()}g (${weightOz.toLocaleString()}oz)`}

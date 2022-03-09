@@ -8,11 +8,7 @@ import { getNumOfBrands } from "../../lib/strapi/brands";
 import { getNumOfCameras } from "../../lib/strapi/cameras";
 import { getNumOfLenses } from "../../lib/strapi/lenses";
 
-export default function Statistics({
-  cameras,
-  lenses,
-  brands,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Statistics({ cameras, lenses, brands }) {
   return (
     <>
       <Meta title="Statistics" />
@@ -89,9 +85,9 @@ export function StatsCard({
   link?: string;
 }) {
   return (
-    <div className="aspect-[3.5] space-y-1 rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-inherit md:space-y-1.5 lg:p-6">
-      <h2>{title}</h2>
-      <p className="text-fxdb text-[2.5rem] font-extrabold leading-none">
+    <div className="aspect-[3.5] rounded-2xl border border-gray-200 bg-white px-6 py-4 dark:border-transparent dark:bg-gray-800">
+      <h2 className="leading-7">{title}</h2>
+      <p className="text-fxdb text-[2.5rem] font-extrabold leading-10">
         {link ? (
           <Link href={link}>
             <a>{data}</a>
