@@ -22,11 +22,11 @@ export default function Disclaimer() {
   return (
     <>
       <Meta title="Disclaimer" />
-      <div className="space-y-5 py-10">
-        <h1 className="text-3xl font-bold md:text-4xl">Disclaimer</h1>
+      <div className="py-10">
+        <h1 className="mb-3 text-4xl font-bold">Disclaimer</h1>
         <ul
           role="list"
-          className="marker:text-fxdb pl-4.5 list-disc space-y-2 text-sm md:text-base"
+          className="marker:text-fxdb list-disc space-y-1.5 pl-5.5"
         >
           {list.map((item) => (
             <li key={item.id}>{item.content}</li>

@@ -1,10 +1,10 @@
 import clsx from "clsx";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
 import { ProductCard } from "../../lib/types";
 import { convertToMP } from "../../lib/utils/convertToMP";
-import { dateFormatter } from "../../lib/utils/dateFormatter";
 import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
 
 const ProductCard = ({
@@ -59,15 +59,13 @@ const ProductCard = ({
           </Link>
         </h2>
         <p className="text-highlight text-sm">
-          {megapixels && sensorSize && (
-            <>{`${megapixels} MP / ${sensorSize}`}</>
-          )}
-          {brand && product.mount.data && <>{`${brand} / ${lensMount}`}</>}
+          {megapixels && sensorSize && `${megapixels} MP / ${sensorSize}`}
+          {brand && product.mount.data && `${brand} / ${lensMount}`}
         </p>
         <p className="text-xs tracking-tight">
           {"Announced "}
           <time dateTime={product.launchDate}>
-            {dateFormatter("short").format(launchDate)}
+            {format(launchDate, "dd MMM y")}
           </time>
         </p>
       </div>

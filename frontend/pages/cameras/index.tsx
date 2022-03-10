@@ -1,7 +1,7 @@
 import "../../lib/utils/removePunctuationSpaces.ts";
 
+import { format } from "date-fns";
 import { GetStaticProps } from "next";
-import Link from "next/link";
 import { useState } from "react";
 
 import { SearchIcon, XIcon } from "@heroicons/react/outline";
@@ -9,12 +9,19 @@ import { SearchIcon, XIcon } from "@heroicons/react/outline";
 import Meta from "../../components/Meta";
 import ProductCard from "../../components/product/ProductCard";
 import { getAllCameras } from "../../lib/strapi/cameras";
-import { dateFormatter } from "../../lib/utils/dateFormatter";
 
 export default function Cameras({ cameras, imageUrl }) {
   const numOfCameras = cameras.length;
   const firstCamera = cameras[numOfCameras - 1].attributes;
   const latestCamera = cameras[0].attributes;
+  const [firstLaunchName, firstLaunchYear] = [
+    firstCamera.name,
+    format(new Date(firstCamera.launchDate), "y"),
+  ];
+  const [latestLaunchName, latestLaunchDate] = [
+    latestCamera.name,
+    format(new Date(latestCamera.launchDate), "d MMMM y"),
+  ];
 
   const [searchValue, setSearchValue] = useState("");
   const filteredResults = cameras.filter((camera) => {
@@ -33,32 +40,16 @@ export default function Cameras({ cameras, imageUrl }) {
   return (
     <>
       <Meta title="Cameras" />
-      <div className="min-h-screen py-8">
+      <div className="min-h-screen py-10">
         <div className="flex flex-col space-y-8">
           <section>
             <h1 className="mb-3 text-4xl font-bold">Cameras</h1>
-            <p className="mb-4 leading-[1.7]">
-              Fujifilm has released a total of {numOfCameras} cameras on both
-              the X and GFX series since the introduction of the first X Series
-              camera, the{" "}
-              <Link href={`/cameras/${firstCamera.slug}`}>
-                <a className="hover:underline">{firstCamera.name}</a>
-              </Link>
-              , back in {new Date(firstCamera.launchDate).getFullYear()}. The{" "}
-              <Link href={`/cameras/${latestCamera.slug}`}>
-                <a className="hover:underline">{latestCamera.name}</a>
-              </Link>{" "}
-              is the company&apos;s latest camera, released on{" "}
-              <time dateTime={latestCamera.launchDate}>
-                {dateFormatter("long").format(
-                  new Date(latestCamera.launchDate)
-                )}
-              </time>
-              .
+            <p className="mb-4 text-lg leading-relaxed">
+              {`Fujifilm has released a total of ${numOfCameras} cameras on both the X and GFX series since the introduction of the first X Series camera, the ${firstLaunchName}, back in ${firstLaunchYear}. The ${latestLaunchName} is the company's latest camera, released on ${latestLaunchDate}.`}
             </p>
             <form className="group relative">
               <label htmlFor="search">
-                <SearchIcon className="absolute inset-y-0 left-4 m-auto h-5 w-5" />
+                <SearchIcon className="absolute inset-y-0 left-4 m-auto h-5 w-5 stroke-1.75" />
               </label>
               <input
                 id="search"

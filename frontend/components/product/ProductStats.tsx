@@ -1,7 +1,7 @@
+import { format } from "date-fns";
 import { ReactElement } from "react";
 
 import { convertToMP } from "../../lib/utils/convertToMP";
-import { dateFormatter } from "../../lib/utils/dateFormatter";
 import ViewCounter from "../ViewCounter";
 
 export default function ProductStats(props) {
@@ -30,7 +30,7 @@ export default function ProductStats(props) {
             title="Announced"
             data={
               <time dateTime={props.launchDate}>
-                {dateFormatter("short").format(new Date(props.launchDate))}
+                {format(new Date(props.launchDate), "dd MMM y")}
               </time>
             }
           />
