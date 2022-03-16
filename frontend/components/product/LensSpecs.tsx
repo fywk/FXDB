@@ -14,6 +14,9 @@ export default function LensSpecs(props: Product) {
   const maxAperture = Array.isArray(props.maxAperture)
     ? `F${props.maxAperture.join("-")}`
     : `F${props.maxAperture}`;
+  const minAperture = Array.isArray(props.minAperture)
+    ? `F${props.minAperture.join("-")}`
+    : `F${props.minAperture}`;
   const minFocusDistance = Array.isArray(props.minFocusDistance)
     ? `${props.minFocusDistance.join("cm - ")}cm`
     : `${props.minFocusDistance}cm`;
@@ -25,7 +28,7 @@ export default function LensSpecs(props: Product) {
       <SpecItem title="Focal length" data={focalLength} />
       <SpecItem title="Angle of view" data={angleOfView} />
       <SpecItem title="Max aperture" data={maxAperture} />
-      <SpecItem title="Min aperture" data={`F${props.minAperture}`} />
+      <SpecItem title="Min aperture" data={minAperture} />
       <SpecItem title="Lens construction" data={props.opticalConstruction} />
       <SpecItem title="Aperture blades" data={props.apertureBlades} />
       <SpecItem title="Min focus distance" data={minFocusDistance} />
