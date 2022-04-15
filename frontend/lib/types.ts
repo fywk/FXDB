@@ -1,3 +1,5 @@
+import { TablerIcon } from "@tabler/icons";
+
 export type AllTimeViews = {
   views: {
     siteWide: number;
@@ -16,6 +18,12 @@ type Camera = {
   sensorType?: string;
   maxShutterSpeed?: string;
   IBIS?: boolean;
+};
+
+export type DisplayOption = {
+  value: string;
+  label: string;
+  icon: TablerIcon;
 };
 
 export type Error = {
@@ -43,24 +51,35 @@ export type NavLink = {
 
 // prettier-ignore
 export type Product = Camera & Lens & {
-  type: "camera" | "lens";
-  name: string;
-  slug: string;
-  launchDate: string;
-  imageBaseUrl: string;
-  images: string;
-  lensMount: string;
-  weatherResistant: boolean;
-  weight: number;
-  dataSource: string;
+  attributes: {
+    type: "camera" | "lens";
+    name: string;
+    slug: string;
+    launchDate: string;
+    imageBaseUrl: string;
+    images: string;
+    lensMount: string;
+    weatherResistant: boolean;
+    weight: number;
+    dataSource: string;
+  }
 };
 
-export type ProductCard = {
+export type ProductCardProps = {
   product: any;
   path: string;
   imageBaseUrl: string;
   imageSizes: string;
   imageStyle?: string;
+};
+
+export type ProductsProps = {
+  products: Product[];
+  category: string;
+  description: string;
+  imageBaseUrl: string;
+  imageSizes: string;
+  imageStyle: string;
 };
 
 export type Views = {

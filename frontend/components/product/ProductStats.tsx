@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 
 import { convertToMP } from "../../lib/utils/convertToMP";
 import ViewCounter from "../ViewCounter";
@@ -44,13 +44,7 @@ export default function ProductStats(props) {
   );
 }
 
-function StatItem({
-  title,
-  data,
-}: {
-  title: string;
-  data: string | ReactElement;
-}) {
+function StatItem({ title, data }: { title: string; data: ReactNode }) {
   return (
     <div className="space-y-1">
       <p className="text-xs leading-snug">{title}</p>

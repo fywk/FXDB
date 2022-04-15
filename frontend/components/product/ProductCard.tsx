@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ProductCard } from "../../lib/types";
+import { ProductCardProps } from "../../lib/types";
 import { convertToMP } from "../../lib/utils/convertToMP";
 import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
 
@@ -13,7 +13,7 @@ const ProductCard = ({
   imageBaseUrl,
   imageSizes,
   imageStyle,
-}: ProductCard) => {
+}: ProductCardProps) => {
   const productUrl = `/${path}/${product.slug}`;
   const image =
     product.images.data?.length > 0 ? product.images.data[0].attributes : null;
@@ -35,9 +35,9 @@ const ProductCard = ({
   const launchDate = new Date(product.launchDate);
 
   return (
-    <div className="flex flex-col space-y-3">
+    <div className="flex flex-col space-y-3.5">
       <Link href={productUrl}>
-        <a className="relative aspect-square w-full rounded-lg bg-gray-200 dark:bg-gray-300">
+        <a className="relative aspect-square w-full rounded-md bg-gray-200 dark:bg-gray-300">
           {image && (
             <Image
               src={imageSrc}
@@ -51,7 +51,7 @@ const ProductCard = ({
         </a>
       </Link>
       <div className="mx-auto flex w-[99%] flex-col space-y-0.5">
-        <h2 className="text-fxdb font-semibold leading-tight">
+        <h2 className="text-fxdb font-medium leading-tight">
           <Link href={productUrl}>
             <a className="hover:underline md:underline-offset-1">
               {product.name}

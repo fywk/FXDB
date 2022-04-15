@@ -1,39 +1,19 @@
 import { GetStaticProps } from "next";
 
-import Meta from "../../components/Meta";
-import ProductCard from "../../components/product/ProductCard";
+import Products from "../../components/Products";
 import { getAllLenses } from "../../lib/strapi/lenses";
 
 export default function Lenses({ lenses, imageUrl }) {
+  const description = `This list includes all lenses made for the Fujifilm X-mount and G-mount systems including lenses from third-party manufacturers.`;
   return (
-    <>
-      <Meta title="Lenses" />
-      <div className="py-8">
-        <div className="flex flex-col space-y-8">
-          <section className="mx-auto mb-4 flex max-w-lg flex-col items-center space-y-4 text-center">
-            <h1 className="text-4xl font-medium underline underline-offset-8">
-              Lenses
-            </h1>
-            <p className="">{`Total of ${lenses.length} lenses found.`}</p>
-          </section>
-          <section>
-            <div className="grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 md:gap-x-4 lg:grid-cols-5">
-              {lenses &&
-                lenses.map((lens) => (
-                  <ProductCard
-                    product={lens.attributes}
-                    path="lenses"
-                    imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
-                    imageSizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, 50vw"
-                    imageStyle="scale-[.85] hover:scale-90"
-                    key={lens.attributes.slug}
-                  />
-                ))}
-            </div>
-          </section>
-        </div>
-      </div>
-    </>
+    <Products
+      products={lenses}
+      category="lenses"
+      description={description}
+      imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
+      imageSizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, 50vw"
+      imageStyle="scale-90 hover:scale-[.95]"
+    />
   );
 }
 

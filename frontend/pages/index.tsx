@@ -10,7 +10,7 @@ import { getLatestCameras } from "../lib/strapi/cameras";
 import { getLatestLenses } from "../lib/strapi/lenses";
 import { Product } from "../lib/types";
 
-export default function Home({ cameras, lenses, imageUrl }) {
+const Home = ({ cameras, lenses, imageUrl }) => {
   const { title, description } = siteConfig;
 
   return (
@@ -26,7 +26,7 @@ export default function Home({ cameras, lenses, imageUrl }) {
         </div>
         <button
           type="button"
-          className="group active:ring-primary/75 mx-auto flex w-full max-w-5xl items-center justify-between rounded-full bg-white px-5 py-3.5 ring-1 ring-gray-300 hover:ring-2 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
+          className="group mx-auto flex w-full max-w-5xl items-center justify-between rounded-full bg-white px-5 py-3.5 ring-1 ring-gray-300 hover:ring-2 active:ring-primary/75 dark:bg-gray-700/75 dark:ring-0 dark:hover:bg-gray-700 dark:hover:ring-0"
         >
           <div className="text-sm">Search for a camera, lens, brand...</div>
           <SearchIcon className="h-5.5 w-5.5" />
@@ -50,7 +50,7 @@ export default function Home({ cameras, lenses, imageUrl }) {
       </div>
     </div>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const latestCameras: Product[] = await getLatestCameras();
@@ -88,10 +88,10 @@ function ProductSection({
           <Link href={`/${section}`}>
             <a className="text-sm tracking-tight">More {section}</a>
           </Link>
-          <ChevronRightIcon className="stroke-3.25 h-4 w-4" />
+          <ChevronRightIcon className="h-4 w-4 stroke-3.25" />
         </div>
       </div>
-      <div className="md:gap-x-4.5 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-x-7">
         {products.data.map((product) => (
           <ProductCard
             product={product.attributes}
@@ -106,3 +106,5 @@ function ProductSection({
     </section>
   );
 }
+
+export default Home;

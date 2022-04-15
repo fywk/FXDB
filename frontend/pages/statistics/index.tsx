@@ -1,6 +1,6 @@
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps } from "next";
 import Link from "next/link";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 
 import Analytics from "../../components/Analytics";
 import Meta from "../../components/Meta";
@@ -8,7 +8,7 @@ import { getNumOfBrands } from "../../lib/strapi/brands";
 import { getNumOfCameras } from "../../lib/strapi/cameras";
 import { getNumOfLenses } from "../../lib/strapi/lenses";
 
-export default function Statistics({ cameras, lenses, brands }) {
+const Statistics = ({ cameras, lenses, brands }) => {
   return (
     <>
       <Meta title="Statistics" />
@@ -58,7 +58,7 @@ export default function Statistics({ cameras, lenses, brands }) {
       </div>
     </>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const numOfCameras = await getNumOfCameras();
@@ -75,15 +75,15 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export function StatsCard({
+const StatsCard = ({
   title,
   data,
   link,
 }: {
   title: string;
-  data: string | ReactElement;
+  data: ReactNode;
   link?: string;
-}) {
+}) => {
   return (
     <div className="aspect-[3.5] rounded-2xl border border-gray-200 bg-white px-6 py-4 dark:border-transparent dark:bg-gray-800">
       <h2 className="leading-7">{title}</h2>
@@ -98,4 +98,6 @@ export function StatsCard({
       </p>
     </div>
   );
-}
+};
+
+export default Statistics;
