@@ -1,6 +1,6 @@
 export const humanizeLensMount = (lensMount: string) =>
   lensMount === "X-mount"
-    ? "X Mount"
+    ? "X mount"
     : lensMount === "G-mount"
-    ? "G Mount"
+    ? "G mount"
     : null;

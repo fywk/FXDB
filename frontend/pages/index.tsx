@@ -94,6 +94,7 @@ function ProductSection({
       <div className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-x-7">
         {products.data.map((product) => (
           <ProductCard
+            type="grid"
             product={product.attributes}
             path={section}
             imageBaseUrl={imageUrl}

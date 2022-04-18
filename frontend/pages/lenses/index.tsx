@@ -12,7 +12,7 @@ export default function Lenses({ lenses, imageUrl }) {
       description={description}
       imageBaseUrl={`${imageUrl}/t_rotate_lens_270deg/FXDB`}
       imageSizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, 50vw"
-      imageStyle="scale-90 hover:scale-[.95]"
+      imageStyle="scale-95 hover:scale-100"
     />
   );
 }

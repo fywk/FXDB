@@ -51,21 +51,21 @@ export type NavLink = {
 
 // prettier-ignore
 export type Product = Camera & Lens & {
-  attributes: {
-    type: "camera" | "lens";
-    name: string;
-    slug: string;
-    launchDate: string;
-    imageBaseUrl: string;
-    images: string;
-    lensMount: string;
-    weatherResistant: boolean;
-    weight: number;
-    dataSource: string;
-  }
+  type: "camera" | "lens";
+  name: string;
+  slug: string;
+  launchDate: string;
+  imageBaseUrl: string;
+  images: string;
+  lensMount: string;
+  weatherResistant: boolean;
+  weight: number;
+  dataSource: string;
 };
 
 export type ProductCardProps = {
+  index?: number;
+  type: "grid" | "list" | "table-row";
   product: any;
   path: string;
   imageBaseUrl: string;
@@ -74,7 +74,7 @@ export type ProductCardProps = {
 };
 
 export type ProductsProps = {
-  products: Product[];
+  products: { attributes: Product }[];
   category: string;
   description: string;
   imageBaseUrl: string;

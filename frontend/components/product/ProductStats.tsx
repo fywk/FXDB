@@ -36,7 +36,7 @@ export default function ProductStats(props) {
           />
           <StatItem
             title="Views"
-            data={<ViewCounter path={path} slug={props.slug} recordView />}
+            data={<ViewCounter path={path} slug={props.slug} trackView />}
           />
         </div>
       </div>

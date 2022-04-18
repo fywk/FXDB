@@ -11,7 +11,6 @@ import actions from "../redux/actions";
 import DisplayModeToggle from "./DisplayModeToggle";
 import Meta from "./Meta";
 import ProductCard from "./product/ProductCard";
-import ProductTable from "./product/ProductTable";
 
 const Products = ({
   products,
@@ -36,8 +35,9 @@ const Products = ({
     () =>
       products.filter((product) =>
         String(product.attributes.name)
+          .toLowerCase()
           .removePunctuationSpaces()
-          .includes(searchValue.removePunctuationSpaces())
+          .includes(searchValue.toLowerCase().removePunctuationSpaces())
       ),
     [searchValue, products]
   );
@@ -59,7 +59,7 @@ const Products = ({
             </h1>
             <p className="mb-4 text-lg">{description}</p>
             <div className="flex gap-1.5 lg:gap-2">
-              <form className="group relative w-full">
+              <form className="relative w-full">
                 <label htmlFor="search">
                   <SearchIcon className="absolute inset-y-0 left-3.5 m-auto h-5.5 w-5.5" />
                 </label>
@@ -74,7 +74,7 @@ const Products = ({
                 />
                 {searchValue && (
                   <button type="reset" onClick={() => setSearchValue("")}>
-                    <XIcon className="absolute inset-y-0 right-4 m-auto -mr-1 h-6.5 w-6.5 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
+                    <XIcon className="active:text-highlight absolute inset-y-0 right-3.5 m-auto -mr-1 h-6.5 w-6.5 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
                   </button>
                 )}
               </form>
@@ -84,13 +84,14 @@ const Products = ({
               />
             </div>
           </section>
-          <section className="min-h-[20rem] space-y-8">
+          <section className="min-h-[20rem]">
             {filteredProducts.length > 0 ? (
               <>
                 {displayMode === "grid" && (
                   <div className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-x-7 lg:grid-cols-5">
-                    {products.map((product) => (
+                    {filteredProducts.map((product) => (
                       <ProductCard
+                        type="grid"
                         product={product.attributes}
                         key={product.attributes.slug}
                         path={category}
@@ -101,7 +102,87 @@ const Products = ({
                     ))}
                   </div>
                 )}
-                {displayMode === "list" && <></>}
+                {displayMode === "list" && (
+                  <div className="-mx-5 -mt-2 grid grid-cols-1 sm:-mx-8 md:hidden">
+                    {filteredProducts.map((product) => (
+                      <ProductCard
+                        type="list"
+                        product={product.attributes}
+                        key={product.attributes.slug}
+                        path={category}
+                        imageBaseUrl={imageBaseUrl}
+                        imageSizes={imageSizes}
+                        imageStyle={imageStyle}
+                      />
+                    ))}
+                  </div>
+                )}
+                {displayMode === "list" && category === "cameras" && (
+                  <TableWrapper>
+                    <TableHead
+                      title={[
+                        "",
+                        "Name",
+                        "Eff. pixels",
+                        "Sensor size",
+                        "Announced",
+                        "Views",
+                      ]}
+                    />
+                    <tbody>
+                      <tr>
+                        <td className="h-3"></td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      {filteredProducts.map((product, i) => (
+                        <ProductCard
+                          index={i + 1}
+                          type="table-row"
+                          product={product.attributes}
+                          key={product.attributes.slug}
+                          path={category}
+                          imageBaseUrl={imageBaseUrl}
+                          imageSizes={imageSizes}
+                          imageStyle="scale-75"
+                        />
+                      ))}
+                    </tbody>
+                  </TableWrapper>
+                )}
+                {displayMode === "list" && category === "lenses" && (
+                  <TableWrapper>
+                    <TableHead
+                      title={[
+                        "",
+                        "Name",
+                        "Focal length",
+                        "Lens mount",
+                        "Announced",
+                        "Views",
+                      ]}
+                    />
+                    <tbody>
+                      <tr>
+                        <td className="h-3"></td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      {filteredProducts.map((product, i) => (
+                        <ProductCard
+                          index={i + 1}
+                          type="table-row"
+                          product={product.attributes}
+                          key={product.attributes.slug}
+                          path={category}
+                          imageBaseUrl={imageBaseUrl}
+                          imageSizes={imageSizes}
+                          imageStyle="scale-95"
+                        />
+                      ))}
+                    </tbody>
+                  </TableWrapper>
+                )}
               </>
             ) : (
               <div className="text-dimmed py-4 text-center md:text-lg">
@@ -117,6 +198,30 @@ const Products = ({
         </div>
       </div>
     </>
+  );
+};
+
+const TableWrapper = ({ children }) => {
+  return (
+    <div className="relative -mt-4 hidden overflow-x-auto md:block">
+      <table className="w-full text-sm font-medium tracking-tight">
+        {children}
+      </table>
+    </div>
+  );
+};
+
+const TableHead = ({ title }: { title: string[] }) => {
+  return (
+    <thead className="border-b-2 border-gray-100 text-xs uppercase dark:border-gray-800/50">
+      <tr>
+        {title.map((item) => (
+          <th scope="col" className="px-2 py-3 second:text-left">
+            {item}
+          </th>
+        ))}
+      </tr>
+    </thead>
   );
 };
 

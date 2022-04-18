@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
@@ -33,5 +34,10 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant }) {
+      // Add a `second` variant, ie. 'second:pb-0'
+      addVariant("second", "&:nth-child(2)");
+    }),
+  ],
 };

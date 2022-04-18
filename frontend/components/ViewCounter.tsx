@@ -7,11 +7,11 @@ import fetcher from "../lib/utils/fetcher";
 export default function ViewCounter({
   path,
   slug,
-  recordView = false,
+  trackView = false,
 }: {
   path: string;
   slug: string;
-  recordView: boolean;
+  trackView?: boolean;
 }) {
   const { data } = useSWR<Views>(`/api/views/${path}/${slug}`, fetcher);
   const views = new Number(data?.views);
@@ -21,7 +21,7 @@ export default function ViewCounter({
       fetch(`/api/views/${path}/${slug}`, { method: "POST" });
 
     // Record view only when deployed and set to track
-    if (process.env.NODE_ENV !== "development" && recordView) {
+    if (process.env.NODE_ENV !== "development" && trackView) {
       recordView();
     }
   }, [path, slug]);
