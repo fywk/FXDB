@@ -8,8 +8,8 @@ import { getAllCameras } from "../../lib/strapi/cameras";
 
 export default function Cameras({ cameras, imageUrl }) {
   const numOfCameras = cameras.length;
-  const firstCamera = cameras.at(-1).attributes;
-  const latestCamera = cameras.at(0).attributes;
+  const firstCamera = cameras[numOfCameras - 1].attributes;
+  const latestCamera = cameras[0].attributes;
   const [firstLaunchName, firstLaunchYear] = [
     firstCamera.name,
     format(new Date(firstCamera.launchDate), "y"),
