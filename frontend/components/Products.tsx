@@ -216,7 +216,7 @@ const TableHead = ({ title }: { title: string[] }) => {
     <thead className="border-b-2 border-gray-100 text-xs uppercase dark:border-gray-800/50">
       <tr>
         {title.map((item) => (
-          <th scope="col" className="px-2 py-3 second:text-left">
+          <th scope="col" className="px-2 py-3 second:text-left" key={item}>
             {item}
           </th>
         ))}

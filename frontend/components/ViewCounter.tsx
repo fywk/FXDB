@@ -24,7 +24,7 @@ export default function ViewCounter({
     if (process.env.NODE_ENV !== "development" && trackView) {
       recordView();
     }
-  }, [path, slug]);
+  }, [path, slug, trackView]);
 
   return <>{views > 0 ? views.toLocaleString() : "---"}</>;
 }

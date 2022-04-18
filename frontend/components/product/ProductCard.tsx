@@ -20,6 +20,9 @@ const ProductCard = ({
   imageSizes,
   imageStyle,
 }: ProductCardProps) => {
+  const [active, setActive] = useState(false);
+  const toggleClass = () => setActive(!active);
+
   const productUrl = `/${path}/${product.slug}`;
   const image =
     product.images.data?.length > 0 ? product.images.data[0].attributes : null;
@@ -86,8 +89,6 @@ const ProductCard = ({
 
   // List Card
   if (type === "list") {
-    const [active, setActive] = useState(false);
-    const toggleClass = () => setActive(!active);
     return (
       <Link href={productUrl}>
         <a
