@@ -8,7 +8,7 @@ module.exports = ({ env }) => ({
         api_secret: env("CLOUDINARY_API_SECRET"),
       },
       actionOptions: {
-        upload: {
+        uploadStream: {
           folder: "FXDB",
         },
         delete: {},
