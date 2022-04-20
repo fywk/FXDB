@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
 
 import { ChevronRightIcon } from "@heroicons/react/outline";
@@ -23,6 +24,8 @@ const ProductCard = ({
   const [active, setActive] = useState(false);
   const toggleClass = () => setActive(!active);
 
+  const isHome = useRouter().pathname === "/";
+
   const productUrl = `/${path}/${product.slug}`;
   const image =
     product.images.data?.length > 0 ? product.images.data[0].attributes : null;
@@ -34,9 +37,9 @@ const ProductCard = ({
   if (path === "cameras") {
     var megapixels = convertToMP(product.resolutionX, product.resolutionY);
     var sensorSize =
-      sensorSize === "APSC"
+      product.sensorSize === "APSC"
         ? "APS-C"
-        : sensorSize === "mediumFormat" && "Medium Format";
+        : product.sensorSize === "mediumFormat" && "Medium Format";
   }
 
   if (path === "lenses") {
@@ -49,7 +52,12 @@ const ProductCard = ({
   // Grid Card
   if (type === "grid") {
     return (
-      <div className="flex flex-col space-y-3.5">
+      <div
+        className={clsx(
+          isHome && "last:hidden lg:last:flex",
+          "flex flex-col space-y-3 md:space-y-3.5"
+        )}
+      >
         <Link href={productUrl}>
           <a className="relative aspect-square w-full rounded-md bg-gray-200 dark:bg-gray-300">
             {image && (
@@ -65,9 +73,9 @@ const ProductCard = ({
           </a>
         </Link>
         <div className="mx-auto flex w-[99%] flex-col space-y-0.5">
-          <h2 className="text-fxdb font-medium leading-tight">
+          <h2 className="text-fxdb font-medium leading-tight sm:font-semibold">
             <Link href={productUrl}>
-              <a className="hover:underline md:underline-offset-1">
+              <a className="underline-offset-1 hover:underline">
                 {path === "cameras" ? `${brand} ${product.name}` : product.name}
               </a>
             </Link>
@@ -112,7 +120,7 @@ const ProductCard = ({
               )}
             </div>
             <div className="col-span-3 flex w-full flex-col space-y-0.5 sm:py-0.5">
-              <h2 className="text-fxdb w-fit text-base font-medium leading-tight underline-offset-1 hover:underline">
+              <h2 className="text-fxdb w-fit font-medium leading-tight underline-offset-1 hover:underline sm:font-semibold">
                 {path === "cameras" ? `${brand} ${product.name}` : product.name}
               </h2>
               <p className="text-highlight text-sm">
@@ -128,7 +136,7 @@ const ProductCard = ({
             </div>
           </div>
           <div>
-            <ChevronRightIcon className="text-fxdb h-5 w-5 stroke-2.25" />
+            <ChevronRightIcon className="text-fxdb h-5 w-5" />
           </div>
         </a>
       </Link>
@@ -156,7 +164,7 @@ const ProductCard = ({
                 )}
               </div>
               <div className="max-w-[18rem] tracking-normal">
-                <h2 className="text-fxdb truncate text-base leading-tight underline-offset-1 hover:underline">
+                <h2 className="text-fxdb truncate text-base font-semibold leading-tight underline-offset-1 hover:underline">
                   {product.name}
                 </h2>
                 <p>{brand}</p>
@@ -204,7 +212,7 @@ const ProductCard = ({
                 )}
               </div>
               <div className="max-w-[18rem] tracking-normal">
-                <h2 className="text-fxdb truncate text-base leading-tight underline-offset-1 hover:underline">
+                <h2 className="text-fxdb truncate text-base font-semibold leading-tight underline-offset-1 hover:underline">
                   {product.name}
                 </h2>
                 <p>{brand}</p>

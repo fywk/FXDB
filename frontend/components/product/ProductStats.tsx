@@ -14,8 +14,8 @@ export default function ProductStats(props) {
   const megapixels = convertToMP(props.resolutionX, props.resolutionY);
 
   return (
-    <li className="flex flex-col space-y-4 font-sans md:space-y-4.5 lg:space-y-5">
-      <h1 className="text-fxdb text-2xl font-bold lg:text-[1.625rem]">
+    <li className="flex flex-col space-y-4 md:space-y-4.5 lg:space-y-5">
+      <h1 className="text-fxdb text-2xl font-semibold lg:text-[1.625rem]">
         {props.name}
       </h1>
       <div className="overflow-x-auto">

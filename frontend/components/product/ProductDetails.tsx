@@ -22,7 +22,7 @@ export default function ProductDetails({
         <button
           type="button"
           onClick={goBack}
-          className="text-fxdb group items-center space-x-1.5 md:flex md:print:hidden"
+          className="text-fxdb group items-center space-x-1.5 font-medium md:flex md:print:hidden"
         >
           <ChevronLeftIcon className="h-4.5 w-4.5 stroke-3 duration-300 group-hover:-translate-x-1" />
           <span className="text-inherit">Back</span>
@@ -57,7 +57,7 @@ export default function ProductDetails({
           <section className="print:hidden">
             <a
               href={props.dataSource}
-              className="text-fxdb flex w-full items-center justify-between rounded-lg bg-primary/5 px-4.5 py-3 text-center hover:bg-primary/10 dark:bg-secondary/5 dark:hover:bg-secondary/10 md:max-w-xs md:py-2.5"
+              className="text-fxdb flex w-full items-center justify-between rounded-lg bg-primary/5 px-4.5 py-3 text-center font-medium hover:bg-primary/10 dark:bg-secondary/5 dark:hover:bg-secondary/10 md:max-w-xs md:py-2.5"
               title={new URL(props.dataSource).hostname}
               rel="noopener noreferrer"
             >

@@ -51,10 +51,10 @@ const Products = ({
   return (
     <>
       <Meta title={capitalize(category)} description={description} />
-      <div className="py-8">
+      <div className="pt-8 pb-10">
         <div className="flex flex-col space-y-8">
           <section>
-            <h1 className="mb-3 text-4xl font-bold tracking-tight">
+            <h1 className="mb-2.5 text-4xl font-bold tracking-tight">
               {capitalize(category)}
             </h1>
             <p className="mb-4 text-lg">{description}</p>
@@ -74,7 +74,7 @@ const Products = ({
                 />
                 {searchValue && (
                   <button type="reset" onClick={() => setSearchValue("")}>
-                    <XIcon className="active:text-highlight absolute inset-y-0 right-3.5 m-auto -mr-1 h-6.5 w-6.5 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
+                    <XIcon className="hover:text-highlight absolute inset-y-0 right-3.5 m-auto -mr-1 h-6.5 w-6.5 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
                   </button>
                 )}
               </form>
@@ -88,7 +88,7 @@ const Products = ({
             {filteredProducts.length > 0 ? (
               <>
                 {displayMode === "grid" && (
-                  <div className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-x-7 lg:grid-cols-5">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:grid-cols-4 md:gap-x-5 md:gap-y-6 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-7">
                     {filteredProducts.map((product) => (
                       <ProductCard
                         type="grid"
@@ -144,7 +144,7 @@ const Products = ({
                           path={category}
                           imageBaseUrl={imageBaseUrl}
                           imageSizes={imageSizes}
-                          imageStyle="scale-75"
+                          imageStyle="scale-[.8]"
                         />
                       ))}
                     </tbody>

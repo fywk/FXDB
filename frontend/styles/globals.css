@@ -17,21 +17,6 @@
   h6 {
     @apply text-gray-900 dark:text-gray-50;
   }
-
-  /* stroke-width: 2 is a browser default and can be overridden with class="stroke-1", class="stroke-2", etc. */
-  svg {
-    stroke-width: 2;
-  }
-
-  path,
-  circle,
-  ellipse,
-  line,
-  polygon,
-  polyline,
-  rect {
-    stroke-width: inherit;
-  }
 }
 
 @layer utilities {

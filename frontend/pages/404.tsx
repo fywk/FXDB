@@ -7,7 +7,7 @@ export default function Custom404() {
     <>
       <Meta title="Page Not Found" />
       <div className="m-auto flex max-w-sm flex-col items-center justify-center py-12 text-center">
-        <h1 className="mb-0.5 bg-gradient-to-br from-primary to-secondary bg-clip-text text-9xl font-bold text-transparent dark:bg-gradient-to-tl md:text-[9rem] lg:text-[10rem]">
+        <h1 className="mb-0.5 bg-gradient-to-tl from-primary to-secondary bg-clip-text text-9xl font-bold text-transparent md:text-[9rem] lg:text-[10rem]">
           404
         </h1>
         <h2 className="mb-4 text-4xl font-bold md:text-[2.5rem]">

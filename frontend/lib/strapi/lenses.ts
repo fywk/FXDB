@@ -3,7 +3,7 @@ import { fetchGraphQL, fetchREST } from "./fetch";
 export async function getLatestLenses() {
   const data = await fetchGraphQL(
     `query LatestLenses {
-      lenses(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 4}) {
+      lenses(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 5}) {
         data {
           attributes {
             slug

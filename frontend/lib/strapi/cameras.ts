@@ -3,7 +3,7 @@ import { fetchGraphQL, fetchREST } from "./fetch";
 export async function getLatestCameras() {
   const data = await fetchGraphQL(
     `query LatestCameras {
-      cameras(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 4}) {
+      cameras(sort: ["launchDate:desc", "name:asc"], pagination: {page: 1, pageSize: 5}) {
         data {
           attributes {
             slug

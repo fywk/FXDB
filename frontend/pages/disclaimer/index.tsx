@@ -22,7 +22,7 @@ export default function Disclaimer() {
   return (
     <>
       <Meta title="Disclaimer" />
-      <div className="py-10">
+      <div className="pt-8 pb-10">
         <h1 className="mb-3 text-4xl font-bold">Disclaimer</h1>
         <ul
           role="list"
