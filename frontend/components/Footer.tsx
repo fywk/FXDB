@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto max-w-6xl border-t border-gray-200 px-5 py-8 dark:border-gray-800 print:hidden sm:px-8 md:py-10 lg:py-12">
-      <div className="flex flex-col items-center justify-center gap-y-0.5 text-sm leading-relaxed md:flex-row md:justify-between">
+    <footer className="border-t border-gray-200/50 bg-gray-100 dark:border-gray-800/50 dark:bg-gray-900 print:hidden">
+      <div className="container mx-auto flex max-w-6xl flex-col items-center justify-center gap-y-0.5 px-5 py-8 text-sm leading-relaxed sm:px-8 md:flex-row md:justify-between md:py-10 lg:py-12">
         <p className="order-last md:order-first">
           Made with <span className="text-[#f20505]">♥</span> by{" "}
           <a

@@ -48,7 +48,7 @@ function StatItem({ title, data }: { title: string; data: ReactNode }) {
   return (
     <div className="space-y-1">
       <p className="text-xs leading-snug">{title}</p>
-      <p className="text-highlight text-lg font-semibold lg:text-xl">{data}</p>
+      <p className="text-brightess text-lg font-semibold lg:text-xl">{data}</p>
     </div>
   );
 }

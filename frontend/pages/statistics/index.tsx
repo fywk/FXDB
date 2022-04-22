@@ -9,11 +9,13 @@ import { getNumOfCameras } from "../../lib/strapi/cameras";
 import { getNumOfLenses } from "../../lib/strapi/lenses";
 
 const Statistics = ({ cameras, lenses, brands }) => {
+  const pageTitle = "Statistics";
+
   return (
     <>
-      <Meta title="Statistics" />
+      <Meta title={pageTitle} />
       <div className="space-y-5 pt-8 pb-10">
-        <h1 className="text-3xl font-bold md:text-4xl">Statistics</h1>
+        <h1 className="text-4xl font-bold">{pageTitle}</h1>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-6 md:gap-3.5 lg:gap-4">
           <div className="md:col-span-6">
             <StatsCard
@@ -93,7 +95,7 @@ const StatsCard = ({
             <a>{data}</a>
           </Link>
         ) : (
-          <>{data}</>
+          data
         )}
       </p>
     </div>

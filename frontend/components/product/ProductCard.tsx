@@ -55,7 +55,7 @@ const ProductCard = ({
       <div
         className={clsx(
           isHome && "last:hidden lg:last:flex",
-          "flex flex-col space-y-3 md:space-y-3.5"
+          "flex flex-col space-y-3"
         )}
       >
         <Link href={productUrl}>
@@ -73,14 +73,14 @@ const ProductCard = ({
           </a>
         </Link>
         <div className="mx-auto flex w-[99%] flex-col space-y-0.5">
-          <h2 className="text-fxdb font-medium leading-tight sm:font-semibold">
+          <h2 className="text-fxdb font-medium leading-tight tracking-tight md:tracking-normal">
             <Link href={productUrl}>
               <a className="underline-offset-1 hover:underline">
                 {path === "cameras" ? `${brand} ${product.name}` : product.name}
               </a>
             </Link>
           </h2>
-          <p className="text-highlight text-sm">
+          <p className="text-brightess text-sm">
             {path === "cameras" && `${megapixels} MP / ${sensorSize}`}
             {path === "lenses" && `${brand} / ${lensMount}`}
           </p>
@@ -120,10 +120,10 @@ const ProductCard = ({
               )}
             </div>
             <div className="col-span-3 flex w-full flex-col space-y-0.5 sm:py-0.5">
-              <h2 className="text-fxdb w-fit font-medium leading-tight underline-offset-1 hover:underline sm:font-semibold">
+              <h2 className="text-fxdb w-fit font-medium leading-tight tracking-tight underline-offset-1 hover:underline">
                 {path === "cameras" ? `${brand} ${product.name}` : product.name}
               </h2>
-              <p className="text-highlight text-sm">
+              <p className="text-brightess text-sm">
                 {path === "cameras" && `${megapixels} MP / ${sensorSize}`}
                 {path === "lenses" && `${brand} / ${lensMount}`}
               </p>
@@ -164,7 +164,7 @@ const ProductCard = ({
                 )}
               </div>
               <div className="max-w-[18rem] tracking-normal">
-                <h2 className="text-fxdb truncate text-base font-semibold leading-tight underline-offset-1 hover:underline">
+                <h2 className="text-fxdb truncate text-base font-medium leading-tight underline-offset-1 hover:underline">
                   {product.name}
                 </h2>
                 <p>{brand}</p>
@@ -212,7 +212,7 @@ const ProductCard = ({
                 )}
               </div>
               <div className="max-w-[18rem] tracking-normal">
-                <h2 className="text-fxdb truncate text-base font-semibold leading-tight underline-offset-1 hover:underline">
+                <h2 className="text-fxdb truncate text-base font-medium leading-tight underline-offset-1 hover:underline">
                   {product.name}
                 </h2>
                 <p>{brand}</p>

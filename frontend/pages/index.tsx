@@ -13,7 +13,7 @@ const Home = ({ cameras, lenses, imageUrl }) => {
   const { title, description } = siteConfig;
 
   return (
-    <div className="grid grid-cols-1 gap-y-10 pt-8 pb-10">
+    <div className="grid grid-cols-1 gap-y-10 py-10">
       <section className="grid grid-cols-1 justify-items-center gap-y-7">
         <div className="grid grid-cols-1 gap-y-5 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
@@ -84,14 +84,14 @@ function ProductSection({
   return (
     <section className="flex flex-col space-y-3.5">
       <div className="flex items-center justify-between">
-        <h1 className="text-[22px] font-semibold">{heading}</h1>
+        <h1 className="text-[22px] font-bold tracking-tight">{heading}</h1>
         <div className="text-xs font-bold uppercase tracking-wider">
           <Link href={`/${section}`}>
             <a className="hover:text-link">See all</a>
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:grid-cols-4 md:gap-x-5 md:gap-y-6 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-7">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:gap-x-5 sm:gap-y-6 md:grid-cols-4 md:gap-x-6 md:gap-y-7 lg:grid-cols-5">
         {products.data.map((product) => (
           <ProductCard
             type="grid"

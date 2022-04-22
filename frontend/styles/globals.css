@@ -33,13 +33,17 @@
   }
 
   .text-link,
-  .text-highlight {
+  .text-brightess {
     @apply text-gray-900 dark:text-gray-50;
   }
 
   .text-link-invert,
-  .text-highlight-invert {
+  .text-brightess-invert {
     @apply text-gray-50 dark:text-gray-900;
+  }
+
+  .text-bright {
+    @apply text-gray-700 dark:text-gray-300;
   }
 
   .text-dimmed {

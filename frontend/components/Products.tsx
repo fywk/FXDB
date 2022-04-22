@@ -54,11 +54,11 @@ const Products = ({
       <div className="pt-8 pb-10">
         <div className="flex flex-col space-y-8">
           <section>
-            <h1 className="mb-2.5 text-4xl font-bold tracking-tight">
+            <h1 className="mb-3 text-4xl font-bold tracking-tight">
               {capitalize(category)}
             </h1>
-            <p className="mb-4 text-lg">{description}</p>
-            <div className="flex gap-1.5 lg:gap-2">
+            <p className="mb-4 text-lg font-medium">{description}</p>
+            <div className="flex gap-1.5">
               <form className="relative w-full">
                 <label htmlFor="search">
                   <SearchIcon className="absolute inset-y-0 left-3.5 m-auto h-5.5 w-5.5" />
@@ -70,11 +70,11 @@ const Products = ({
                   aria-label={searchPlaceholder}
                   placeholder={searchPlaceholder}
                   onChange={(e) => setSearchValue(e.target.value)}
-                  className="text-highlight dark:placeholder:text-dimmed h-11 w-full rounded-md border bg-white px-[42px] focus:outline-none focus:ring-2 focus:ring-primary/25 dark:border-transparent dark:bg-gray-800 dark:focus:ring-secondary/50 md:px-11"
+                  className="text-brightess dark:placeholder:text-dimmed h-11 w-full rounded-md border bg-white px-[42px] focus:outline-none focus:ring-2 focus:ring-primary/25 dark:border-transparent dark:bg-gray-800 dark:focus:ring-secondary/50 md:px-11"
                 />
                 {searchValue && (
                   <button type="reset" onClick={() => setSearchValue("")}>
-                    <XIcon className="hover:text-highlight absolute inset-y-0 right-3.5 m-auto -mr-1 h-6.5 w-6.5 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
+                    <XIcon className="hover:text-bright absolute inset-y-0 right-3.5 m-auto -mr-1 h-6.5 w-6.5 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
                   </button>
                 )}
               </form>
@@ -88,7 +88,7 @@ const Products = ({
             {filteredProducts.length > 0 ? (
               <>
                 {displayMode === "grid" && (
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:grid-cols-4 md:gap-x-5 md:gap-y-6 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-7">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-6 md:grid-cols-4 md:gap-x-6 md:gap-y-7 lg:grid-cols-5">
                     {filteredProducts.map((product) => (
                       <ProductCard
                         type="grid"
@@ -185,8 +185,8 @@ const Products = ({
                 )}
               </>
             ) : (
-              <div className="text-dimmed py-4 text-center md:text-lg">
-                <p>
+              <div className="py-4 text-center md:text-lg">
+                <p className="text-bright font-medium">
                   No {category} found for &quot;
                   <strong>{searchValue}</strong>
                   &quot;.

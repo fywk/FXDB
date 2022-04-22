@@ -13,7 +13,7 @@ export default function SpecItem({
         {title}
         {footnoteId && <sup>{footnoteId}</sup>}
       </div>
-      <div className="text-highlight w-[52.5%] text-right text-[15px] font-medium">
+      <div className="text-brightess w-[52.5%] text-right text-[15px] font-medium">
         {data}
       </div>
     </li>
