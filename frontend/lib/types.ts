@@ -8,6 +8,12 @@ export type AllTimeViews = {
   };
 };
 
+export type AnalyticsProps = {
+  cameras: NumOfItems;
+  lenses: NumOfItems;
+  brands: NumOfItems;
+};
+
 type Camera = {
   cameraType?: string;
   cameraFocalLength?: string;
@@ -41,6 +47,14 @@ type Lens = {
   minFocusDistance?: number | number[];
   maxMagnificationRatio?: string;
   filterSize?: number;
+};
+
+export type NumOfItems = {
+  meta: {
+    pagination: {
+      total: number;
+    };
+  };
 };
 
 export type NavLink = {
@@ -82,6 +96,12 @@ export type ProductsProps = {
   imageStyle: string;
 };
 
+export type ViewCounterProps = {
+  path: string;
+  slug: string;
+  trackView?: boolean;
+};
+
 export type Views = {
-  views: number;
+  total: number;
 };
