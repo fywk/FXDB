@@ -62,9 +62,9 @@ export async function getCameraDetails(slug: string | string[]) {
   return data;
 }
 
-export async function getNumOfCameras() {
+export async function getTotalCameras() {
   const data = await fetchGraphQL(
-    `query NumOfCameras {
+    `query TotalCameras {
       cameras {
         meta {
           pagination {

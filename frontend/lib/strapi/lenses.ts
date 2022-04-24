@@ -71,9 +71,9 @@ export async function getLensesDetails(slug: string | string[]) {
   return data;
 }
 
-export async function getNumOfLenses() {
+export async function getTotalLenses() {
   const data = await fetchGraphQL(
-    `query NumOfLenses {
+    `query TotalLenses {
       lenses {
         meta {
           pagination {

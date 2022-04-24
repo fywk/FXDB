@@ -14,9 +14,9 @@ const Home = ({ cameras, lenses, imageUrl }) => {
 
   return (
     <div className="grid grid-cols-1 gap-y-10 py-10">
-      <section className="grid grid-cols-1 justify-items-center gap-y-7">
+      <section className="grid grid-cols-1 justify-items-center gap-y-7 py-1 sm:py-2 md:py-3 lg:py-4">
         <div className="grid grid-cols-1 gap-y-5 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
             {title}
           </h1>
           <p className="mx-auto max-w-4xl text-lg font-medium leading-relaxed">
@@ -82,16 +82,18 @@ function ProductSection({
   imageStyle: string;
 }) {
   return (
-    <section className="flex flex-col space-y-3.5">
-      <div className="flex items-center justify-between">
-        <h1 className="text-[22px] font-bold tracking-tight">{heading}</h1>
+    <section className="flex flex-col space-y-4">
+      <div className="flex items-baseline justify-between">
+        <h2 className="text-[22px] font-bold tracking-tight md:text-2xl">
+          {heading}
+        </h2>
         <div className="text-xs font-bold uppercase tracking-wider">
           <Link href={`/${section}`}>
             <a className="hover:text-link">See all</a>
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:gap-x-5 sm:gap-y-6 md:grid-cols-4 md:gap-x-6 md:gap-y-7 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:gap-x-4.5 sm:gap-y-5.5 md:grid-cols-4 md:gap-x-5 md:gap-y-6 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-7">
         {products.data.map((product) => (
           <ProductCard
             type="grid"

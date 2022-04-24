@@ -23,7 +23,9 @@ export default function Disclaimer() {
     <>
       <Meta title="Disclaimer" />
       <div className="pt-8 pb-10">
-        <h1 className="mb-3 text-4xl font-bold">Disclaimer</h1>
+        <h1 className="mb-3 text-[2rem] font-bold leading-9 tracking-tight md:text-4xl lg:text-[2.5rem] lg:leading-none">
+          Disclaimer
+        </h1>
         <ul
           role="list"
           className="marker:text-fxdb list-disc space-y-1.5 pl-5.5"

@@ -1,8 +1,8 @@
 import { fetchGraphQL } from "./fetch";
 
-export async function getNumOfBrands() {
+export async function getTotalBrands() {
   const data = await fetchGraphQL(
-    `query NumOfBrands {
+    `query TotalBrands {
       brands {
         meta {
           pagination {

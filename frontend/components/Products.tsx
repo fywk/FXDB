@@ -54,10 +54,10 @@ const Products = ({
       <div className="pt-8 pb-10">
         <div className="flex flex-col space-y-8">
           <section>
-            <h1 className="mb-3 text-4xl font-bold tracking-tight">
+            <h1 className="mb-3 text-[2rem] font-bold leading-9 tracking-tight md:text-4xl lg:text-[2.5rem] lg:leading-none">
               {capitalize(category)}
             </h1>
-            <p className="mb-4 text-lg font-medium">{description}</p>
+            <p className="mb-4 text-lg">{description}</p>
             <div className="flex gap-1.5">
               <form className="relative w-full">
                 <label htmlFor="search">
@@ -88,7 +88,7 @@ const Products = ({
             {filteredProducts.length > 0 ? (
               <>
                 {displayMode === "grid" && (
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-6 md:grid-cols-4 md:gap-x-6 md:gap-y-7 lg:grid-cols-5">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3 sm:gap-x-4.5 sm:gap-y-5.5 md:grid-cols-4 md:gap-x-5 md:gap-y-6 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-7">
                     {filteredProducts.map((product) => (
                       <ProductCard
                         type="grid"

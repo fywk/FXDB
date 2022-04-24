@@ -20,7 +20,7 @@ export default function ViewCounter({
       });
 
     // Record view when deployed (in production environment) and set to track
-    if (process.env.VERCEL_ENV === "production" && trackView) {
+    if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && trackView) {
       recordView();
     }
   }, [url, trackView]);

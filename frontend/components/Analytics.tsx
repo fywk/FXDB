@@ -14,79 +14,68 @@ const Analytics = ({ cameras, lenses, brands }: AnalyticsProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-6 md:gap-3.5 lg:gap-4">
-      <div className="md:col-span-6">
-        <StatisticCard title="All-Time Views" data={siteWideViews} />
+    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 md:grid-cols-6 lg:gap-4">
+      <div className="sm:col-span-2 md:col-span-6">
+        <StatCard title="Total Page Views" numbers={siteWideViews} />
       </div>
       <div className="md:col-span-3">
-        <StatisticCard title="All-Time Views: Cameras" data={camerasViews} />
+        <StatCard title="Page Views: Cameras" numbers={camerasViews} />
       </div>
       <div className="md:col-span-3">
-        <StatisticCard title="All-Time Views: Lenses" data={lensesViews} />
+        <StatCard title="Page Views: Lenses" numbers={lensesViews} />
       </div>
       <div className="md:col-span-2">
-        <StatisticCard
-          title="Number of Cameras"
-          data={cameras.meta.pagination.total}
-          link="/cameras"
-        />
+        <Link href="/cameras">
+          <a>
+            <StatCard
+              title="Total Cameras"
+              numbers={data && cameras.meta.pagination.total}
+            />
+          </a>
+        </Link>
       </div>
       <div className="md:col-span-2">
-        <StatisticCard
-          title="Number of Lenses"
-          data={lenses.meta.pagination.total}
-          link="/lenses"
-        />
+        <Link href="/lenses">
+          <a>
+            <StatCard
+              title="Total Lenses"
+              numbers={data && lenses.meta.pagination.total}
+            />
+          </a>
+        </Link>
       </div>
       <div className="md:col-span-2">
-        <StatisticCard
-          title="Number of Brands"
-          data={brands.meta.pagination.total}
-          link="/brands"
-        />
+        <Link href="/brands">
+          <a>
+            <StatCard
+              title="Total Brands"
+              numbers={data && brands.meta.pagination.total}
+            />
+          </a>
+        </Link>
       </div>
     </div>
   );
 };
 
-const StatisticCard = ({
-  title,
-  data,
-  link,
-}: {
-  title: string;
-  data: number;
-  link?: string;
-}) => {
+const StatCard = ({ title, numbers }: { title: string; numbers: number }) => {
   return (
-    <div className="aspect-[3.5] rounded-xl border border-gray-200 bg-white px-6 py-4 dark:border-transparent dark:bg-gray-800">
-      <h2 className="font-medium leading-7">{title}</h2>
-      <p className="text-fxdb text-[2.5rem] font-extrabold leading-10">
-        {link ? (
-          <Link href={link}>
-            <a>
-              <Statistic numbers={data} />
-            </a>
-          </Link>
+    <div className="rounded-xl border border-gray-200 bg-white px-6 py-4 dark:border-transparent dark:bg-gray-800 sm:aspect-[3.5]">
+      <div className="text-brightess leading-7">{title}</div>
+      <div className="text-fxdb text-[2.5rem] font-extrabold leading-10">
+        {numbers > 0 ? (
+          <CountUp
+            isCounting
+            end={numbers}
+            duration={1}
+            easing="linear"
+            formatter={(value) => Math.trunc(value).toLocaleString()}
+          />
         ) : (
-          <Statistic numbers={data} />
+          <>--</>
         )}
-      </p>
+      </div>
     </div>
-  );
-};
-
-const Statistic = ({ numbers }) => {
-  return numbers > 0 ? (
-    <CountUp
-      isCounting
-      end={numbers}
-      duration={0.5}
-      easing="linear"
-      formatter={(value) => Math.trunc(value).toLocaleString()}
-    />
-  ) : (
-    <>---</>
   );
 };
 
