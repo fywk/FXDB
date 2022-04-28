@@ -65,16 +65,23 @@ export async function getAllLenses() {
   return data;
 }
 
-export async function getLensesDetails(slug: string | string[]) {
-  const data = await fetchREST(`/lenses?filters[slug][$eq]=${slug}&populate=*`);
-
-  return data;
-}
-
-export async function getTotalLenses() {
+export async function getLensesAnalytics() {
   const data = await fetchGraphQL(
-    `query TotalLenses {
-      lenses {
+    `query LensesAnalytics {
+      lenses(pagination: {limit: -1}) {
+        data {
+          attributes {
+            slug
+            name
+            brand {
+              data {
+                attributes {
+                  name
+                }
+              }
+            }
+          }
+        }
         meta {
           pagination {
             total
@@ -84,4 +91,10 @@ export async function getTotalLenses() {
     }`
   );
   return data.lenses;
+}
+
+export async function getLensesDetails(slug: string | string[]) {
+  const data = await fetchREST(`/lenses?filters[slug][$eq]=${slug}&populate=*`);
+
+  return data;
 }

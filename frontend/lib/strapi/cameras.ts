@@ -54,18 +54,16 @@ export async function getAllCameras() {
   return data;
 }
 
-export async function getCameraDetails(slug: string | string[]) {
-  const data = await fetchREST(
-    `/cameras?filters[slug][$eq]=${slug}&populate=*`
-  );
-
-  return data;
-}
-
-export async function getTotalCameras() {
+export async function getCamerasAnalytics() {
   const data = await fetchGraphQL(
-    `query TotalCameras {
-      cameras {
+    `query CamerasAnalytics {
+      cameras(pagination: {limit: -1}) {
+        data {
+          attributes {
+            slug
+            name
+          }
+        }
         meta {
           pagination {
             total
@@ -75,4 +73,12 @@ export async function getTotalCameras() {
     }`
   );
   return data.cameras;
+}
+
+export async function getCameraDetails(slug: string | string[]) {
+  const data = await fetchREST(
+    `/cameras?filters[slug][$eq]=${slug}&populate=*`
+  );
+
+  return data;
 }

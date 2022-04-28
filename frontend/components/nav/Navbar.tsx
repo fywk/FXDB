@@ -19,7 +19,7 @@ export default function Navbar() {
       className={clsx(
         router.pathname !== "/" &&
           "border-b border-gray-200/50 dark:border-gray-800/50",
-        "py-3.5"
+        "py-4"
       )}
     >
       <div className="container relative mx-auto flex max-w-6xl items-center justify-between gap-x-4 px-5 sm:px-8">

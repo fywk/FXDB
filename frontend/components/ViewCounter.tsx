@@ -4,14 +4,10 @@ import useSWR from "swr";
 import { ViewCounterProps, Views } from "../lib/types";
 import fetcher from "../lib/utils/fetcher";
 
-export default function ViewCounter({
-  path,
-  slug,
-  trackView = false,
-}: ViewCounterProps) {
+export default function ViewCounter({ path, slug }: ViewCounterProps) {
   const url = `/api/views/${path}/${slug}`;
   const { data } = useSWR<Views>(url, fetcher);
-  const views = Number(data?.total);
+  const views = data?.views;
 
   useEffect(() => {
     const recordView = () =>
@@ -19,11 +15,11 @@ export default function ViewCounter({
         method: "POST",
       });
 
-    // Record view when deployed (in production environment) and set to track
-    if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && trackView) {
+    // Record view when deployed (in production environment)
+    if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
       recordView();
     }
-  }, [url, trackView]);
+  }, [url]);
 
   return <>{views > 0 ? views.toLocaleString() : "---"}</>;
 }

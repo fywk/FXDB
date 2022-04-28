@@ -1,17 +1,15 @@
 import { TablerIcon } from "@tabler/icons";
 
-export type AllTimeViews = {
-  views: {
-    siteWide: number;
-    cameras: number;
-    lenses: number;
-  };
+export type Analytics = {
+  total: number;
+  cameras: number;
+  lenses: number;
 };
 
 export type AnalyticsProps = {
-  cameras: TotalItems;
-  lenses: TotalItems;
-  brands: TotalItems;
+  cameras: ProductAnalytics;
+  lenses: ProductAnalytics;
+  brands: ProductAnalytics;
 };
 
 type Camera = {
@@ -32,7 +30,7 @@ export type DisplayOption = {
   icon: TablerIcon;
 };
 
-export type Error = {
+export type ErrorMessage = {
   message: string;
 };
 
@@ -69,6 +67,21 @@ export type Product = Camera & Lens & {
   dataSource: string;
 };
 
+export type ProductAnalytics = {
+  data: {
+    attributes: {
+      slug: string;
+      name: string;
+      brands?: string;
+    };
+  };
+  meta: {
+    pagination: {
+      total: number;
+    };
+  };
+};
+
 export type ProductCardProps = {
   index?: number;
   type: "grid" | "list" | "table-row";
@@ -88,20 +101,11 @@ export type ProductsProps = {
   imageStyle: string;
 };
 
-export type TotalItems = {
-  meta: {
-    pagination: {
-      total: number;
-    };
-  };
-};
-
 export type ViewCounterProps = {
   path: string;
   slug: string;
-  trackView?: boolean;
 };
 
 export type Views = {
-  total: number;
+  views: number;
 };

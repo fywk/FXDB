@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
+import useSWR from "swr";
 
 import { ChevronRightIcon } from "@heroicons/react/outline";
 
-import { ProductCardProps } from "../../lib/types";
+import { ProductCardProps, Views } from "../../lib/types";
 import { convertToMP } from "../../lib/utils/convertToMP";
+import fetcher from "../../lib/utils/fetcher";
 import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
-import ViewCounter from "../ViewCounter";
 
 const ProductCard = ({
   index,
@@ -22,8 +23,6 @@ const ProductCard = ({
   imageStyle,
 }: ProductCardProps) => {
   const [active, setActive] = useState(false);
-  const toggleClass = () => setActive(!active);
-
   const isHome = useRouter().pathname === "/";
 
   const productUrl = `/${path}/${product.slug}`;
@@ -104,7 +103,7 @@ const ProductCard = ({
             active && "bg-gray-100 dark:bg-gray-800",
             "flex cursor-pointer items-center justify-between space-x-1.5 px-5 py-2 sm:space-x-2 sm:px-8"
           )}
-          onClick={toggleClass}
+          onClick={() => setActive(!active)}
         >
           <div className="grid w-full grid-cols-4 gap-x-3 sm:gap-x-3.5">
             <div className="relative aspect-square w-full rounded-md bg-gray-200 dark:bg-gray-300">
@@ -147,8 +146,8 @@ const ProductCard = ({
   if (type === "table-row" && path === "cameras") {
     return (
       <TableRow>
-        <TableCell type="th">{index}</TableCell>
-        <TableCell type="td">
+        <TableCell type="header">{index}</TableCell>
+        <TableCell type="data">
           <Link href={productUrl}>
             <a className="flex w-fit items-center space-x-3.5">
               <div className="relative aspect-square w-12 rounded-md bg-gray-200 dark:bg-gray-300">
@@ -173,19 +172,19 @@ const ProductCard = ({
           </Link>
         </TableCell>
         <TableCell
-          type="td"
+          type="data"
           className="text-center"
         >{`${megapixels} MP`}</TableCell>
-        <TableCell type="td" className="text-center">
+        <TableCell type="data" className="text-center">
           {sensorSize}
         </TableCell>
-        <TableCell type="td" className="text-center">
+        <TableCell type="data" className="text-center">
           <time dateTime={product.launchDate}>
             {format(launchDate, "dd MMM y")}
           </time>
         </TableCell>
-        <TableCell type="td" className="text-center">
-          <ViewCounter path={path} slug={product.slug} />
+        <TableCell type="data" className="text-center">
+          <TotalViews productUrl={productUrl} />
         </TableCell>
       </TableRow>
     );
@@ -195,8 +194,8 @@ const ProductCard = ({
   if (type === "table-row" && path === "lenses") {
     return (
       <TableRow>
-        <TableCell type="th">{index}</TableCell>
-        <TableCell type="td">
+        <TableCell type="header">{index}</TableCell>
+        <TableCell type="data">
           <Link href={productUrl}>
             <a className="flex w-fit items-center space-x-3.5">
               <div className="relative aspect-square w-12 rounded-md bg-gray-200 dark:bg-gray-300">
@@ -220,19 +219,19 @@ const ProductCard = ({
             </a>
           </Link>
         </TableCell>
-        <TableCell type="td" className="text-center">
+        <TableCell type="data" className="text-center">
           {focalLength}
         </TableCell>
-        <TableCell type="td" className="text-center">
+        <TableCell type="data" className="text-center">
           {lensMount}
         </TableCell>
-        <TableCell type="td" className="text-center">
+        <TableCell type="data" className="text-center">
           <time dateTime={product.launchDate}>
             {format(launchDate, "dd MMM y")}
           </time>
         </TableCell>
-        <TableCell type="td" className="text-center">
-          <ViewCounter path={path} slug={product.slug} />
+        <TableCell type="data" className="text-center">
+          <TotalViews productUrl={productUrl} />
         </TableCell>
       </TableRow>
     );
@@ -250,16 +249,23 @@ const TableCell = ({
   className,
   children,
 }: {
-  type: "th" | "td";
+  type: "header" | "data";
   className?: string;
   children: ReactNode;
 }) => {
   switch (type) {
-    case "th":
+    case "header":
       return <th className={clsx("p-2", className)}>{children}</th>;
-    case "td":
+    case "data":
       return <td className={clsx("p-2", className)}>{children}</td>;
   }
+};
+
+const TotalViews = ({ productUrl }: { productUrl: string }) => {
+  const { data } = useSWR<Views>(`/api/views/${productUrl}`, fetcher);
+  const views = data?.views;
+
+  return <>{views > 0 ? views.toLocaleString() : "---"}</>;
 };
 
 export default ProductCard;

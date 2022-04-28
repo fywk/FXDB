@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import db from "../../../../lib/firebase";
-import { Error, Views } from "../../../../lib/types";
+import { ErrorMessage, Views } from "../../../../lib/types";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Views | Error>
+  res: NextApiResponse<Views | ErrorMessage>
 ) {
   try {
-    const path = req.query.path.toString();
-    const slug = req.query.slug.toString();
+    const path = String(req.query.path);
+    const slug = String(req.query.slug);
 
     // Increase total views by one
     if (req.method === "POST") {
@@ -21,7 +21,7 @@ export default async function handler(
       });
 
       return res.status(200).json({
-        total: snapshot.val(),
+        views: snapshot.val(),
       });
     }
 
@@ -34,7 +34,7 @@ export default async function handler(
         .once("value");
       const total = snapshot.val();
 
-      return res.status(200).json({ total });
+      return res.status(200).json({ views: total });
     }
   } catch (e) {
     return res.status(500).json({ message: e.message });
