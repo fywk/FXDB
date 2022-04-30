@@ -8,7 +8,7 @@ const TopProducts = ({ cameras, lenses }) => {
   const { data: topLenses } = useSWR<any>("/api/views/lenses", fetcher);
 
   return (
-    <div className="mt-10 grid grid-cols-1 gap-y-6 md:mt-12 md:grid-cols-2 md:gap-x-8 lg:gap-x-16">
+    <div className="mt-10 grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-10 lg:mt-12">
       <TopSection
         title="Top Cameras"
         category="cameras"
@@ -58,19 +58,24 @@ const TopSection = ({ title, category, products, topProducts }) => {
 };
 
 const TopProduct = ({ product, ranking, category, views }) => {
+  const brand = product.brand ? product.brand.data.attributes.name : "Fujifilm";
+
   return (
-    <div className="flex h-16 items-center px-2 md:h-[4.5rem]">
-      <div className="flex w-full items-center justify-between gap-x-5.5 md:gap-x-6">
-        <div className="font-mono text-sm font-medium">{ranking}</div>
+    <div className="flex h-[3.75rem] items-center px-2.5 md:h-16 lg:h-[4.25rem]">
+      <div className="flex w-full items-center justify-between gap-x-5">
+        <div className="w-6 text-center text-sm">{ranking}</div>
         <div className="text-fxdb w-full truncate leading-tight">
           <Link href={`/${category}/${product.slug}`}>
-            <a className="font-medium hover:underline">{product.name}</a>
+            <a
+              className="font-medium hover:underline"
+              title={`${brand} ${product.name}`}
+            >
+              {product.name}
+            </a>
           </Link>
-          <div className="text-brightess text-sm">
-            {product.brand ? product.brand.data.attributes.name : "Fujifilm"}
-          </div>
+          <div className="text-bright text-sm">{brand}</div>
         </div>
-        <div className="text-dimmed whitespace-nowrap text-sm">
+        <div className="whitespace-nowrap text-[15px]">
           {`${views.toLocaleString()} views`}
         </div>
       </div>
@@ -80,14 +85,14 @@ const TopProduct = ({ product, ranking, category, views }) => {
 
 const TopProductSkeleton = ({ ranking }) => {
   return (
-    <div className="flex h-16 items-center px-2 md:h-[4.5rem]">
-      <div className="flex w-full items-center justify-between gap-x-5.5 md:gap-x-6">
-        <div className="font-mono text-sm font-medium">{ranking}</div>
+    <div className="flex h-[3.75rem] items-center px-2.5 md:h-16 lg:h-[4.25rem]">
+      <div className="flex w-full items-center justify-between gap-x-5">
+        <div className="w-6 text-center text-sm">{ranking}</div>
         <div className="flex w-full flex-col gap-y-2">
-          <div className="h-3.5 w-full animate-pulse rounded bg-gray-200 dark:bg-gray-800/80"></div>
-          <div className="h-3 w-3/5 animate-pulse rounded bg-gray-200 dark:bg-gray-800/80"></div>
+          <div className="h-3.5 w-full animate-pulse rounded-full bg-gray-200 dark:bg-gray-800/80"></div>
+          <div className="h-3 w-[55%] animate-pulse rounded-full bg-gray-200 dark:bg-gray-800/80"></div>
         </div>
-        <div className="h-3 w-1/4 animate-pulse rounded bg-gray-200 dark:bg-gray-800/80"></div>
+        <div className="h-3 w-1/4 animate-pulse rounded-full bg-gray-200 dark:bg-gray-800/80"></div>
       </div>
     </div>
   );

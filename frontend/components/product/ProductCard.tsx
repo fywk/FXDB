@@ -9,9 +9,8 @@ import useSWR from "swr";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 
 import { ProductCardProps, Views } from "../../lib/types";
-import { convertToMP } from "../../lib/utils/convertToMP";
 import fetcher from "../../lib/utils/fetcher";
-import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
+import { convertToMP } from "../../lib/utils/unitConversion";
 
 const ProductCard = ({
   index,
@@ -42,7 +41,7 @@ const ProductCard = ({
   }
 
   if (path === "lenses") {
-    var lensMount = humanizeLensMount(product.mount?.data?.attributes.name);
+    var lensMount = product.mount.data.attributes.name;
     var focalLength = Array.isArray(product.focalLength)
       ? `${product.focalLength.join("-")}mm`
       : `${product.focalLength}mm`;

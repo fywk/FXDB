@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { ReactNode } from "react";
 
-import { convertToMP } from "../../lib/utils/convertToMP";
+import { convertToMP } from "../../lib/utils/unitConversion";
 import ViewCounter from "../ViewCounter";
 
 export default function ProductStats(props) {

@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import db from "../../../lib/firebase";
 import { Analytics, ErrorMessage } from "../../../lib/types";
+import getTotalViews from "../../../lib/utils/getTotalViews";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,9 +10,6 @@ export default async function handler(
   try {
     const snapshot = await db.ref("views").once("value");
     const views = snapshot.val();
-
-    const getTotalViews = (obj) =>
-      Number(Object.values(obj).reduce((a: number, b: number) => a + b));
 
     const camerasViews = getTotalViews(views.cameras);
     const lensesViews = getTotalViews(views.lenses);

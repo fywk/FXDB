@@ -1,17 +1,17 @@
 import { Product } from "../../lib/types";
-import { convertToOunces } from "../../lib/utils/convertToOunces";
-import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
+import { convertToOunces } from "../../lib/utils/unitConversion";
 import SpecItem from "./SpecItem";
 
 export default function CameraSpecs(props: Product) {
-  const lensMount = humanizeLensMount(props.lensMount);
   const sensorSize = props.sensorSize === "APSC" ? "APS-C" : "Medium Format";
   const weightOz = convertToOunces(props.weight);
 
   return (
     <>
       <SpecItem title="Camera type" data={props.cameraType} />
-      {lensMount && <SpecItem title="Lens mount" data={lensMount} />}
+      {props.lensMount && (
+        <SpecItem title="Lens mount" data={props.lensMount} />
+      )}
       {props.cameraFocalLength && (
         <SpecItem title="Focal length" data={props.cameraFocalLength} />
       )}

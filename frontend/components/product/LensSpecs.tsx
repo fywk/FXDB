@@ -1,10 +1,8 @@
 import { Product } from "../../lib/types";
-import { convertToOunces } from "../../lib/utils/convertToOunces";
-import { humanizeLensMount } from "../../lib/utils/humanizeLensMount";
+import { convertToOunces } from "../../lib/utils/unitConversion";
 import SpecItem from "./SpecItem";
 
 export default function LensSpecs(props: Product) {
-  const lensMount = humanizeLensMount(props.lensMount);
   const focalLength = Array.isArray(props.focalLength)
     ? `${props.focalLength.join("-")}mm`
     : `${props.focalLength}mm`;
@@ -24,7 +22,7 @@ export default function LensSpecs(props: Product) {
 
   return (
     <>
-      <SpecItem title="Lens mount" data={lensMount} />
+      <SpecItem title="Lens mount" data={props.lensMount} />
       <SpecItem title="Focal length" data={focalLength} />
       <SpecItem title="Angle of view" data={angleOfView} />
       <SpecItem title="Max aperture" data={maxAperture} />
