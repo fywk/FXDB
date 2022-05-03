@@ -12,7 +12,7 @@ const Analytics = ({ cameras, lenses, brands }: AnalyticsProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-6 md:gap-4.5">
+    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-6 md:gap-4">
       <div className="sm:col-span-6">
         <StatCard title="Total Page Views" numbers={totalViews} />
       </div>
@@ -46,8 +46,8 @@ const Analytics = ({ cameras, lenses, brands }: AnalyticsProps) => {
 
 const StatCard = ({ title, numbers }: { title: string; numbers: number }) => {
   return (
-    <div className="rounded-xl bg-white px-6 py-4 ring-1 ring-gray-200/75 dark:bg-gray-900 dark:ring-gray-800 sm:aspect-[3.5]">
-      <div className="text-bright leading-7">{title}</div>
+    <div className="rounded-xl bg-white px-6 py-4 ring-1 ring-gray-200/75 dark:bg-gray-800/75 dark:ring-gray-800/75 sm:aspect-[3.5]">
+      <div className="text-brighter leading-7">{title}</div>
       <div className="text-fxdb text-[2.5rem] font-extrabold leading-10 underline-offset-2">
         {numbers > 0 ? numbers.toLocaleString() : "--"}
       </div>

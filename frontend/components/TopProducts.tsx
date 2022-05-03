@@ -73,7 +73,7 @@ const TopProduct = ({ product, ranking, category, views }) => {
               {product.name}
             </a>
           </Link>
-          <div className="text-bright text-sm">{brand}</div>
+          <div className="text-brighter text-sm">{brand}</div>
         </div>
         <div className="whitespace-nowrap text-[15px]">
           {`${views.toLocaleString()} views`}
