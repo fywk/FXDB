@@ -28,7 +28,7 @@ const TopProducts = ({ cameras, lenses }) => {
 const TopSection = ({ title, category, products, topProducts }) => {
   return (
     <section>
-      <h2 className="mb-2 text-2xl font-bold tracking-tight">{title}</h2>
+      <h2 className="mb-2.5 text-2xl font-bold tracking-tight">{title}</h2>
       <div className="divide-y divide-gray-200/75 dark:divide-gray-800/75">
         {!topProducts
           ? [...Array(5)].map((_, i) => (
@@ -89,10 +89,10 @@ const TopProductSkeleton = ({ ranking }) => {
       <div className="flex w-full items-center justify-between gap-x-5">
         <div className="w-6 text-center text-sm">{ranking}</div>
         <div className="flex w-full flex-col gap-y-2">
-          <div className="h-3.5 w-full animate-pulse rounded-full bg-gray-200 dark:bg-gray-800/80"></div>
-          <div className="h-3 w-[55%] animate-pulse rounded-full bg-gray-200 dark:bg-gray-800/80"></div>
+          <div className="h-3.5 w-full rounded-full bg-gray-200/75 dark:bg-gray-800/75"></div>
+          <div className="h-3 w-[55%] rounded-full bg-gray-200/75 dark:bg-gray-800/75"></div>
         </div>
-        <div className="h-3 w-1/4 animate-pulse rounded-full bg-gray-200 dark:bg-gray-800/80"></div>
+        <div className="h-3 w-1/4 rounded-full bg-gray-200/75 dark:bg-gray-800/75"></div>
       </div>
     </div>
   );

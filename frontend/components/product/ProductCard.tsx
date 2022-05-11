@@ -73,7 +73,7 @@ const ProductCard = ({
         <div className="mx-auto flex w-[99%] flex-col space-y-0.5">
           <h2 className="text-fxdb font-medium leading-tight tracking-tight md:tracking-normal">
             <Link href={productUrl}>
-              <a className="underline-offset-1 hover:underline">
+              <a className="hover:underline">
                 {path === "cameras" ? `${brand} ${product.name}` : product.name}
               </a>
             </Link>
@@ -118,7 +118,7 @@ const ProductCard = ({
               )}
             </div>
             <div className="col-span-3 flex w-full flex-col space-y-0.5 sm:py-0.5">
-              <h2 className="text-fxdb w-fit font-medium leading-tight tracking-tight underline-offset-1 hover:underline">
+              <h2 className="text-fxdb w-fit font-medium leading-tight tracking-tight hover:underline">
                 {path === "cameras" ? `${brand} ${product.name}` : product.name}
               </h2>
               <p className="text-brightess text-sm">
@@ -162,7 +162,7 @@ const ProductCard = ({
                 )}
               </div>
               <div className="max-w-[18rem] tracking-normal">
-                <h2 className="text-fxdb truncate text-base font-medium leading-tight underline-offset-1 hover:underline">
+                <h2 className="text-fxdb truncate text-base font-medium leading-tight hover:underline">
                   {product.name}
                 </h2>
                 <p>{brand}</p>
@@ -210,7 +210,7 @@ const ProductCard = ({
                 )}
               </div>
               <div className="max-w-[18rem] tracking-normal">
-                <h2 className="text-fxdb truncate text-base font-medium leading-tight underline-offset-1 hover:underline">
+                <h2 className="text-fxdb truncate text-base font-medium leading-tight hover:underline">
                   {product.name}
                 </h2>
                 <p>{brand}</p>
