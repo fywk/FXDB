@@ -145,7 +145,9 @@ const ProductCard = ({
   if (type === "table-row" && path === "cameras") {
     return (
       <TableRow>
-        <TableCell type="header">{index}</TableCell>
+        <TableCell type="header" className="font-semibold">
+          {index}
+        </TableCell>
         <TableCell type="data">
           <Link href={productUrl}>
             <a className="flex w-fit items-center space-x-3.5">
@@ -193,7 +195,9 @@ const ProductCard = ({
   if (type === "table-row" && path === "lenses") {
     return (
       <TableRow>
-        <TableCell type="header">{index}</TableCell>
+        <TableCell type="header" className="font-semibold">
+          {index}
+        </TableCell>
         <TableCell type="data">
           <Link href={productUrl}>
             <a className="flex w-fit items-center space-x-3.5">
@@ -254,9 +258,9 @@ const TableCell = ({
 }) => {
   switch (type) {
     case "header":
-      return <th className={clsx("p-2", className)}>{children}</th>;
+      return <th className={clsx("px-2.5 py-2", className)}>{children}</th>;
     case "data":
-      return <td className={clsx("p-2", className)}>{children}</td>;
+      return <td className={clsx("px-2.5 py-2", className)}>{children}</td>;
   }
 };
 

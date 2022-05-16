@@ -29,7 +29,7 @@ const TopSection = ({ title, category, products, topProducts }) => {
   return (
     <section>
       <h2 className="mb-2.5 text-2xl font-bold tracking-tight">{title}</h2>
-      <div className="divide-y divide-gray-200/75 dark:divide-gray-800/75">
+      <div className="divide-y divide-gray-200/80 dark:divide-gray-800/80">
         {!topProducts
           ? [...Array(5)].map((_, i) => (
               <TopProductSkeleton ranking={i + 1} key={i} />
@@ -64,7 +64,7 @@ const TopProduct = ({ product, ranking, category, views }) => {
     <div className="flex h-[3.75rem] items-center px-2.5 md:h-16 lg:h-[4.25rem]">
       <div className="flex w-full items-center justify-between gap-x-5">
         <div className="w-6 text-center text-sm">{ranking}</div>
-        <div className="text-fxdb w-full truncate leading-tight">
+        <div className="text-fxdb w-full truncate leading-tight tracking-tight md:tracking-normal">
           <Link href={`/${category}/${product.slug}`}>
             <a
               className="font-medium hover:underline"
@@ -89,10 +89,10 @@ const TopProductSkeleton = ({ ranking }) => {
       <div className="flex w-full items-center justify-between gap-x-5">
         <div className="w-6 text-center text-sm">{ranking}</div>
         <div className="flex w-full flex-col gap-y-2">
-          <div className="h-3.5 w-full rounded-full bg-gray-200/75 dark:bg-gray-800/75"></div>
-          <div className="h-3 w-[55%] rounded-full bg-gray-200/75 dark:bg-gray-800/75"></div>
+          <div className="h-3.5 w-full rounded-md bg-gray-200/80 dark:bg-gray-800/80"></div>
+          <div className="h-3 w-3/5 rounded-md bg-gray-200/80 dark:bg-gray-800/80"></div>
         </div>
-        <div className="h-3 w-1/4 rounded-full bg-gray-200/75 dark:bg-gray-800/75"></div>
+        <div className="h-[13px] w-1/4 rounded-md bg-gray-200/80 dark:bg-gray-800/80"></div>
       </div>
     </div>
   );

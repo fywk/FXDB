@@ -131,7 +131,7 @@ const Products = ({
                     />
                     <tbody>
                       <tr>
-                        <td className="h-3"></td>
+                        <td className="h-3.5"></td>
                       </tr>
                     </tbody>
                     <tbody>
@@ -164,7 +164,7 @@ const Products = ({
                     />
                     <tbody>
                       <tr>
-                        <td className="h-3"></td>
+                        <td className="h-3.5"></td>
                       </tr>
                     </tbody>
                     <tbody>
@@ -216,7 +216,7 @@ const TableHead = ({ title }: { title: string[] }) => {
     <thead className="border-b-2 border-gray-100 text-xs uppercase dark:border-gray-800/50">
       <tr>
         {title.map((item) => (
-          <th scope="col" className="px-2 py-3 second:text-left" key={item}>
+          <th scope="col" className="px-2.5 py-3 second:text-left" key={item}>
             {item}
           </th>
         ))}

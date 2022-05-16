@@ -46,7 +46,7 @@ const Analytics = ({ cameras, lenses, brands }: AnalyticsProps) => {
 
 const StatCard = ({ title, numbers }: { title: string; numbers: number }) => {
   return (
-    <div className="rounded-xl bg-white px-6 py-4 ring-1 ring-gray-200/75 dark:bg-gray-800/75 dark:ring-gray-800/75 sm:aspect-[3.75]">
+    <div className="rounded-xl bg-white px-6 py-4 ring-1 ring-gray-200/80 dark:bg-gray-800/60 dark:ring-gray-800/80 sm:aspect-[3.75]">
       <div className="text-brighter leading-7">{title}</div>
       <div className="text-fxdb text-[2.5rem] font-extrabold leading-10">
         {numbers > 0 ? numbers.toLocaleString() : "--"}
